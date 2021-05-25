@@ -26,4 +26,5 @@ hs_err_pid*
 wetsuit_hub-backend/.mvn/
 wetsuit_hub-backend/wetsuit_hub-web/scottch-logegg-web.iml
 wetsuit_hub-backend/wetsuit_hub-backend.iml
+.DS_Store
 
