@@ -5,12 +5,14 @@ import java.util.UUID;
 public class Wetsuit {
     private UUID id;
     private String name;
+    private String size;
     private int price;
     private String webAddress;
 
-    public Wetsuit(UUID id, String name, int price, String webAddress) {
-        this.id = id;
+    public Wetsuit(UUID id, String name, int price, String webAddress, String size) {
+        this.id = UUID.randomUUID();
         this.name = name;
+        this.size = size;
         this.price = price;
         this.webAddress = webAddress;
     }
@@ -29,6 +31,14 @@ public class Wetsuit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public int getPrice() {

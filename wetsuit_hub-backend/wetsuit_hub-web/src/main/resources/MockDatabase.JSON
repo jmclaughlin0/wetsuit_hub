@@ -1,112 +1,38 @@
 [
   {
-    "name":"Beef stroganoff"
-    ,"ingredients": [
-    "1 tbsp olive oil"
-    ,"1 onion, sliced"
-    ,"1 clove of garlic"
-    ,"1 tbsp butter"
-    ,"250g mushrooms"
-    ,"1 tbsp plain flour"
-    ,"500g fillet steak, sliced"
-    ,"150g crème fraîche"
-    ,"1 tsp English mustard"
-    ,"100ml beef stock"
-    ,"½ small pack of parsley, chopped"
-  ],
-  "id": "22710dbf-3fc2-4f7c-978d-0d2bdb85b825"
+    "name":"O'Neill HyperFreak",
+    "Price": "£235",
+    "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+    "size": "M",
+    "id": "22710dbf-3fc2-4f7c-978d-0d2bdb85b825"
 }
 ,{
-  "name":"Spaghetti Bolognese"
-  ,"ingredients": [
-    "1 tbsp olive oil"
-  ,"4 rashers smoked streaky bacon, finely chopped"
-  ,"2 medium onions, finely chopped"
-  ,"2 carrots, trimmed and finely chopped"
-  ,"2 celery sticks, finely chopped"
-  ,"2 garlic cloves finely chopped"
-  ,"2-3 sprigs rosemary leaves picked and finely chopped"
-  ,"500g beef mince"
-  ,"2 x 400g tins plum tomatoes"
-  ,"small pack basil leaves"
-  ,"1 tsp dried oregano"
-  ,"2 fresh bay leaves"
-  ,"2 tbsp tomato puree"
-  ,"1 beef stock cube"
-  ,"1 red chilli "
-  ,"125ml red wine"
-  ,"6 cherry tomatoes sliced in half"
-  ,"75g parmesan grated"
-  ,"400g spaghetti"
-  ],
+  "name":"O'Neill Psycho",
+  "Price": "£245",
+  "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+  "size": "L",
   "id": "8e257cde-f59a-4b7b-b807-e8ca400f8339"
 }
 ,{
-  "name":"Thai Green Curry"
-  ,"ingredients": [
-    "225g new potatoes, cut into chunks"
-  ,"100g green beans, trimmed and halved"
-  ,"1 tbsp vegetable or sunflower oil"
-  ,"1 garlic clove, chopped"
-  ,"4 tsp Thai green curry paste"
-  ,"400ml can coconut milk"
-  ,"2 tsp Thai fish sauce"
-  ,"1 tsp caster sugar"
-  ,"450g boneless skinless chicken"
-  ,"2 fresh kaffir lime leaves finely shredded"
-  ,"good handful of basil leaves"
-  ,"boiled rice, to serve"
-  ],
+  "name":"RipCurl Flashbomb",
+  "Price": "£235",
+  "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+  "size": "MS",
   "id": "d2c76284-b95e-42ca-bd70-5021793cf8a3"
 },
   {
-  "name":"Thai Red Curry"
-  ,"ingredients": [
-      "1 tbsp vegetable oil","1 tbsp ginger & garlic paste","5-6 tbsp red curry paste","800ml coconut milk","8 skinless, boneless chicken thighs, cut into large chunks","kaffir lime leaves (ideally fresh)","2 tbsp fish sauce","1 tsp brown sugar","1/2 small pack Thai basil","basil or coriander, plus extra to serve","1 red chilli, sliced diagonally","thumb-sized piece ginger, cut into matchsticks","cooked jasmine rice, to serve"
-  ],
+    "name":"NeedsEssentials Premium",
+    "Price": "£135",
+    "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+    "size": "S",
     "id": "2e734d20-9d1c-4ade-8114-96ac9ac10a4d"
 },
   {
-  "name":"Rogan Josh Curry"
-  ,"ingredients": [
-
-      "2 onions , quartered","4 tbsp sunflower oil","4 garlic cloves , finely crushed","thumb-size piece fresh root ginger , peeled and very finely grated","2 tbsp Madras curry paste","2 tsp paprika","1 cinnamon stick","6 green cardamom , bashed to break the shells","4 cloves","2 bay leaves","1 tbsp tomato puree","1kg lean leg of lamb , cut into generous cubes","150ml Greek yogurt","chopped coriander , to garnish"
-  ],
+    "name":"Deeply Comp",
+    "Price": "£200",
+    "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+    "size": "XXL",
     "id": "ac534e8b-0bfa-454a-bec5-0032ab3044fb"
-},
-  {
-  "name":"Chicken Jalfrezi"
-  ,"ingredients": [
-      "1/2 large onion, roughly chopped","2 garlic cloves, chopped","1 green chilli, finely chopped","vegetable oil, for frying","400g can plum tomatoes","1 tbsp ground coriander","1 tbsp ground cumin","1 tsp turmeric","For the meat & veg","2-3 chicken breasts, diced","1 tsp ground cumin","1 tsp ground coriander","1 tsp turmeric","1/2 large onion, sliced","1 red pepper, chopped","2 red chillies, finely chopped (optional)","2 tsp garam masala","handful of fresh, chopped coriander leaves","cooked basmati rice or naan bread to serve"
-  ],
-    "id": "2608430e-0016-48be-b447-8cae697284e2"
-},
-  {
-    "name":"Lasagne"
-  ,"ingredients": [
-      "3 tbsp olive oil","2 celery sticks, finely chopped","1 onion, finely chopped","1 carrot (about 100g), finely chopped","3 garlic cloves, crushed","140g cubetti di pancetta","500g beef mince (we used 10% fat)","500g pork mince or British veal mince","200ml milk","2 x 400g cans chopped tomatoes","2 bay leaves","1 rosemary sprig","2 thyme sprigs","2 tsp dried oregano","2 beef stock cubes","500ml red wine","For the lasagne","about 400g dried pasta sheets","50g parmesan, finely grated","For the white sauce (b\u00e9chamel)","1.5l milk","1 onion, thickly sliced","3 bay leaves","3 cloves","100g butter","100g plain flour","good grating of nutmeg"
-  ],
-    "id": "63ace0f1-67ad-45c1-8182-9b3e4e5cd197"
-  },
-  {
-    "name":"Dhal"
-  ,"ingredients": [
-      "1 tbsp sesame oil","1 red onion, finely chopped","1 garlic clove, crushed","thumb-sized piece ginger, peeled and finely chopped","1 red chilli, finely chopped","1 1/2 tsp ground turmeric","1 1/2 tsp ground cumin","2 sweet potatoes (about 400g), cut into even chunks","250g red split lentils","600ml vegetable stock","80g bag of spinach","4 spring onions, sliced on the diagonal, to serve","1/2 small pack of Thai basil, leaves torn, to serve"
-  ],
-    "id": "e3211b99-4dc1-4e26-b8dc-74f3c23b4924"
-  },
-  {
-    "name":"Mushroom Risotto"
-  ,"ingredients": [
-      "50g dried porcini mushrooms","1 vegetable stock cube","2 tbsp olive oil","1 onion, finely chopped","2 garlic cloves, finely chopped","250g pack chestnut mushrooms, chopped","300g risotto rice, such as arborio","1 x 175ml glass white wine","25g butter","handful parsley leaves, chopped","50g parmesan or Grana Padano, freshly grated"
-  ],
-    "id": "16870391-3953-4d6a-b0c8-834ea50beb17"
-  },
-  {
-    "name":"Vegetarian Fajitas"
-  ,"ingredients": [
-      "400g can black beans, drained","small bunch coriander, finely chopped","4 large or 8-12 small flour tortillas","1 avocado, sliced, or 1 small tub guacamole","2 tbsp soured cream","For the fajita mix","1 red and 1 yellow pepper, cut into strips","1 tbsp oil","1 red onion, cut into thin wedges","1 garlic clove, crushed","1/2 tsp chilli powder","1/2 tsp smoked paprika","1/2 tsp ground cumin","1 lime, juiced"
-  ],
-    "id": "fb895eb9-664c-432b-a309-2089a6f98519"
-  }
+}
+
 ]
