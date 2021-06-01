@@ -3,18 +3,14 @@ package com.nyxgroup.wetsuit_hubweb;
 import java.util.UUID;
 
 public class Wetsuit {
-    private UUID id;
+
     private String name;
-    private String size;
     private int price;
     private String webAddress;
+    private String size;
+    private UUID id;
 
-    public Wetsuit(UUID id, String name, int price, String webAddress, String size) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.size = size;
-        this.price = price;
-        this.webAddress = webAddress;
+    public Wetsuit() {
     }
 
     public UUID getId() {

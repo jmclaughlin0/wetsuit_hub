@@ -3,9 +3,13 @@ import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import WetsuitsPage from "./WetsuitsPage";
 import Home from "./Home";
+import {useDispatch} from "react-redux";
+import {fetchWetsuits} from "./wetsuitsSlice";
 
 
 export default function App() {
+    const dispatch = useDispatch();
+    dispatch(fetchWetsuits());
   return (
       <Router>
           <div>

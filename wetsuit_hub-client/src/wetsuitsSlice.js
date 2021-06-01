@@ -1,10 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {allWetsuitsURL} from "./URLS";
 
-export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(_,thunkAPI) =>  {
-        const {order} = thunkAPI.getState()
+export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async() =>  {
         const response = await fetch(allWetsuitsURL,
-            {method: 'GET', headers:{order}})
+            {method: 'GET'})
 
         const data = await response.json();
 
@@ -15,41 +14,34 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(_,thunkAP
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
     initialState: {
-        wetsuitsList: {},
-        filter: '',
-        filteredWetsuitsList: [{}]
+        wetsuitsList: [{
+                "name":"O'Neill HyperFreak",
+                "Price": "£235",
+                "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+                "size": "M",
+                "id": "22710dbf-3fc2-4f7c-978d-0d2bdb85b825"
+            },
+            {
+                "name":"O'Neill Psycho",
+                "Price": "£25",
+                "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
+                "size": "MS",
+                "id": "22710dhf-3fc2-4f7c-978d-0d2bdb85b825"
+            }]
     },
     reducers: {
-        addWetsuit: (state, action) => {
-            const newWetsuit = action.payload;
-            state.wetsuitsList[newWetsuit.id] = newWetsuit;
-        },
 
-        getFilteredWetsuits: (state) => {
-            if (state.filter === '') {
-                return({...state,
-                    filteredWetsuitsList: state.wetsuitsList})
-            } else {
-                return ({
-                    ...state,
-                    filteredWetsuitsList: state.wetsuitsList.filter(wetsuit => wetsuit.name.toLowerCase().includes(state.filter.toLowerCase()))
-                })
-            }
-        },
-
-        changeFilter: (state, action) => {
-            state.filter = action.payload
-        }
     },
     extraReducers:{
         [fetchWetsuits.fulfilled]: (state, action) => {
             state.wetsuitsList = action.payload;
-            state.filteredWetsuitsList = action.payload;
         }
     }
 
 })
 
-export const { addWetsuit, getFilteredWetsuits, changeFilter } = wetsuitsSlice.actions
-
 export default wetsuitsSlice.reducer
+
+export const selectWetsuits = state => {
+    return state.wetsuits.wetsuitsList;
+}
