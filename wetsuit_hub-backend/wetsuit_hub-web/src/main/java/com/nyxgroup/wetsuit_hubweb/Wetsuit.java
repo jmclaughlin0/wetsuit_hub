@@ -6,6 +6,7 @@ public class Wetsuit {
 
     private String name;
     private int price;
+    private String thickness;
     private String webAddress;
     private String size;
     private UUID id;
@@ -19,6 +20,14 @@ public class Wetsuit {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getThickness() {
+        return thickness;
+    }
+
+    public void setThickness(String thickness) {
+        this.thickness = thickness;
     }
 
     public String getName() {

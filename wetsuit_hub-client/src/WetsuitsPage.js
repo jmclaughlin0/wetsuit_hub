@@ -7,7 +7,6 @@ import {selectWetsuits} from "./wetsuitsSlice";
 export default function WetsuitsPage(){
 
     const wetsuits = useSelector(selectWetsuits)
-    console.log(wetsuits)
 
     return(
         <div>

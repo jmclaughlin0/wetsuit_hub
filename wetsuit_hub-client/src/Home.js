@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {wetsuitsPage} from "./URLS";
 
 function Home() {
     return (
@@ -7,17 +8,14 @@ function Home() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
-                    Edit <code>src/App.js</code> and save to reload.
+                    Welcome to Wetsuit Hub!!
+                    <br/>
+                    Navigate to the Wetsuits Page to find great deals on Wetsuits
                 </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
             </header>
+            <p>
+                Built by Surfers for Surfers
+            </p>
         </div>
     );
 }
