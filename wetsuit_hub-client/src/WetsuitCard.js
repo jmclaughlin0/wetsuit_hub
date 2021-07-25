@@ -8,7 +8,7 @@ export default function WetsuitCard({wetsuit}) {
         <div>
             <SegmentGroup>
                 <Segment align='middle'>
-                    <Image src={logo}/>
+                    <Image src = {wetsuit.imageAddress} />
                     <a
                         className="App-link"
                         href= {wetsuit.webAddress}

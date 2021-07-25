@@ -41,7 +41,9 @@ public class DeeplyScraper implements IWetsuitScraper {
                     Elements wetsuitImageAddress = currentWetsuit.getElementsByAttribute("data-lowsrc");
                     String wetsuitPlaceholder = wetsuitImageAddress.get(9).toString();
                     String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ');
-                    wetsuit.setWebAddress(wetsuitPlaceholderAddress);
+                    wetsuit.setImageAddress("https://" + wetsuitPlaceholderAddress);
+
+                    wetsuit.setWebAddress("https://eu.deeply.com/" + wetsuitPage.attr("href"));
 
                     wetsuitsRepository.save(wetsuit);
 
