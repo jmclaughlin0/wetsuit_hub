@@ -5,8 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class WetsuitOutletScraper {
-    public static void main(String[] args){
+public class WetsuitOutletScraper implements IWetsuitScraper {
+    public void getWetsuits(){
         final String baseUrl = "https://www.wetsuitoutlet.co.uk/mens-4mm-c-155_156.html";
 
         try {

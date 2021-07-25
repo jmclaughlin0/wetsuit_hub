@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import {wetsuitsPage} from "./URLS";
 
 function Home() {
     return (

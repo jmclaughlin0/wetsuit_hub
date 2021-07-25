@@ -1,7 +1,6 @@
 import {Segment, SegmentGroup, Divider, Image, Header} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import logo from "./logo.svg";
-import {wetsuitsPage} from "./URLS";
 
 export default function WetsuitCard({wetsuit}) {
 

@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {allWetsuitsURL} from "./URLS";
+import {allWetsuitsURL, scrapeWetsuitsURL} from "./URLS";
 
 export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async() =>  {
         const response = await fetch(allWetsuitsURL,
@@ -11,25 +11,20 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async() =>  {
     }
 )
 
+export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
+        const response = await fetch(scrapeWetsuitsURL,
+            {method: 'POST'})
+
+        const data = await response.json();
+
+        return data;
+    }
+)
+
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
     initialState: {
-        wetsuitsList: [{
-                "name":"O'Neill HyperFreak",
-                "Price": "£235",
-                "thickness" : "5/4mm",
-                "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
-                "size": "M",
-                "id": "22710dbf-3fc2-4f7c-978d-0d2bdb85b825"
-            },
-            {
-                "name":"O'Neill Psycho",
-                "Price": "£25",
-                "thickness" : "4/3mm",
-                "webAddress": "https://www.youtube.com/watch?v=K4P7EML-H4U&ab_channel=MedSchoolInsidersMedSchoolInsiders",
-                "size": "MS",
-                "id": "22710dhf-3fc2-4f7c-978d-0d2bdb85b825"
-            }]
+        wetsuitsList: []
     },
     reducers: {
 

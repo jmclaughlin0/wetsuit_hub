@@ -1,14 +1,26 @@
 package com.nyxgroup.wetsuit_hubweb;
 
+import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
+@Table(name = "suits")
 public class Wetsuit {
 
+    @Column
     private String name;
-    private int price;
+    @Column
+    private double price;
+    @Column
     private String thickness;
+    @Column
     private String webAddress;
+    @Column
     private String size;
+
+    @Column
+    @Id
+    @GeneratedValue
     private UUID id;
 
     public Wetsuit() {
@@ -46,11 +58,11 @@ public class Wetsuit {
         this.size = size;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -61,4 +73,15 @@ public class Wetsuit {
     public void setWebAddress(String webAddress) {
         this.webAddress = webAddress;
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" +
+                "Price: " + price + "\n" +
+                "Web Address: " + webAddress + "\n" +
+                "Thickness: " + thickness +
+                "Size: " + size;
+    }
 }
+
+

@@ -1,8 +1,10 @@
 const allWetsuitsURL = "http://localhost:8080/wetsuits"
 
-const wetsuitsPage = "localhost:3000/wetsuits"
+const scrapeWetsuitsURL = "http://localhost:8080/scrape-wetsuits"
+
+const wetsuitsPage = "http://localhost:3000/wetsuits"
 
 
 
 
-export {allWetsuitsURL, wetsuitsPage}
+export {allWetsuitsURL, wetsuitsPage, scrapeWetsuitsURL}

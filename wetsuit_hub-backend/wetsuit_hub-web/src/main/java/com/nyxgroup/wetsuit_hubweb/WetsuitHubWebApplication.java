@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
 @SpringBootApplication
@@ -13,17 +16,26 @@ public class WetsuitHubWebApplication {
 		SpringApplication.run(WetsuitHubWebApplication.class, args);
 	}
 
-
 	@Configuration
 	public class ServiceConfiguration {
-		public ServiceConfiguration(MockDatabaseRepository mockDatabaseRepository) {
-			this.mockDatabaseRepository = mockDatabaseRepository;
+		public ServiceConfiguration(WetsuitsRepository wetsuitsRepository) {
+			this.wetsuitsRepository = wetsuitsRepository;
 		}
-		private final MockDatabaseRepository mockDatabaseRepository;
+		private final WetsuitsRepository wetsuitsRepository;
 
 		@Bean
 		public WetsuitService wetsuitService() {
-			return new WetsuitService(mockDatabaseRepository);
+			return new WetsuitService(wetsuitsRepository);
+		}
+
+		@Bean
+		public WebMvcConfigurer corsConfigurer() {
+			return new WebMvcConfigurerAdapter() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+				}
+			};
 		}
 
 	}
