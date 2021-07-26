@@ -23,8 +23,6 @@ public class DeeplyScraper implements IWetsuitScraper {
 
                 Elements wetsuits = doc.getElementsByClass("prd-List_Item");
 
-//                int i=1;
-
                 for(Element element : wetsuits){
                     Wetsuit wetsuit = new Wetsuit();
 
@@ -40,19 +38,12 @@ public class DeeplyScraper implements IWetsuitScraper {
 
                     Elements wetsuitImageAddress = currentWetsuit.getElementsByAttribute("data-lowsrc");
                     String wetsuitPlaceholder = wetsuitImageAddress.get(9).toString();
-                    String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ');
+                    String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ').replace("20x", "400x");
                     wetsuit.setImageAddress("https://" + wetsuitPlaceholderAddress);
 
                     wetsuit.setWebAddress("https://eu.deeply.com/" + wetsuitPage.attr("href"));
 
                     wetsuitsRepository.save(wetsuit);
-
-
-//                    System.out.println("#" + i + " " + wetsuitTitle);
-//                    System.out.println("Price : " + price[0]);
-//                    System.out.println("web: " + wetsuitPlaceholderAddress);
-
-//                    i++;
                 }
 
 

@@ -1,6 +1,5 @@
 import {Segment, SegmentGroup, Divider, Image, Header} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import logo from "./logo.svg";
 
 export default function WetsuitCard({wetsuit}) {
 
@@ -8,15 +7,7 @@ export default function WetsuitCard({wetsuit}) {
         <div>
             <SegmentGroup>
                 <Segment align='middle'>
-                    <Image src = {wetsuit.imageAddress} />
-                    <a
-                        className="App-link"
-                        href= {wetsuit.webAddress}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Click here to see the {wetsuit.name} on its home site...
-                    </a>
+                    <Image fluid src = {wetsuit.imageAddress} href= {wetsuit.webAddress} target='_blank' />
                     <Divider/>
                     <Header style={{fontWeight: 'bold'}}>{wetsuit.name}</Header>
                     <Header style={{fontWeight: 'bold'}}>{"£" + wetsuit.price}</Header>
