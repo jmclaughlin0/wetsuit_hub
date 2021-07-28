@@ -1,5 +1,6 @@
 package com.nyxgroup.wetsuit_hubweb;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class WetsuitService {
@@ -11,6 +12,7 @@ public class WetsuitService {
 
     public List<Wetsuit> getWetsuits() {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
+        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
         return allWetsuits;
     }
 
