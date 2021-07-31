@@ -18,6 +18,12 @@ public class WetsuitService {
 
     public void scrapeWetsuits() {
         DeeplyScraper deeplyScraper = new DeeplyScraper(wetsuitsRepository);
+        WetsuitCenterScraper wetsuitCenterScraper = new WetsuitCenterScraper(wetsuitsRepository);
+        WetsuitOutletScraper wetsuitOutletScraper = new WetsuitOutletScraper(wetsuitsRepository);
+
         deeplyScraper.getWetsuits();
+        wetsuitCenterScraper.getWetsuits();
+        wetsuitOutletScraper.getWetsuits();
+
     }
 }

@@ -6,25 +6,42 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class WetsuitCenterScraper implements IWetsuitScraper {
+    private final WetsuitsRepository wetsuitsRepository;
+
+    public WetsuitCenterScraper(WetsuitsRepository wetsuitsRepository) {
+        this.wetsuitsRepository = wetsuitsRepository;
+    }
+
     public void getWetsuits(){
         final String baseUrl = "https://www.wetsuitcentre.co.uk/wetsuits-mens.html?product_list_limit=all";
 
+
+
         try {
             final Document doc = Jsoup.connect(baseUrl).get();
-            System.out.printf("Title: %s\n", doc.title());
+//            System.out.printf("Title: %s\n", doc.title());
 
             Elements wetsuits = doc.getElementsByClass("item product col col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3");
 
-            int i=1;
-
             for(Element element : wetsuits){
+                Wetsuit wetsuit = new Wetsuit();
+
                 String productName = element.getElementsByClass("product-item-link").text();
-                System.out.println("#" + i + " " + productName);
-                String price = element.getElementsByClass("price").text();
-                System.out.println("price: " + price);
+                String price = element.getElementsByClass("price").text().replace("£" , "");
+
+                if(price.contains(" ")){
+                    price = price.split(" ")[1];
+                }
+
                 String imageAddress = element.getElementsByClass("product-image-photo").toString().split(" ")[3].split("=")[1].replace('"', ' ');
-                System.out.println("address: " + imageAddress);
-                i++;
+                String webAddress = element.getElementsByClass("product-item-link").attr("href");
+
+                wetsuit.setName(productName);
+                wetsuit.setPrice(Double.parseDouble(price));
+                wetsuit.setImageAddress(imageAddress);
+                wetsuit.setWebAddress(webAddress);
+
+                wetsuitsRepository.save(wetsuit);
             }
 
 
