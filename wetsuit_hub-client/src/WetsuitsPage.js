@@ -1,6 +1,6 @@
 import React from "react";
 import WetsuitCard from "./WetsuitCard";
-import {Button, Grid, GridColumn} from "semantic-ui-react";
+import {Button, Grid, GridColumn, GridRow, Segment} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {scrapeWetsuits, selectWetsuits} from "./wetsuitsSlice";
 import OrderOptions from "./OrderOptions";
@@ -39,7 +39,7 @@ export default function WetsuitsPage(){
         if(newWetsuits!=null){
             return newWetsuits.map(wetsuit =>
                     <GridColumn key={wetsuit.id}>
-                        <WetsuitCard wetsuit={wetsuit}/>
+                            <WetsuitCard wetsuit={wetsuit} style={{maxHeight: "30vh" }}/>
                     </GridColumn>
             )
         }
@@ -48,10 +48,16 @@ export default function WetsuitsPage(){
 
     return(
         <div>
-            <OrderOptions/>
-            <Button onClick={scrapeNewWetsuits}>Click Here to Refresh Suits</Button>
+            {/*<OrderOptions/>*/}
+            <button onClick={scrapeNewWetsuits}
+                    className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
+                <div className="visible content">Click Here to Refresh Suits</div>
+                <div className="hidden content">
+                    <i className="refresh icon"></i>
+                </div>
+            </button>
             <Grid columns = {5} padded>
-                {outputList()}
+                    {outputList()}
             </Grid>
         </div>
     )
