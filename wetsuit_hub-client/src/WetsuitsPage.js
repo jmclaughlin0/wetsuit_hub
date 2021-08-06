@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import WetsuitCard from "./WetsuitCard";
-import {Button, CardGroup, Grid, GridColumn, GridRow, Segment} from "semantic-ui-react";
+import {CardGroup} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {scrapeWetsuits, selectWetsuits} from "./wetsuitsSlice";
-import OrderOptions from "./OrderOptions";
 import {selectOrder} from "./orderSlice";
+import OrderOptions from "./OrderOptions";
+import WetsuitSearchBar from "./WetsuitSearchBar";
 
 export default function WetsuitsPage(){
 
@@ -45,7 +46,7 @@ export default function WetsuitsPage(){
     }
 
     return(
-        <div>
+        <p>
             <button onClick={scrapeNewWetsuits}
                     className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                 <div className="visible content">Click Here to Refresh Suits</div>
@@ -54,9 +55,11 @@ export default function WetsuitsPage(){
                 </div>
             </button>
             <p/>
+            <WetsuitSearchBar/>
+            <p/>
             <CardGroup itemsPerRow={5} stackable={true} doubling={true}>
                     {outputList()}
             </CardGroup>
-        </div>
+        </p>
     )
 }

@@ -17,6 +17,8 @@ public class WetsuitService {
     }
 
     public void scrapeWetsuits() {
+        wetsuitsRepository.deleteAllInBatch();
+        wetsuitsRepository.flush();
         DeeplyScraper deeplyScraper = new DeeplyScraper(wetsuitsRepository);
         WetsuitCenterScraper wetsuitCenterScraper = new WetsuitCenterScraper(wetsuitsRepository);
         WetsuitOutletScraper wetsuitOutletScraper = new WetsuitOutletScraper(wetsuitsRepository);
