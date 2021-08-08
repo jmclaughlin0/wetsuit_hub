@@ -19,6 +19,8 @@ public class Wetsuit {
     private String imageAddress;
     @Column
     private String size;
+    @Column
+    private String gender;
 
     @Column
     @Id
@@ -26,6 +28,14 @@ public class Wetsuit {
     private UUID id;
 
     public Wetsuit() {
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getImageAddress() {

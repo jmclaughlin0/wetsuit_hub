@@ -28,42 +28,55 @@ public class DeeplyScraper implements IWetsuitScraper {
                 e.printStackTrace();
             }
 
-        final String baseUrl = "https://eu.deeply.com/collections/wetsuits-men";
+            String URLS [] = {"https://eu.deeply.com/collections/wetsuits", "https://eu.deeply.com/collections/last-swell-wetsuits-women", "https://eu.deeply.com/collections/last-swell-wetsuits-men-1"};
 
-            try {
-                final Document doc = Jsoup.connect(baseUrl).get();
-//                System.out.printf("Title: %s\n", doc.title());
 
-                Elements wetsuits = doc.getElementsByClass("prd-List_Item");
+            for(String baseUrl:URLS){
+                try {
+                    final Document doc = Jsoup.connect(baseUrl).get();
 
-                for(Element element : wetsuits){
-                    Wetsuit wetsuit = new Wetsuit();
+                    Elements wetsuits = doc.getElementsByClass("prd-List_Item");
 
-                    Elements wetsuitPage = element.getElementsByClass("boost-pfs-filter-product-item-image-link prd-Card_FauxLink util-FauxLink_Link lazyload prd-Card_FauxLink util-FauxLink_Link");
-                    Document currentWetsuit = Jsoup.connect("https://eu.deeply.com/" + wetsuitPage.attr("href")).get();
+                    for(Element element : wetsuits){
+                        Wetsuit wetsuit = new Wetsuit();
 
-                    String wetsuitTitle = currentWetsuit.title();
-                    wetsuit.setName(wetsuitTitle);
+                        Elements wetsuitPage = element.getElementsByClass("boost-pfs-filter-product-item-image-link prd-Card_FauxLink util-FauxLink_Link lazyload prd-Card_FauxLink util-FauxLink_Link");
+                        Document currentWetsuit = Jsoup.connect("https://eu.deeply.com/" + wetsuitPage.attr("href")).get();
 
-                    String [] price = currentWetsuit.getElementsByClass("prd-Price_Price").text().split(" ");
-                    double cost = Double.parseDouble(price[0].replace("€", "").replace(',', '.'));
-                    wetsuit.setPrice(cost/poundToEuro);
+                        String wetsuitTitle = currentWetsuit.title();
+                        wetsuit.setName(wetsuitTitle);
 
-                    Elements wetsuitImageAddress = currentWetsuit.getElementsByAttribute("data-lowsrc");
-                    String wetsuitPlaceholder = wetsuitImageAddress.get(9).toString();
-                    String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ').replace("20x", "400x");
-                    wetsuit.setImageAddress("https://" + wetsuitPlaceholderAddress);
+                        if(wetsuitTitle.toLowerCase().contains(" man ")||wetsuitTitle.contains(" men ")|| wetsuitTitle.contains(" mens ")){
+                            wetsuit.setGender("Mens");
+                        }else if(wetsuitTitle.toLowerCase().contains(" woman ")||wetsuitTitle.contains(" women ")|| wetsuitTitle.contains(" womens ")){
+                            wetsuit.setGender("Womens");
+                        }else if(wetsuitTitle.toLowerCase().contains(" kids ")||wetsuitTitle.contains(" junior ")|| wetsuitTitle.contains(" toddler ")||wetsuitTitle.contains(" toddlers ")||wetsuitTitle.contains(" baby ")||wetsuitTitle.contains(" youth ")){
+                            wetsuit.setGender("Kids");
+                        }else {
+                            wetsuit.setGender("Accessories");
+                        }
 
-                    wetsuit.setWebAddress("https://eu.deeply.com/" + wetsuitPage.attr("href"));
+                        String [] price = currentWetsuit.getElementsByClass("prd-Price_Price").text().split(" ");
+                        double cost = Double.parseDouble(price[0].replace("€", "").replace(',', '.'));
+                        wetsuit.setPrice(cost/poundToEuro);
 
-                    wetsuitsRepository.save(wetsuit);
+                        Elements wetsuitImageAddress = currentWetsuit.getElementsByAttribute("data-lowsrc");
+                        String wetsuitPlaceholder = wetsuitImageAddress.get(9).toString();
+                        String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ').replace("20x", "400x");
+                        wetsuit.setImageAddress("https://" + wetsuitPlaceholderAddress);
+
+                        wetsuit.setWebAddress("https://eu.deeply.com/" + wetsuitPage.attr("href"));
+
+                        wetsuitsRepository.save(wetsuit);
+                    }
+            }
+                catch (Exception exception){
+                    exception.printStackTrace();
                 }
 
 
             }
-            catch (Exception exception){
-                exception.printStackTrace();
-            }
+
         }
     }
 
