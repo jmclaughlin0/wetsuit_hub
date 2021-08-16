@@ -5,6 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.Locale;
+
 public class WetsuitOutletScraper implements IWetsuitScraper {
 
     private final WetsuitsRepository wetsuitsRepository;
@@ -37,12 +39,14 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     String imageAddress = element.getElementsByAttribute("data-src").get(0).toString().split(" ")[3].split("=")[1].replace('"', ' ');
                     String webAddress = element.attr("data-url");
 
-                    if(productName.toLowerCase().contains(" man ")||productName.contains(" men ")|| productName.contains(" mens ")){
+                    String name = productName.toLowerCase(Locale.ROOT);
+
+                    if(name.contains(" man ")||name.contains(" men ")|| name.contains(" mens ")){
                         wetsuit.setGender("Mens");
-                    }else if(productName.toLowerCase().contains(" Woman ")||productName.contains(" women ")|| productName.contains(" womens ")){
+                    }else if(name.contains(" Woman ")||name.contains(" women ")|| name.contains(" womens ")){
                         wetsuit.setGender("Womens");
-                    }else if(productName.toLowerCase().contains(" kids ")||productName.contains(" junior ")|| productName.contains(" toddler ")||productName.contains(" toddlers ")||productName.contains(" baby ")||productName.contains(" youth ")){
-                        wetsuit.setGender("Mens");
+                    }else if(name.contains(" kids ")||name.contains(" junior ")|| name.contains(" toddler ")||name.contains(" toddlers ")||name.contains(" baby ")||name.contains(" youth ")||name.contains(" girls ")||name.contains(" boys ")){
+                        wetsuit.setGender("Kids");
                     }else {
                         wetsuit.setGender("Accessories");
                     }

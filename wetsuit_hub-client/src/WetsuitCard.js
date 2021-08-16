@@ -20,7 +20,7 @@ export default function WetsuitCard({wetsuit}) {
             <Card.Content extra>
                 <a>
                     <Icon name='male' />
-                    {"Sizes Available: "}
+                    {"Sizes: " + wetsuit.size}
                 </a>
             </Card.Content>
         </Card>

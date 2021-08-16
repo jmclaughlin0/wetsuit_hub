@@ -7,4 +7,5 @@ const wetsuitsPage = "http://localhost:3000/wetsuits"
 
 
 
+
 export {allWetsuitsURL, wetsuitsPage, scrapeWetsuitsURL}

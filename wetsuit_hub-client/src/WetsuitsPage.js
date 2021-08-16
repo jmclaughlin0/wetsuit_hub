@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import WetsuitCard from "./WetsuitCard";
-import {CardGroup} from "semantic-ui-react";
+import {Button, CardGroup} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
-import {scrapeWetsuits, selectWetsuits} from "./wetsuitsSlice";
+import {fetchNewWetsuits, scrapeWetsuits, selectWetsuits} from "./wetsuitsSlice";
 import {selectOrder} from "./orderSlice";
 import OrderOptions from "./OrderOptions";
 import WetsuitSearchBar from "./WetsuitSearchBar";
@@ -16,6 +16,10 @@ export default function WetsuitsPage(){
     function scrapeNewWetsuits()  {
         dispatch(scrapeWetsuits())
     }
+
+    // function getGenderWetsuits(gender){
+    //     dispatch(fetchNewWetsuits(gender))
+    // }
     
     const selection = useSelector(selectOrder)
 
@@ -47,13 +51,28 @@ export default function WetsuitsPage(){
 
     return(
         <p>
-            <button onClick={scrapeNewWetsuits}
+            <Button onClick={scrapeNewWetsuits}
                     className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                 <div className="visible content">Click Here to Refresh Suits</div>
                 <div className="hidden content">
                     <i className="refresh icon"></i>
                 </div>
-            </button>
+            </Button>
+            {/*<Button onClick={getGenderWetsuits("Mens")} style = {{background: "blue"}}*/}
+            {/*        className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>*/}
+            {/*    <div className="visible content">Mens Wetsuits</div>*/}
+            {/*    <div className="hidden content">*/}
+            {/*        <i className="male icon"></i>*/}
+            {/*    </div>*/}
+            {/*</Button>*/}
+            {/*<Button onClick={getGenderWetsuits("Womens")} style = {{background: "red"}}*/}
+            {/*        className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>*/}
+            {/*    <div className="visible content">Womens Wetsuits</div>*/}
+            {/*    <div className="hidden content">*/}
+            {/*        <i className="female icon"></i>*/}
+            {/*    </div>*/}
+            {/*</Button>*/}
+
             <p/>
             <WetsuitSearchBar/>
             <p/>

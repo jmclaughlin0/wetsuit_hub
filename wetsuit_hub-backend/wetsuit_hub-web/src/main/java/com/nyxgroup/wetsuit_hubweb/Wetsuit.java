@@ -21,6 +21,8 @@ public class Wetsuit {
     private String size;
     @Column
     private String gender;
+    @Column
+    private String zipper;
 
     @Column
     @Id
@@ -28,6 +30,14 @@ public class Wetsuit {
     private UUID id;
 
     public Wetsuit() {
+    }
+
+    public String getZipper() {
+        return zipper;
+    }
+
+    public void setZipper(String zipper) {
+        this.zipper = zipper;
     }
 
     public String getGender() {

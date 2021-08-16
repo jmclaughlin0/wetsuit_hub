@@ -2,7 +2,6 @@ package com.nyxgroup.wetsuit_hubweb;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,8 +16,8 @@ public class WetsuitController {
 
     @CrossOrigin
     @GetMapping("wetsuits")
-    public List<Wetsuit> getAllWetsuits() throws IOException {
-        return wetsuitService.getWetsuits();
+    public List<Wetsuit> getAllWetsuits(String gender) {
+        return wetsuitService.getGenderWetsuits(gender);
     }
 
     @CrossOrigin

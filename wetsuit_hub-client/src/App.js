@@ -34,7 +34,7 @@ export default function App() {
                       <button onClick={updateCurrentPage} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                           <div class="visible content">Wetsuits</div>
                           <div class="hidden content">
-                              <i class="sun icon"></i>
+                              <i class = 'tint icon'></i>
                           </div>
                       </button>
                   </Link>

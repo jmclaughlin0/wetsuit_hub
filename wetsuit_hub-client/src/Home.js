@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import {Icon} from "semantic-ui-react";
 
 function Home() {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+                <Icon name={"universal access"} size={"massive"} className="App-logo" alt="logo" />
                 <p>
                     Welcome to Wetsuit Hub!!
                     <br/>

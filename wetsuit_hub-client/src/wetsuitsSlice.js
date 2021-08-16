@@ -21,6 +21,16 @@ export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
     }
 )
 
+// export const fetchNewWetsuits = createAsyncThunk( 'wetsuits/fetchNew', async(gender) =>  {
+//         const response = await fetch(allWetsuitsURL,
+//             {method: 'GET'})
+//
+//         const data = await response.json();
+//
+//         return data;
+//     }
+// )
+
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
     initialState: {
@@ -48,7 +58,11 @@ export const wetsuitsSlice = createSlice({
         [fetchWetsuits.fulfilled]: (state, action) => {
             state.wetsuitsList = action.payload;
             state.filteredWetsuitsList = action.payload;
-        }
+        },
+        // [fetchNewWetsuits.fulfilled]: (state, action) => {
+        //     state.wetsuitsList = action.payload;
+        //     state.filteredWetsuitsList = action.payload;
+        // }
     }
 
 })

@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class DeeplyScraper implements IWetsuitScraper {
 
@@ -32,47 +33,95 @@ public class DeeplyScraper implements IWetsuitScraper {
 
 
             for(String baseUrl:URLS){
-                try {
-                    final Document doc = Jsoup.connect(baseUrl).get();
+                for(int i = 1; i > 0; i++){
+                    try {
+                        Document doc = Jsoup.connect(baseUrl + "?page=" + i).get();
 
-                    Elements wetsuits = doc.getElementsByClass("prd-List_Item");
+                        Elements wetsuits = doc.getElementsByClass("prd-List_Item");
 
-                    for(Element element : wetsuits){
-                        Wetsuit wetsuit = new Wetsuit();
-
-                        Elements wetsuitPage = element.getElementsByClass("boost-pfs-filter-product-item-image-link prd-Card_FauxLink util-FauxLink_Link lazyload prd-Card_FauxLink util-FauxLink_Link");
-                        Document currentWetsuit = Jsoup.connect("https://eu.deeply.com/" + wetsuitPage.attr("href")).get();
-
-                        String wetsuitTitle = currentWetsuit.title();
-                        wetsuit.setName(wetsuitTitle);
-
-                        if(wetsuitTitle.toLowerCase().contains(" man ")||wetsuitTitle.contains(" men ")|| wetsuitTitle.contains(" mens ")){
-                            wetsuit.setGender("Mens");
-                        }else if(wetsuitTitle.toLowerCase().contains(" woman ")||wetsuitTitle.contains(" women ")|| wetsuitTitle.contains(" womens ")){
-                            wetsuit.setGender("Womens");
-                        }else if(wetsuitTitle.toLowerCase().contains(" kids ")||wetsuitTitle.contains(" junior ")|| wetsuitTitle.contains(" toddler ")||wetsuitTitle.contains(" toddlers ")||wetsuitTitle.contains(" baby ")||wetsuitTitle.contains(" youth ")){
-                            wetsuit.setGender("Kids");
-                        }else {
-                            wetsuit.setGender("Accessories");
+                        if(wetsuits.size()==0){
+                            break;
                         }
 
-                        String [] price = currentWetsuit.getElementsByClass("prd-Price_Price").text().split(" ");
-                        double cost = Double.parseDouble(price[0].replace("€", "").replace(',', '.'));
-                        wetsuit.setPrice(cost/poundToEuro);
+                        for(Element element : wetsuits){
+                            Wetsuit wetsuit = new Wetsuit();
 
-                        Elements wetsuitImageAddress = currentWetsuit.getElementsByAttribute("data-lowsrc");
-                        String wetsuitPlaceholder = wetsuitImageAddress.get(9).toString();
-                        String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ').replace("20x", "400x");
-                        wetsuit.setImageAddress("https://" + wetsuitPlaceholderAddress);
+                            Elements wetsuitPage = element.getElementsByClass("boost-pfs-filter-product-item-image-link prd-Card_FauxLink util-FauxLink_Link lazyload prd-Card_FauxLink util-FauxLink_Link");
 
-                        wetsuit.setWebAddress("https://eu.deeply.com/" + wetsuitPage.attr("href"));
+                            Elements sizes = element.getElementsByClass("prd-Card_Item");
 
-                        wetsuitsRepository.save(wetsuit);
+                            String availableSizes = "";
+
+                            for(Element size : sizes){
+                                if(availableSizes == ""){
+                                    availableSizes = size.text();
+                                }else {
+                                    availableSizes += ", " + size.text();
+                                }
+                            }
+                            wetsuit.setSize(availableSizes);
+
+                            Document currentWetsuit = Jsoup.connect("https://eu.deeply.com/" + wetsuitPage.attr("href")).get();
+
+                            String wetsuitTitle = currentWetsuit.title();
+                            wetsuit.setName(wetsuitTitle);
+
+                            wetsuitTitle = wetsuitTitle.toLowerCase(Locale.ROOT);
+
+                            if(wetsuitTitle.contains(" man ")||wetsuitTitle.contains(" men ")|| wetsuitTitle.contains(" mens ")){
+                                wetsuit.setGender("Mens");
+                            }else if(wetsuitTitle.contains(" woman ")||wetsuitTitle.contains(" women ")|| wetsuitTitle.contains(" womens ")){
+                                wetsuit.setGender("Womens");
+                            }else if(wetsuitTitle.contains(" kids ")||wetsuitTitle.contains(" junior ")|| wetsuitTitle.contains(" toddler ")||wetsuitTitle.contains(" toddlers ")||wetsuitTitle.contains(" baby ")||wetsuitTitle.contains(" youth ")||wetsuitTitle.contains(" girls ")||wetsuitTitle.contains(" boys ")){
+                                wetsuit.setGender("Kids");
+                            }else {
+                                wetsuit.setGender("Accessories");
+                            }
+
+                            if(wetsuitTitle.contains(" 6/")){
+                                wetsuit.setThickness("6 mm");
+                            }else if(wetsuitTitle.contains(" 5/")){
+                                wetsuit.setThickness("5 mm");
+                            }else if(wetsuitTitle.contains(" 4/")){
+                                wetsuit.setThickness("4 mm");
+                            }else if(wetsuitTitle.contains(" 3/")){
+                                wetsuit.setThickness("3 mm");
+                            } else if(wetsuitTitle.contains(" 2/")){
+                                wetsuit.setThickness("2 mm");
+                            }else{
+                                wetsuit.setThickness("1 mm");
+                            }
+
+                            if(wetsuitTitle.contains(" back zip ")){
+                                wetsuit.setZipper("Back Zip");
+                            }else if(wetsuitTitle.contains(" front zip ")||wetsuitTitle.contains(" chest zip ")){
+                                wetsuit.setZipper("Chest Zip");
+                            }else if(wetsuitTitle.contains(" zipperless ")|| wetsuitTitle.contains(" zip less ")||wetsuitTitle.contains(" zipper less ")){
+                                wetsuit.setZipper("Zipperless");
+                            }else {
+                                wetsuit.setZipper("Unknown");
+                            }
+
+                            String [] price = currentWetsuit.getElementsByClass("prd-Price_Price").text().split(" ");
+                            double cost = Double.parseDouble(price[0].replace("€", "").replace(',', '.'));
+                            wetsuit.setPrice(cost/poundToEuro);
+
+                            Elements wetsuitImageAddress = currentWetsuit.getElementsByAttribute("data-lowsrc");
+                            String wetsuitPlaceholder = wetsuitImageAddress.get(9).toString();
+                            String wetsuitPlaceholderAddress = wetsuitPlaceholder.split(" ")[6].split("//")[1].replace('"',' ').replace("20x", "400x");
+                            wetsuit.setImageAddress("https://" + wetsuitPlaceholderAddress);
+
+                            wetsuit.setWebAddress("https://eu.deeply.com/" + wetsuitPage.attr("href"));
+
+                            wetsuitsRepository.save(wetsuit);
+                        }
                     }
-            }
-                catch (Exception exception){
-                    exception.printStackTrace();
+                    catch (Exception exception){
+                        exception.printStackTrace();
+                        break;
+                    }
                 }
+
 
 
             }
