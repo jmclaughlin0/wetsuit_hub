@@ -11,23 +11,39 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getWetsuits() {
+    public List<Wetsuit> getAllWetsuits() {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
         allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
         return allWetsuits;
     }
 
-    public List<Wetsuit> getGenderWetsuits(String gender) {
+    public List<Wetsuit> getMensWetsuits() {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
         allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
-        if(gender == null){
-            return allWetsuits;
-        }else {
-            List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender() == gender)).collect(Collectors.toList());
+
+        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Mens"))).collect(Collectors.toList());
             return genderWetsuits;
-        }
 
     }
+
+    public List<Wetsuit> getWomensWetsuits() {
+        List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
+        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
+
+        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Womens"))).collect(Collectors.toList());
+        return genderWetsuits;
+
+    }
+
+    public List<Wetsuit> getKidsWetsuits() {
+        List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
+        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
+
+        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Kids"))).collect(Collectors.toList());
+        return genderWetsuits;
+
+    }
+
 
     public void scrapeWetsuits() {
         wetsuitsRepository.deleteAllInBatch();
@@ -37,8 +53,8 @@ public class WetsuitService {
         WetsuitOutletScraper wetsuitOutletScraper = new WetsuitOutletScraper(wetsuitsRepository);
 
         deeplyScraper.getWetsuits();
-//        wetsuitCenterScraper.getWetsuits();
-//        wetsuitOutletScraper.getWetsuits();
+        wetsuitCenterScraper.getWetsuits();
+        wetsuitOutletScraper.getWetsuits();
 
     }
 }
