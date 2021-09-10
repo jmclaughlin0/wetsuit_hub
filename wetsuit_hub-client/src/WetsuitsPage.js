@@ -1,18 +1,40 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import WetsuitCard from "./WetsuitCard";
 import {Button, CardGroup, Header, Icon} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
-import {scrapeWetsuits, selectWetsuits} from "./wetsuitsSlice";
+import {
+    fetchKidsWetsuits,
+    fetchMensWetsuits,
+    fetchWetsuits,
+    fetchWomensWetsuits,
+    scrapeWetsuits,
+    selectWetsuits
+} from "./wetsuitsSlice";
 import WetsuitSearchBar from "./WetsuitSearchBar";
-import SizePopup from "./SizePopup";
 
-export default function WetsuitsPage(){
+import {Link} from "react-router-dom";
 
-    const [title, setTitle] = useState("All")
+export default function WetsuitsPage({gender}){
 
     const wetsuits = useSelector(selectWetsuits)
 
     const dispatch = useDispatch();
+
+    const [currentPage, setCurrentPage] = useState(gender)
+
+    const  title = gender;
+
+    useEffect(() => {
+        if(title === "Mens"){
+            dispatch(fetchMensWetsuits())
+        }else if (title === "Womens"){
+            dispatch(fetchWomensWetsuits())
+        }else if (title === "Kids"){
+            dispatch(fetchKidsWetsuits())
+        }else{
+            dispatch(fetchWetsuits());
+        }
+    },[window.location.pathname])
 
     function scrapeNewWetsuits()  {
         dispatch(scrapeWetsuits())
@@ -21,16 +43,15 @@ export default function WetsuitsPage(){
     function outputList() {
         if(wetsuits!=null){
             return wetsuits.map(wetsuit =>
-                            <WetsuitCard wetsuit={wetsuit}/>
+                            <WetsuitCard key = {wetsuit.id} wetsuit={wetsuit}/>
             )
         }
 
     }
 
-    function heading(gender){
-        setTitle(gender)
+    function updateCurrentPage() {
+        setCurrentPage(window.location.pathname);
     }
-
 
     return(
         <p>
@@ -43,9 +64,21 @@ export default function WetsuitsPage(){
                 </div>
             </Button>
 
-            <SizePopup gender={"Mens"} onChange = {heading}/>
-            <SizePopup gender={"Womens"} onChange = {heading}/>
-            <SizePopup gender={"Kids"} onChange = {heading}/>
+            <Link to="/wetsuits-mens">
+                <Button onClick={updateCurrentPage} >
+                    Mens Wetsuits <Icon name={"male"}></Icon>
+                </Button>
+            </Link>
+            <Link to="/wetsuits-womens">
+                <Button onClick={updateCurrentPage} >
+                    Womens Wetsuits <Icon name={"female"}></Icon>
+                </Button>
+            </Link>
+            <Link to="/wetsuits-kids">
+                <Button onClick={updateCurrentPage} >
+                    Kids Wetsuits <Icon name={"child"}></Icon>
+                </Button>
+            </Link>
 
 
             <p/>

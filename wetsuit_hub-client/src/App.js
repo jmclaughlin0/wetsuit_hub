@@ -4,24 +4,23 @@ import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import WetsuitsPage from "./WetsuitsPage";
 import Home from "./Home";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchWetsuits, selectWetsuits} from "./wetsuitsSlice";
+import {
+    fetchKidsWetsuits,
+    fetchMensWetsuits,
+    fetchWetsuits,
+    fetchWomensWetsuits,
+    selectWetsuits
+} from "./wetsuitsSlice";
 
 
 export default function App() {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchWetsuits());
-        },[]
-    )
 
     const [currentPage, setCurrentPage] = useState("")
+
 
     const updateCurrentPage = () => {
         setCurrentPage(window.location.pathname);
     }
-
-    const allWetsuits = useSelector(selectWetsuits);
 
 
   return (
@@ -51,7 +50,16 @@ export default function App() {
 
           <Switch>
               <Route path="/wetsuits">
-                  <WetsuitsPage/>
+                  <WetsuitsPage gender={"All"} />
+              </Route>
+              <Route path="/wetsuits-mens">
+                  <WetsuitsPage gender={"Mens"} />
+              </Route>
+              <Route path="/wetsuits-womens">
+                  <WetsuitsPage gender={"Womens"}/>
+              </Route>
+              <Route path="/wetsuits-kids">
+                  <WetsuitsPage gender={"Kids"}/>
               </Route>
               <Route path="/" >
                   <Home />

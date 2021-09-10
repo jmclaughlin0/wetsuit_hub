@@ -22,8 +22,8 @@ public class WetsuitController {
 
     @CrossOrigin
     @GetMapping("wetsuits-mens")
-    public List<Wetsuit> getMensWetsuits() {
-        return wetsuitService.getMensWetsuits();
+    public List<Wetsuit> getMensWetsuits(@RequestParam(required = false) String thickness) {
+        return wetsuitService.getMensWetsuits(thickness);
     }
 
     @CrossOrigin

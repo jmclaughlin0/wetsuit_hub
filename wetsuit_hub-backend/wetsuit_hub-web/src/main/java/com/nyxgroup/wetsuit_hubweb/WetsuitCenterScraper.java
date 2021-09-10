@@ -50,6 +50,32 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
                     wetsuit.setGender("Accessories");
                 }
 
+                if(productName.contains(" 6/")){
+                    wetsuit.setThickness("6 mm");
+                }else if(productName.contains(" 5/")){
+                    wetsuit.setThickness("5 mm");
+                }else if(productName.contains(" 4/")){
+                    wetsuit.setThickness("4 mm");
+                }else if(productName.contains(" 3/")){
+                    wetsuit.setThickness("3 mm");
+                } else if(productName.contains(" 2/")){
+                    wetsuit.setThickness("2 mm");
+                }else{
+                    wetsuit.setThickness("1 mm");
+                }
+
+                if(productName.contains(" back zip ")){
+                    wetsuit.setZipper("Back Zip");
+                }else if(productName.contains(" front zip ")||productName.contains(" chest zip ")){
+                    wetsuit.setZipper("Chest Zip");
+                }else if(productName.contains(" zipperless ")|| productName.contains(" zip less ")||productName.contains(" zipper less ")){
+                    wetsuit.setZipper("Zipperless");
+                }else {
+                    wetsuit.setZipper("Unknown");
+                }
+
+
+
                 wetsuit.setName(productName);
                 wetsuit.setPrice(Double.parseDouble(price));
                 wetsuit.setImageAddress(imageAddress);

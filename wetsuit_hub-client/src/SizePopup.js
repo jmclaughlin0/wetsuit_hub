@@ -17,26 +17,22 @@ export default function SizePopup({gender, onChange}) {
         }
     })
 
-    const dispatch = useDispatch();
 
-    function getMensWetsuits(){
+    function getMensWetsuits(thickness){
         onChange("Mens")
-        dispatch(fetchMensWetsuits())
     }
 
     function getWomensWetsuits() {
         onChange("Womens")
-        dispatch(fetchWomensWetsuits())
     }
 
     function getKidsWetsuits() {
         onChange("Kids")
-        dispatch(fetchKidsWetsuits())
     }
 
-    function getGenderWetsuits() {
-        if(gender === "Mens"){
-            getMensWetsuits()
+    function getGenderWetsuits(thickness) {
+        if(gender==="Mens"){
+            getMensWetsuits(thickness)
         }else if (gender === "Womens"){
             getWomensWetsuits()
         }else if (gender === "Kids"){
@@ -48,16 +44,16 @@ export default function SizePopup({gender, onChange}) {
             <Popup trigger={<Button onClick={getGenderWetsuits}>{gender + " Wetsuits "}<Icon name={icon}/></Button>} flowing hoverable>
                 <Grid centered divided columns={4}>
                     <Grid.Column textAlign='center'>
-                        <Button>5 mm</Button>
+                        <Button onClick={getGenderWetsuits("5")}>5 mm</Button>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Button>4 mm</Button>
+                        <Button onClick={getGenderWetsuits}>4 mm</Button>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Button>3 mm</Button>
+                        <Button onClick={getGenderWetsuits}>3 mm</Button>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Button>2 mm</Button>
+                        <Button onClick={getGenderWetsuits}>2 mm</Button>
                     </Grid.Column>
                 </Grid>
             </Popup>

@@ -17,12 +17,19 @@ public class WetsuitService {
         return allWetsuits;
     }
 
-    public List<Wetsuit> getMensWetsuits() {
+    public List<Wetsuit> getMensWetsuits(String thickness) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
         allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
 
         List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Mens"))).collect(Collectors.toList());
+
+
+        if(thickness==null){
             return genderWetsuits;
+        }
+
+        genderWetsuits.stream().filter(wetsuit -> (wetsuit.getThickness().equals(thickness))).collect(Collectors.toList());
+        return genderWetsuits;
 
     }
 
@@ -52,9 +59,9 @@ public class WetsuitService {
         WetsuitCenterScraper wetsuitCenterScraper = new WetsuitCenterScraper(wetsuitsRepository);
         WetsuitOutletScraper wetsuitOutletScraper = new WetsuitOutletScraper(wetsuitsRepository);
 
-        deeplyScraper.getWetsuits();
+//        deeplyScraper.getWetsuits();
         wetsuitCenterScraper.getWetsuits();
-        wetsuitOutletScraper.getWetsuits();
+//        wetsuitOutletScraper.getWetsuits();
 
     }
 }

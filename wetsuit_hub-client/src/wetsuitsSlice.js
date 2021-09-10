@@ -27,7 +27,7 @@ export const fetchMensWetsuits = createAsyncThunk( 'wetsuits/fetchMens', async()
 
     return await response.json();
     }
-)
+);
 
 export const fetchWomensWetsuits = createAsyncThunk( 'wetsuits/fetchWomens', async() =>  {
         const response = await fetch(womensWetsuitsURL,
@@ -35,7 +35,7 @@ export const fetchWomensWetsuits = createAsyncThunk( 'wetsuits/fetchWomens', asy
 
     return await response.json();
     }
-)
+);
 
 export const fetchKidsWetsuits = createAsyncThunk( 'wetsuits/fetchKids', async() =>  {
         const response = await fetch(kidsWetsuitsURL,
@@ -43,7 +43,7 @@ export const fetchKidsWetsuits = createAsyncThunk( 'wetsuits/fetchKids', async()
 
         return await response.json();
     }
-)
+);
 
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
