@@ -49,40 +49,11 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
 
                     productName = productName.toLowerCase(Locale.ROOT);
 
-                    if (productName.contains(" man ") || productName.contains(" men ") || productName.contains(" mens ")) {
-                        wetsuit.setGender("Mens");
-                    } else if (productName.contains(" Woman ") || productName.contains(" women ") || productName.contains(" womens ")) {
-                        wetsuit.setGender("Womens");
-                    } else if (productName.contains(" kids ") || productName.contains(" junior ") || productName.contains(" toddler ") || productName.contains(" toddlers ") || productName.contains(" baby ") || productName.contains(" youth ") || productName.contains(" girls ") || productName.contains(" boys ")) {
-                        wetsuit.setGender("Kids");
-                    } else {
-                        wetsuit.setGender("Accessories");
-                    }
+                    StringFinder stringFinder = new StringFinder();
 
-                    if (productName.contains(" 6/")) {
-                        wetsuit.setThickness("6 mm");
-                    } else if (productName.contains(" 5/")) {
-                        wetsuit.setThickness("5 mm");
-                    } else if (productName.contains(" 4/")) {
-                        wetsuit.setThickness("4 mm");
-                    } else if (productName.contains(" 3/")) {
-                        wetsuit.setThickness("3 mm");
-                    } else if (productName.contains(" 2/")) {
-                        wetsuit.setThickness("2 mm");
-                    } else {
-                        wetsuit.setThickness("1 mm");
-                    }
-
-                    if (productName.contains(" back zip ")) {
-                        wetsuit.setZipper("Back Zip");
-                    } else if (productName.contains(" front zip ") || productName.contains(" chest zip ")) {
-                        wetsuit.setZipper("Chest Zip");
-                    } else if (productName.contains(" zipperless ") || productName.contains(" zip less ") || productName.contains(" zipper less ")) {
-                        wetsuit.setZipper("Zipperless");
-                    } else {
-                        wetsuit.setZipper("Unknown");
-                    }
-
+                    wetsuit.setGender(stringFinder.genderFinder(productName));
+                    wetsuit.setThickness(stringFinder.thicknessFinder(productName));
+                    wetsuit.setZipper(stringFinder.zipperFinder(productName));
 
                     wetsuit.setName(productName);
                     wetsuit.setPrice(Double.parseDouble(price));

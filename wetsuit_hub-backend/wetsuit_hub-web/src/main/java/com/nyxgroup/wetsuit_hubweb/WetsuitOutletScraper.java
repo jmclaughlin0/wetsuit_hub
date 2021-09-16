@@ -41,15 +41,11 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
 
                     String name = productName.toLowerCase(Locale.ROOT);
 
-                    if(name.contains(" man ")||name.contains(" men ")|| name.contains(" mens ")){
-                        wetsuit.setGender("Mens");
-                    }else if(name.contains(" Woman ")||name.contains(" women ")|| name.contains(" womens ")){
-                        wetsuit.setGender("Womens");
-                    }else if(name.contains(" kids ")||name.contains(" junior ")|| name.contains(" toddler ")||name.contains(" toddlers ")||name.contains(" baby ")||name.contains(" youth ")||name.contains(" girls ")||name.contains(" boys ")){
-                        wetsuit.setGender("Kids");
-                    }else {
-                        wetsuit.setGender("Accessories");
-                    }
+                    StringFinder stringFinder = new StringFinder();
+
+                    wetsuit.setGender(stringFinder.genderFinder(name));
+                    wetsuit.setThickness(stringFinder.thicknessFinder(name));
+                    wetsuit.setZipper(stringFinder.zipperFinder(name));
 
                     wetsuit.setName(productName);
                     if(price != ""){

@@ -5,13 +5,23 @@ export default function SizePopup({gender, onChange}) {
 
     const [icon, setIcon] = useState("")
 
+    const[colour, setColour] = useState("")
+
+    const [align, setAlign] = useState("")
+
     useEffect(() => {
         if(gender === "Mens"){
             setIcon("male")
+            setColour("blue")
+            setAlign("bottom left")
         }else if (gender === "Womens"){
             setIcon("female")
+            setColour("pink")
+            setAlign("bottom center")
         }else if (gender === "Kids"){
             setIcon("child")
+            setColour("yellow")
+            setAlign("bottom right")
         }
     },[gender])
 
@@ -19,8 +29,9 @@ export default function SizePopup({gender, onChange}) {
         onChange(gender, thickness)
     }
 
+
     return(
-            <Popup trigger={<Button onClick={()=>getGenderWetsuits("")}>{gender + " Wetsuits "}<Icon name={icon}/></Button>} flowing hoverable>
+            <Popup position={align} trigger={<Button color={colour} onClick={()=>getGenderWetsuits("")}>{gender + " Wetsuits "}<Icon name={icon}/></Button>} flowing hoverable>
                 <Grid centered divided columns={5}>
                     <Grid.Column textAlign='center'>
                         <Button onClick={()=>getGenderWetsuits("6 mm")}>6 mm</Button>

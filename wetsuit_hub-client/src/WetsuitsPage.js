@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import WetsuitCard from "./WetsuitCard";
-import {Button, CardGroup, Header, Icon} from "semantic-ui-react";
+import {Button, CardGroup, Grid, Header, Icon} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchWetsuits,
@@ -62,12 +62,9 @@ export default function WetsuitsPage(){
 
 
     return(
+
+
         <p>
-            <Header as='h2' icon>
-                <Icon name= {icon} />
-                {title} Wetsuits
-            </Header>
-            <p/>
             <Button onClick={scrapeNewWetsuits}
                     className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                 <div className="visible content">Click Here to Refresh Suits</div>
@@ -76,9 +73,19 @@ export default function WetsuitsPage(){
                 </div>
             </Button>
 
-            <SizePopup gender={"Mens"} onChange={updateWetsuit}/>
-            <SizePopup gender={"Womens"} onChange={updateWetsuit}/>
-            <SizePopup gender={"Kids"} onChange={updateWetsuit}/>
+            <Header as='h2' icon textAlign='center'>
+                <Icon name= {icon} circular />
+                {title} Wetsuits
+            </Header>
+            <p/>
+
+
+            <Grid textAlign={"center"}>
+                <SizePopup gender={"Mens"} onChange={updateWetsuit}/>
+                <SizePopup gender={"Womens"} onChange={updateWetsuit}/>
+                <SizePopup gender={"Kids"} onChange={updateWetsuit}/>
+            </Grid>
+
 
 
 

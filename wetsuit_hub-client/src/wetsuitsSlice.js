@@ -11,22 +11,9 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
             {method: 'GET'
                 })
 
-    console.log("t= " + thickness + " g= " +gender)
-
-    console.log("Y= " + yourData)
-
     return await response.json();
     }
 )
-
-// export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async() =>  {
-//
-//         const response = await fetch(allWetsuitsURL,
-//             {method: 'GET'})
-//
-//         return await response.json();
-//     }
-// )
 
 export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
         const response = await fetch(scrapeWetsuitsURL,

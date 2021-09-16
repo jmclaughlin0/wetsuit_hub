@@ -68,39 +68,11 @@ public class DeeplyScraper implements IWetsuitScraper {
 
                             wetsuitTitle = wetsuitTitle.toLowerCase(Locale.ROOT);
 
-                            if(wetsuitTitle.contains(" man ")||wetsuitTitle.contains(" men ")|| wetsuitTitle.contains(" mens ")){
-                                wetsuit.setGender("Mens");
-                            }else if(wetsuitTitle.contains(" woman ")||wetsuitTitle.contains(" women ")|| wetsuitTitle.contains(" womens ")){
-                                wetsuit.setGender("Womens");
-                            }else if(wetsuitTitle.contains(" kids ")||wetsuitTitle.contains(" junior ")|| wetsuitTitle.contains(" toddler ")||wetsuitTitle.contains(" toddlers ")||wetsuitTitle.contains(" baby ")||wetsuitTitle.contains(" youth ")||wetsuitTitle.contains(" girls ")||wetsuitTitle.contains(" boys ")){
-                                wetsuit.setGender("Kids");
-                            }else {
-                                wetsuit.setGender("Accessories");
-                            }
+                            StringFinder stringFinder = new StringFinder();
 
-                            if(wetsuitTitle.contains(" 6/")){
-                                wetsuit.setThickness("6 mm");
-                            }else if(wetsuitTitle.contains(" 5/")){
-                                wetsuit.setThickness("5 mm");
-                            }else if(wetsuitTitle.contains(" 4/")){
-                                wetsuit.setThickness("4 mm");
-                            }else if(wetsuitTitle.contains(" 3/")){
-                                wetsuit.setThickness("3 mm");
-                            } else if(wetsuitTitle.contains(" 2/")){
-                                wetsuit.setThickness("2 mm");
-                            }else{
-                                wetsuit.setThickness("1 mm");
-                            }
-
-                            if(wetsuitTitle.contains(" back zip ")){
-                                wetsuit.setZipper("Back Zip");
-                            }else if(wetsuitTitle.contains(" front zip ")||wetsuitTitle.contains(" chest zip ")){
-                                wetsuit.setZipper("Chest Zip");
-                            }else if(wetsuitTitle.contains(" zipperless ")|| wetsuitTitle.contains(" zip less ")||wetsuitTitle.contains(" zipper less ")){
-                                wetsuit.setZipper("Zipperless");
-                            }else {
-                                wetsuit.setZipper("Unknown");
-                            }
+                            wetsuit.setGender(stringFinder.genderFinder(wetsuitTitle));
+                            wetsuit.setThickness(stringFinder.thicknessFinder(wetsuitTitle));
+                            wetsuit.setZipper(stringFinder.zipperFinder(wetsuitTitle));
 
                             String [] price = currentWetsuit.getElementsByClass("prd-Price_Price").text().split(" ");
                             double cost = Double.parseDouble(price[0].replace("€", "").replace(',', '.'));
