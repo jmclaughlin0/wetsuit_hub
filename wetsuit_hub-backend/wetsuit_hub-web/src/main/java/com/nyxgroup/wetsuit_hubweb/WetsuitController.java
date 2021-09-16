@@ -14,28 +14,10 @@ public class WetsuitController {
         this.wetsuitService = wetsuitService;
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("wetsuits")
-    public List<Wetsuit> getAllWetsuits() {
-        return wetsuitService.getAllWetsuits();
-    }
-
-    @CrossOrigin
-    @GetMapping("wetsuits-mens")
-    public List<Wetsuit> getMensWetsuits(@RequestParam(required = false) String thickness) {
-        return wetsuitService.getMensWetsuits(thickness);
-    }
-
-    @CrossOrigin
-    @GetMapping("wetsuits-womens")
-    public List<Wetsuit> getWomensWetsuits() {
-        return wetsuitService.getWomensWetsuits();
-    }
-
-    @CrossOrigin
-    @GetMapping("wetsuits-kids")
-    public List<Wetsuit> getKidsWetsuits() {
-        return wetsuitService.getKidsWetsuits();
+    public List<Wetsuit> getAllWetsuits(@RequestParam(required = false) String g, @RequestParam(required = false) String t) {
+        return wetsuitService.getAllWetsuits(g, t);
     }
 
     @CrossOrigin

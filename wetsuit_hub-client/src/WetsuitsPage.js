@@ -3,38 +3,31 @@ import WetsuitCard from "./WetsuitCard";
 import {Button, CardGroup, Header, Icon} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    fetchKidsWetsuits,
-    fetchMensWetsuits,
     fetchWetsuits,
-    fetchWomensWetsuits,
     scrapeWetsuits,
     selectWetsuits
 } from "./wetsuitsSlice";
+
 import WetsuitSearchBar from "./WetsuitSearchBar";
+import SizePopup from "./SizePopup";
 
-import {Link} from "react-router-dom";
-
-export default function WetsuitsPage({gender}){
+export default function WetsuitsPage(){
 
     const wetsuits = useSelector(selectWetsuits)
 
     const dispatch = useDispatch();
 
-    const [currentPage, setCurrentPage] = useState(gender)
+    const [gender, setGender] = useState("")
 
-    const  title = gender;
+    const [thickness, setThickness] = useState("")
 
-    useEffect(() => {
-        if(title === "Mens"){
-            dispatch(fetchMensWetsuits())
-        }else if (title === "Womens"){
-            dispatch(fetchWomensWetsuits())
-        }else if (title === "Kids"){
-            dispatch(fetchKidsWetsuits())
-        }else{
-            dispatch(fetchWetsuits());
-        }
-    },[window.location.pathname])
+    const [title, setTitle] = useState("All")
+
+    useEffect(()=>{
+        dispatch(fetchWetsuits(`${gender}/${thickness}`))
+    },[gender, thickness, dispatch])
+
+
 
     function scrapeNewWetsuits()  {
         dispatch(scrapeWetsuits())
@@ -49,13 +42,32 @@ export default function WetsuitsPage({gender}){
 
     }
 
-    function updateCurrentPage() {
-        setCurrentPage(window.location.pathname);
+    function updateWetsuit(gender, thickness){
+        setGender(gender)
+        setThickness(thickness)
+        setTitle(`${gender} ${thickness}`)
     }
+
+    const [icon, setIcon] = useState("universal access")
+
+    useEffect(() => {
+        if(gender === "Mens"){
+            setIcon("male")
+        }else if (gender === "Womens"){
+            setIcon("female")
+        }else if (gender === "Kids"){
+            setIcon("child")
+        }
+    },[gender])
+
 
     return(
         <p>
-            <Header color={"blue"}>{title + " Wetsuits"}</Header>
+            <Header as='h2' icon>
+                <Icon name= {icon} />
+                {title} Wetsuits
+            </Header>
+            <p/>
             <Button onClick={scrapeNewWetsuits}
                     className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                 <div className="visible content">Click Here to Refresh Suits</div>
@@ -64,21 +76,10 @@ export default function WetsuitsPage({gender}){
                 </div>
             </Button>
 
-            <Link to="/wetsuits-mens">
-                <Button onClick={updateCurrentPage} >
-                    Mens Wetsuits <Icon name={"male"}></Icon>
-                </Button>
-            </Link>
-            <Link to="/wetsuits-womens">
-                <Button onClick={updateCurrentPage} >
-                    Womens Wetsuits <Icon name={"female"}></Icon>
-                </Button>
-            </Link>
-            <Link to="/wetsuits-kids">
-                <Button onClick={updateCurrentPage} >
-                    Kids Wetsuits <Icon name={"child"}></Icon>
-                </Button>
-            </Link>
+            <SizePopup gender={"Mens"} onChange={updateWetsuit}/>
+            <SizePopup gender={"Womens"} onChange={updateWetsuit}/>
+            <SizePopup gender={"Kids"} onChange={updateWetsuit}/>
+
 
 
             <p/>

@@ -1,7 +1,5 @@
 import {Button, Popup, Grid, Icon} from "semantic-ui-react";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {fetchKidsWetsuits, fetchMensWetsuits, fetchWomensWetsuits} from "./wetsuitsSlice";
 
 export default function SizePopup({gender, onChange}) {
 
@@ -15,45 +13,29 @@ export default function SizePopup({gender, onChange}) {
         }else if (gender === "Kids"){
             setIcon("child")
         }
-    })
-
-
-    function getMensWetsuits(thickness){
-        onChange("Mens")
-    }
-
-    function getWomensWetsuits() {
-        onChange("Womens")
-    }
-
-    function getKidsWetsuits() {
-        onChange("Kids")
-    }
+    },[gender])
 
     function getGenderWetsuits(thickness) {
-        if(gender==="Mens"){
-            getMensWetsuits(thickness)
-        }else if (gender === "Womens"){
-            getWomensWetsuits()
-        }else if (gender === "Kids"){
-            getKidsWetsuits()
-        }
+        onChange(gender, thickness)
     }
 
     return(
-            <Popup trigger={<Button onClick={getGenderWetsuits}>{gender + " Wetsuits "}<Icon name={icon}/></Button>} flowing hoverable>
-                <Grid centered divided columns={4}>
+            <Popup trigger={<Button onClick={()=>getGenderWetsuits("")}>{gender + " Wetsuits "}<Icon name={icon}/></Button>} flowing hoverable>
+                <Grid centered divided columns={5}>
                     <Grid.Column textAlign='center'>
-                        <Button onClick={getGenderWetsuits("5")}>5 mm</Button>
+                        <Button onClick={()=>getGenderWetsuits("6 mm")}>6 mm</Button>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Button onClick={getGenderWetsuits}>4 mm</Button>
+                        <Button onClick={()=>getGenderWetsuits("5 mm")}>5 mm</Button>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Button onClick={getGenderWetsuits}>3 mm</Button>
+                        <Button onClick={()=>getGenderWetsuits("4 mm")}>4 mm</Button>
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
-                        <Button onClick={getGenderWetsuits}>2 mm</Button>
+                        <Button onClick={()=>getGenderWetsuits("3 mm")}>3 mm</Button>
+                    </Grid.Column>
+                    <Grid.Column textAlign='center'>
+                        <Button onClick={()=>getGenderWetsuits("2 mm")}>2 mm</Button>
                     </Grid.Column>
                 </Grid>
             </Popup>

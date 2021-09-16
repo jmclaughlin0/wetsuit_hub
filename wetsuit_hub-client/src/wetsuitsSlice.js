@@ -1,13 +1,32 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {allWetsuitsURL, kidsWetsuitsURL, mensWetsuitsURL, scrapeWetsuitsURL, womensWetsuitsURL} from "./URLS";
+import {allWetsuitsURL, scrapeWetsuitsURL} from "./URLS";
 
-export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async() =>  {
-        const response = await fetch(allWetsuitsURL,
-            {method: 'GET'})
+export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData) =>  {
+    const array = yourData.toString().split("/")
+
+    const gender = array[0]
+    const thickness = array[1]
+
+    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness,
+            {method: 'GET'
+                })
+
+    console.log("t= " + thickness + " g= " +gender)
+
+    console.log("Y= " + yourData)
 
     return await response.json();
     }
 )
+
+// export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async() =>  {
+//
+//         const response = await fetch(allWetsuitsURL,
+//             {method: 'GET'})
+//
+//         return await response.json();
+//     }
+// )
 
 export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
         const response = await fetch(scrapeWetsuitsURL,
@@ -20,30 +39,6 @@ export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
         return data;
     }
 )
-
-export const fetchMensWetsuits = createAsyncThunk( 'wetsuits/fetchMens', async() =>  {
-        const response = await fetch(mensWetsuitsURL,
-            {method: 'GET'})
-
-    return await response.json();
-    }
-);
-
-export const fetchWomensWetsuits = createAsyncThunk( 'wetsuits/fetchWomens', async() =>  {
-        const response = await fetch(womensWetsuitsURL,
-            {method: 'GET'})
-
-    return await response.json();
-    }
-);
-
-export const fetchKidsWetsuits = createAsyncThunk( 'wetsuits/fetchKids', async() =>  {
-        const response = await fetch(kidsWetsuitsURL,
-            {method: 'GET'})
-
-        return await response.json();
-    }
-);
 
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
@@ -72,20 +67,8 @@ export const wetsuitsSlice = createSlice({
         [fetchWetsuits.fulfilled]: (state, action) => {
             state.wetsuitsList = action.payload;
             state.filteredWetsuitsList = action.payload;
-        },
-        [fetchMensWetsuits.fulfilled]: (state, action) => {
-            state.wetsuitsList = action.payload;
-            state.filteredWetsuitsList = action.payload;
-        },
-        [fetchWomensWetsuits.fulfilled]: (state, action) => {
-            state.wetsuitsList = action.payload;
-            state.filteredWetsuitsList = action.payload;
-        },
-        [fetchKidsWetsuits.fulfilled]: (state, action) => {
-            state.wetsuitsList = action.payload;
-            state.filteredWetsuitsList = action.payload;
         }
-    }
+        }
 
 })
 

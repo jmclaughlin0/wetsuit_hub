@@ -11,44 +11,23 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits() {
-        List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
-        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
-        return allWetsuits;
-    }
-
-    public List<Wetsuit> getMensWetsuits(String thickness) {
+    public List<Wetsuit> getAllWetsuits(String g, String t) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
         allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
 
-        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Mens"))).collect(Collectors.toList());
+        if(t == "" && g == ""){
+            return allWetsuits;
+        }
 
+        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals(g))).collect(Collectors.toList());
 
-        if(thickness==null){
+        if(t == ""){
             return genderWetsuits;
         }
 
-        genderWetsuits.stream().filter(wetsuit -> (wetsuit.getThickness().equals(thickness))).collect(Collectors.toList());
-        return genderWetsuits;
+        List <Wetsuit> thicknessWetsuits = genderWetsuits.stream().filter(wetsuit -> (wetsuit.getThickness().equals(t))).collect(Collectors.toList());
 
-    }
-
-    public List<Wetsuit> getWomensWetsuits() {
-        List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
-        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
-
-        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Womens"))).collect(Collectors.toList());
-        return genderWetsuits;
-
-    }
-
-    public List<Wetsuit> getKidsWetsuits() {
-        List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
-        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
-
-        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals("Kids"))).collect(Collectors.toList());
-        return genderWetsuits;
-
+        return thicknessWetsuits;
     }
 
 
