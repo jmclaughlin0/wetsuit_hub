@@ -5,7 +5,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class WetsuitCenterScraper implements IWetsuitScraper {
@@ -46,8 +45,6 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
 
                     String imageAddress = element.getElementsByClass("product-image-photo").toString().split(" ")[3].split("=")[1].replace('"', ' ');
                     String webAddress = element.getElementsByClass("product-item-link").attr("href");
-
-                    productName = productName.toLowerCase(Locale.ROOT);
 
                     StringFinder stringFinder = new StringFinder();
 
