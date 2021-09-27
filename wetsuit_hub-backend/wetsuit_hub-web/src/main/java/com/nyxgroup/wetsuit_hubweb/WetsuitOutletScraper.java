@@ -39,6 +39,8 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     String imageAddress = element.getElementsByAttribute("data-src").get(0).toString().split(" ")[3].split("=")[1].replace('"', ' ');
                     String webAddress = element.attr("data-url");
 
+                    Elements sizes  = element.getElementsByClass("prod_sizes");
+
                     String name = productName.toLowerCase(Locale.ROOT);
 
                     StringFinder stringFinder = new StringFinder();
@@ -46,6 +48,7 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     wetsuit.setGender(stringFinder.genderFinder(name));
                     wetsuit.setThickness(stringFinder.thicknessFinder(name));
                     wetsuit.setZipper(stringFinder.zipperFinder(name));
+                    wetsuit.setSize(sizes.text());
 
                     wetsuit.setName(productName);
                     if(price != ""){

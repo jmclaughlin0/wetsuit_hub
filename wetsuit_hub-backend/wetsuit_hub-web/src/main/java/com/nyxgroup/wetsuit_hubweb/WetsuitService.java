@@ -37,10 +37,12 @@ public class WetsuitService {
         DeeplyScraper deeplyScraper = new DeeplyScraper(wetsuitsRepository);
         WetsuitCenterScraper wetsuitCenterScraper = new WetsuitCenterScraper(wetsuitsRepository);
         WetsuitOutletScraper wetsuitOutletScraper = new WetsuitOutletScraper(wetsuitsRepository);
+        SurfDomeScraper surfDomeScraper = new SurfDomeScraper(wetsuitsRepository);
 
 //        deeplyScraper.getWetsuits();
-        wetsuitCenterScraper.getWetsuits();
+//        wetsuitCenterScraper.getWetsuits();
 //        wetsuitOutletScraper.getWetsuits();
+        surfDomeScraper.getWetsuits();
 
     }
 }
