@@ -34,17 +34,18 @@ public class WetsuitService {
     public void scrapeWetsuits() {
         wetsuitsRepository.deleteAllInBatch();
         wetsuitsRepository.flush();
-        DeeplyScraper deeplyScraper = new DeeplyScraper(wetsuitsRepository);
         WetsuitCenterScraper wetsuitCenterScraper = new WetsuitCenterScraper(wetsuitsRepository);
         WetsuitOutletScraper wetsuitOutletScraper = new WetsuitOutletScraper(wetsuitsRepository);
         SurfDomeScraper surfDomeScraper = new SurfDomeScraper(wetsuitsRepository);
         NeedEssentialsScraper needEssentialsScraper = new NeedEssentialsScraper(wetsuitsRepository);
+        SortedScraper sortedScraper = new SortedScraper(wetsuitsRepository);
+        TikiScraper tikiScraper = new TikiScraper(wetsuitsRepository);
 
-        deeplyScraper.getWetsuits();
-        wetsuitCenterScraper.getWetsuits();
-        wetsuitOutletScraper.getWetsuits();
-        surfDomeScraper.getWetsuits();
-        needEssentialsScraper.getWetsuits();
-
+//        wetsuitCenterScraper.getWetsuits();
+//        wetsuitOutletScraper.getWetsuits();
+//        surfDomeScraper.getWetsuits();
+//        needEssentialsScraper.getWetsuits();
+//        sortedScraper.getWetsuits();
+        tikiScraper.getWetsuits();
     }
 }

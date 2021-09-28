@@ -7,24 +7,27 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class ProxyScraper {
-    public static void main(String[] args) {
+public class TikiScraper implements IWetsuitScraper{
+    
+    private final WetsuitsRepository wetsuitsRepository;
 
-        int j = 0;
+    public TikiScraper(WetsuitsRepository wetsuitsRepository) {
+        this.wetsuitsRepository = wetsuitsRepository;
+    }
+
+    @Override
+    public void getWetsuits() {
         final String baseUrl = "https://www.tikisurf.co.uk/product-category/hardware/wetsuits/all-wetsuits/page/1/";
 
-        for(int i=1; i<4; i++) {
-            String newURL = baseUrl.replace("page/1/", "page/" + i + "/" );
-            try {
+        try {
+            for (int i = 1; i < 3; i++) {
+                String newURL = baseUrl.replace("page/1/", "page/" + i + "/" );
                 final Document doc = Jsoup.connect(newURL).get();
 
                 Elements wetsuits = doc.getElementsByClass("product-item  spinner-circle palign-center  product_hover_enable product_hover_mob_enable");
 
                 for (Element element : wetsuits) {
-                    System.out.println(" ");
-                    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                    j++;
-                    System.out.println("Wetsuit #" + j);
+                    Wetsuit wetsuit = new Wetsuit();
 
                     String productName = element.getElementsByClass("product-title-link").get(0).text();
 
@@ -42,32 +45,25 @@ public class ProxyScraper {
 
                     String outOfStock = element.getElementsByClass("out_of_stock_title").text();
 
-                    if(!outOfStock.isEmpty()){
-                        System.out.println("****** this item is out of stock ******");
-                    }
-
-
                     StringFinder stringFinder = new StringFinder();
 
-                    System.out.println(productName);
-                    System.out.println("Gender: " + stringFinder.genderFinder(productName));
-                    System.out.println("Thickness: " + stringFinder.thicknessFinder(productName));
-                    System.out.println("Zipper: " + stringFinder.zipperFinder(productName));
-//                    System.out.println("Sizes: " + sizes);
+                    wetsuit.setName(productName);
+                    wetsuit.setGender(stringFinder.genderFinder(productName));
+                    wetsuit.setThickness(stringFinder.thicknessFinder(productName));
+                    wetsuit.setZipper(stringFinder.zipperFinder(productName));
+                    wetsuit.setPrice(Double.parseDouble(price));
+                    wetsuit.setWebAddress(webAddress);
+                    wetsuit.setImageAddress(imageAddress);
+//                    wetsuit.setSize(sizes);
 
-
-                    if (price != "") {
-                        System.out.println("Price: " + price);
+                    if(outOfStock.isEmpty()){
+                        wetsuitsRepository.save(wetsuit);
                     }
-
-                    System.out.println(imageAddress);
-                    System.out.println(webAddress);
-
                 }
 
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-    }}
+    }
+}

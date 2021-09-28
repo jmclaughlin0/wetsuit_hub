@@ -8,7 +8,7 @@ public class StringFinder {
         String gender = "";
         wetsuitTitle = wetsuitTitle.toLowerCase(Locale.ROOT);
 
-        if (wetsuitTitle.contains("woman") || wetsuitTitle.contains("women") || wetsuitTitle.contains("womens")) {
+        if (wetsuitTitle.contains("woman") || wetsuitTitle.contains("women") || wetsuitTitle.contains("womens") || wetsuitTitle.contains("ladies")) {
             gender = "Womens";
         } else if (wetsuitTitle.contains("man") || wetsuitTitle.contains("men") || wetsuitTitle.contains("mens")) {
             gender = "Mens";
@@ -49,7 +49,7 @@ public class StringFinder {
             zipper = "Back Zip";
         } else if (wetsuitTitle.contains(" front zip ") || wetsuitTitle.contains(" chest zip ")) {
             zipper = "Chest Zip";
-        } else if (wetsuitTitle.contains(" zipperless ") || wetsuitTitle.contains(" zip less ") || wetsuitTitle.contains(" zipper less ")) {
+        } else if (wetsuitTitle.contains(" zipperless ") || wetsuitTitle.contains(" zip less ") || wetsuitTitle.contains(" zipper less ") || wetsuitTitle.contains(" zip free ")) {
             zipper = "Zipperless";
         } else {
             zipper = "Unknown";
