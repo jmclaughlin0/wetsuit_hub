@@ -40,12 +40,15 @@ public class WetsuitService {
         NeedEssentialsScraper needEssentialsScraper = new NeedEssentialsScraper(wetsuitsRepository);
         SortedScraper sortedScraper = new SortedScraper(wetsuitsRepository);
         TikiScraper tikiScraper = new TikiScraper(wetsuitsRepository);
+        BlueTomatoScraper blueTomatoScraper = new BlueTomatoScraper(wetsuitsRepository);
 
 //        wetsuitCenterScraper.getWetsuits();
 //        wetsuitOutletScraper.getWetsuits();
 //        surfDomeScraper.getWetsuits();
 //        needEssentialsScraper.getWetsuits();
 //        sortedScraper.getWetsuits();
-        tikiScraper.getWetsuits();
+//        tikiScraper.getWetsuits();
+        blueTomatoScraper.getWetsuits();
+
     }
 }
