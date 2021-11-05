@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import WetsuitCard from "./WetsuitCard";
-import {Button, CardGroup, Grid, Header, Icon} from "semantic-ui-react";
+import {Button, CardGroup, Checkbox, Grid, GridRow, Header, Icon, Segment} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchWetsuits,
@@ -23,9 +23,11 @@ export default function WetsuitsPage(){
 
     const [title, setTitle] = useState("All")
 
+    const[zipper, setZipper] = useState("");
+
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${gender}/${thickness}`))
-    },[gender, thickness, dispatch])
+        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}`))
+    },[gender, thickness, zipper, dispatch])
 
 
 
@@ -60,6 +62,10 @@ export default function WetsuitsPage(){
         }
     },[gender])
 
+    function zipperSetter(){
+        setZipper(zipper===""? "true": "")
+    }
+
 
     return(
 
@@ -69,7 +75,7 @@ export default function WetsuitsPage(){
                     className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                 <div className="visible content">Click Here to Refresh Suits</div>
                 <div className="hidden content">
-                    <i className="refresh icon"></i>
+                    <i className="refresh icon"/>
                 </div>
             </Button>
 
@@ -81,9 +87,15 @@ export default function WetsuitsPage(){
 
 
             <Grid textAlign={"center"}>
-                <SizePopup gender={"Mens"} onChange={updateWetsuit}/>
-                <SizePopup gender={"Womens"} onChange={updateWetsuit}/>
-                <SizePopup gender={"Kids"} onChange={updateWetsuit}/>
+                <GridRow>
+                    <SizePopup gender={"Mens"} onChange={updateWetsuit}/>
+                    <SizePopup gender={"Womens"} onChange={updateWetsuit}/>
+                    <SizePopup gender={"Kids"} onChange={updateWetsuit}/>
+                </GridRow>
+                <Segment vertical>
+                    <Checkbox toggle label= "Chest Zip or Zipperless Only" onChange={zipperSetter}/>
+                </Segment>
+
             </Grid>
 
 

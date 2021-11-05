@@ -1,7 +1,9 @@
 package com.nyxgroup.wetsuit_hubweb;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class WetsuitService {
@@ -11,23 +13,32 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits(String g, String t) {
+    public List<Wetsuit> getAllWetsuits(String g, String t, String z) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
+
+        if(Objects.equals(z, "true")){
+            List <Wetsuit> ziplessWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getZipper().equals("Zipperless"))).collect(Collectors.toList());
+
+            ArrayList<Wetsuit> zipWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getZipper().equals("Chest Zip"))).collect(Collectors.toCollection(ArrayList::new));
+
+            zipWetsuits.addAll(ziplessWetsuits);
+
+            zipWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
+
+            allWetsuits = zipWetsuits;
+        }
+
+        if(!Objects.equals(t, "")) {
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getThickness().equals(t))).collect(Collectors.toList());
+        }
+
+        if(!Objects.equals(g, "")){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals(g))).collect(Collectors.toList());
+        }
+
         allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
 
-        if(t == "" && g == ""){
-            return allWetsuits;
-        }
-
-        List <Wetsuit> genderWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals(g))).collect(Collectors.toList());
-
-        if(t == ""){
-            return genderWetsuits;
-        }
-
-        List <Wetsuit> thicknessWetsuits = genderWetsuits.stream().filter(wetsuit -> (wetsuit.getThickness().equals(t))).collect(Collectors.toList());
-
-        return thicknessWetsuits;
+        return allWetsuits;
     }
 
 
@@ -42,13 +53,13 @@ public class WetsuitService {
         TikiScraper tikiScraper = new TikiScraper(wetsuitsRepository);
         BlueTomatoScraper blueTomatoScraper = new BlueTomatoScraper(wetsuitsRepository);
 
-//        wetsuitCenterScraper.getWetsuits();
-//        wetsuitOutletScraper.getWetsuits();
-//        surfDomeScraper.getWetsuits();
-//        needEssentialsScraper.getWetsuits();
-//        sortedScraper.getWetsuits();
-//        tikiScraper.getWetsuits();
-        blueTomatoScraper.getWetsuits();
+        wetsuitCenterScraper.getWetsuits();
+        wetsuitOutletScraper.getWetsuits();
+        surfDomeScraper.getWetsuits();
+        needEssentialsScraper.getWetsuits();
+        sortedScraper.getWetsuits();
+        tikiScraper.getWetsuits();
+//        blueTomatoScraper.getWetsuits();
 
     }
 }

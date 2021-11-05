@@ -5,6 +5,7 @@ import WetsuitsPage from "./WetsuitsPage";
 import Home from "./Home";
 import {useDispatch} from "react-redux";
 import {fetchWetsuits} from "./wetsuitsSlice";
+import {Container, Menu} from "semantic-ui-react";
 
 
 export default function App() {
@@ -26,6 +27,24 @@ export default function App() {
       <Router>
           <div style={{marginTop: "0.5em", marginLeft: "0.5em", marginBottom: "-0.5em"}} >
               <nav>
+                  {/*<Menu size='large'>*/}
+                  {/*    <Container>*/}
+                  {/*        <Menu.Item as='a' active>*/}
+                  {/*            Home*/}
+                  {/*        </Menu.Item>*/}
+                  {/*        <Menu.Item as='a'>Work</Menu.Item>*/}
+                  {/*        <Menu.Item as='a'>Company</Menu.Item>*/}
+                  {/*        <Menu.Item as='a'>Careers</Menu.Item>*/}
+                  {/*        <Menu.Item position='right'>*/}
+                  {/*            <Button as='a' inverted={!fixed}>*/}
+                  {/*                Log in*/}
+                  {/*            </Button>*/}
+                  {/*            <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>*/}
+                  {/*                Sign Up*/}
+                  {/*            </Button>*/}
+                  {/*        </Menu.Item>*/}
+                  {/*    </Container>*/}
+                  {/*</Menu>*/}
                   <Link to="/">
                       <button onClick={updateCurrentPage} class={window.location.pathname === "/" ? "ui animated active button" : "ui animated  button"} >
                           <div class="visible content">Home</div>
@@ -50,15 +69,6 @@ export default function App() {
               <Route path="/wetsuits">
                   <WetsuitsPage/>
               </Route>
-              {/*<Route path="/wetsuits-mens">*/}
-              {/*    <WetsuitsPage gender={"Mens"} />*/}
-              {/*</Route>*/}
-              {/*<Route path="/wetsuits-womens">*/}
-              {/*    <WetsuitsPage gender={"Womens"}/>*/}
-              {/*</Route>*/}
-              {/*<Route path="/wetsuits-kids">*/}
-              {/*    <WetsuitsPage gender={"Kids"}/>*/}
-              {/*</Route>*/}
               <Route path="/" >
                   <Home />
               </Route>

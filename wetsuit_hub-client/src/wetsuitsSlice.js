@@ -6,8 +6,9 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
 
     const gender = array[0]
     const thickness = array[1]
+    const zipper = array[2]
 
-    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness,
+    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper ,
             {method: 'GET'
                 })
 
@@ -32,7 +33,8 @@ export const wetsuitsSlice = createSlice({
     initialState: {
         wetsuitsList: [],
         filter: '',
-        filteredWetsuitsList: []
+        filteredWetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", imageAddress: "https://www.clipartmax.com/middle/m2i8A0G6m2i8G6K9_computer-icons-wave-vector-craft-magnets-clip-art-waves-icon-png/"}]
+
     },
     reducers: {
         getFilteredWetsuits: (state) => {

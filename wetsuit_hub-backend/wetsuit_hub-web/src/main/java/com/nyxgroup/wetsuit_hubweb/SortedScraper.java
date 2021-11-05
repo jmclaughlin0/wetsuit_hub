@@ -50,7 +50,10 @@ public class SortedScraper implements IWetsuitScraper {
                     wetsuit.setGender(stringFinder.genderFinder(productName));
                     wetsuit.setThickness(stringFinder.thicknessFinder(productName));
                     wetsuit.setZipper(stringFinder.zipperFinder(productName));
-                    wetsuit.setPrice(Double.parseDouble(price));
+                    if(!price.isEmpty()){
+                        wetsuit.setPrice(Double.parseDouble(price));
+
+                    }
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
 //                    wetsuit.setSize(sizes);
