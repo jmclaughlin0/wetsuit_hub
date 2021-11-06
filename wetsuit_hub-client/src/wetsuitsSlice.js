@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {allWetsuitsURL, scrapeWetsuitsURL} from "./URLS";
+import {Segment} from "semantic-ui-react";
 
 export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData) =>  {
     const array = yourData.toString().split("/")
@@ -33,7 +34,7 @@ export const wetsuitsSlice = createSlice({
     initialState: {
         wetsuitsList: [],
         filter: '',
-        filteredWetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", imageAddress: "https://www.clipartmax.com/middle/m2i8A0G6m2i8G6K9_computer-icons-wave-vector-craft-magnets-clip-art-waves-icon-png/"}]
+        filteredWetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", price: "N/A"}]
 
     },
     reducers: {

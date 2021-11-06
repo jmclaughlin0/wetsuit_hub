@@ -15,7 +15,7 @@ export default function WetsuitCard({wetsuit}) {
     return (
 
         <Card fluid raised key = {wetsuit.id} href={wetsuit.webAddress} target = '_blank'>
-            <img src={wetsuit.imageAddress} wrapped ui={false} width="250" height="450" alt = {wetsuit.name} />
+            <img src={wetsuit.imageAddress} width="250" height="450" alt = {wetsuit.name} />
             <Card.Content>
                 <Card.Header textAlign={"center"}>{wetsuit.name}</Card.Header>
 
