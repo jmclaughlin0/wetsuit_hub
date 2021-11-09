@@ -26,7 +26,7 @@ export default function Home() {
                         The Wetsuit Hub
                     </Header>
 
-                    <Link to="/wetsuits">
+                    <Link to="/wetsuits/">
                         <Button onClick={updateCurrentPage} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                             Find the Best Prices on Wetsuits from Around the Web
                            <Icon name={"right arrow"}/>

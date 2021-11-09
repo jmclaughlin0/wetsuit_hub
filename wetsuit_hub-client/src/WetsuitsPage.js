@@ -11,23 +11,20 @@ import {
 import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
 
-export default function WetsuitsPage(){
+export default function WetsuitsPage({sex, chubb}){
 
     const wetsuits = useSelector(selectWetsuits)
 
     const dispatch = useDispatch();
 
-    const [gender, setGender] = useState("")
-
-    const [thickness, setThickness] = useState("")
-
-    const [title, setTitle] = useState("All")
+    const title = `${sex} ${chubb}`
 
     const[zipper, setZipper] = useState("");
 
+
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}`))
-    },[gender, thickness, zipper, dispatch])
+        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}`))
+    },[sex, chubb, zipper, dispatch])
 
 
 
@@ -44,15 +41,11 @@ export default function WetsuitsPage(){
 
     }
 
-    function updateWetsuit(gender, thickness){
-        setGender(gender)
-        setThickness(thickness)
-        setTitle(`${gender} ${thickness}`)
-    }
-
     const [icon, setIcon] = useState("universal access")
 
     useEffect(() => {
+        let gender = sex
+
         if(gender === "Mens"){
             setIcon("male")
         }else if (gender === "Womens"){
@@ -60,7 +53,7 @@ export default function WetsuitsPage(){
         }else if (gender === "Kids"){
             setIcon("child")
         }
-    },[gender])
+    },[sex])
 
     function zipperSetter(){
         setZipper(zipper===""? "true": "")
@@ -90,28 +83,22 @@ export default function WetsuitsPage(){
                 </Header>
                 <p/>
 
-
-
                 <Grid textAlign={"center"}>
                     <GridRow>
-                        <SizePopup gender={"Mens"} onChange={updateWetsuit}/>
-                        <SizePopup gender={"Womens"} onChange={updateWetsuit}/>
-                        <SizePopup gender={"Kids"} onChange={updateWetsuit}/>
+                        <SizePopup gender={"Mens"}/>
+                        <SizePopup gender={"Womens"}/>
+                        <SizePopup gender={"Kids"}/>
                     </GridRow>
                     <GridRow>
-                        <Segment vertical inverted color={'teal'} circular  >
+                        <Segment vertical tertiary inverted color={'light blue'} circular  >
                             <Checkbox toggle label= "Chest Zip or Zipperless Only" onChange={zipperSetter}/>
                         </Segment>
                     </GridRow>
                     <Segment vertical>
                         <Pagination defaultActivePage={5} totalPages={10} />
                     </Segment>
-
                 </Grid>
-
-
             </p>
-
             <p/>
             <WetsuitSearchBar/>
             <p/>

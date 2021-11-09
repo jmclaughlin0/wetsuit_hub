@@ -1,50 +1,37 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import WetsuitsPage from "./WetsuitsPage";
 import Home from "./Home";
-import {useDispatch} from "react-redux";
-import {fetchWetsuits} from "./wetsuitsSlice";
-import {Container, Menu} from "semantic-ui-react";
+import {useDispatch, useSelector} from "react-redux";
+import {changeGender, changeThickness, fetchWetsuits, selectGender, selectThickness} from "./wetsuitsSlice";
 
 
 export default function App() {
 
-    const dispatch = useDispatch;
-
-    dispatch(fetchWetsuits);
-
     const [currentPage, setCurrentPage] = useState("")
-
 
     const updateCurrentPage = () => {
         setCurrentPage(window.location.pathname);
     }
 
+    const gender = useSelector(selectGender);
 
-  return (
+    const thickness = useSelector(selectThickness);
+
+    const dispatch = useDispatch();
+
+
+    function resetToAllWetsuits() {
+        dispatch(changeGender(""))
+        dispatch(changeThickness(""))
+    }
+
+    return (
 
       <Router>
           <div style={{marginTop: "0.5em", marginLeft: "0.5em", marginBottom: "-0.5em"}} >
               <nav>
-                  {/*<Menu size='large'>*/}
-                  {/*    <Container>*/}
-                  {/*        <Menu.Item as='a' active>*/}
-                  {/*            Home*/}
-                  {/*        </Menu.Item>*/}
-                  {/*        <Menu.Item as='a'>Work</Menu.Item>*/}
-                  {/*        <Menu.Item as='a'>Company</Menu.Item>*/}
-                  {/*        <Menu.Item as='a'>Careers</Menu.Item>*/}
-                  {/*        <Menu.Item position='right'>*/}
-                  {/*            <Button as='a' inverted={!fixed}>*/}
-                  {/*                Log in*/}
-                  {/*            </Button>*/}
-                  {/*            <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>*/}
-                  {/*                Sign Up*/}
-                  {/*            </Button>*/}
-                  {/*        </Menu.Item>*/}
-                  {/*    </Container>*/}
-                  {/*</Menu>*/}
                   <Link to="/">
                       <button onClick={updateCurrentPage} class={window.location.pathname === "/" ? "ui animated active button" : "ui animated  button"} >
                           <div class="visible content">Home</div>
@@ -53,8 +40,8 @@ export default function App() {
                           </div>
                       </button>
                   </Link>
-                  <Link to="/wetsuits">
-                      <button onClick={updateCurrentPage} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
+                  <Link to={`/wetsuits/`}>
+                      <button onClick={updateCurrentPage + resetToAllWetsuits} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                           <div class="visible content">Wetsuits</div>
                           <div class="hidden content">
                               <i class = 'tint icon'></i>
@@ -66,10 +53,10 @@ export default function App() {
           <div class="ui divider" ></div>
 
           <Switch>
-              <Route path="/wetsuits">
-                  <WetsuitsPage/>
+              <Route path={`/wetsuits/${gender}/${thickness}`}>
+                  <WetsuitsPage sex={gender} chubb={thickness} />
               </Route>
-              <Route path="/" >
+              <Route path={`/`} >
                   <Home />
               </Route>
           </Switch>

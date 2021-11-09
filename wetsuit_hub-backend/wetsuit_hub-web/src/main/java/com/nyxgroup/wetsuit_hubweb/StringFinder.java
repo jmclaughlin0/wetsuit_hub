@@ -12,7 +12,7 @@ public class StringFinder {
             gender = "Womens";
         } else if (wetsuitTitle.contains("man") || wetsuitTitle.contains("men") || wetsuitTitle.contains("mens")) {
             gender = "Mens";
-        } else if (wetsuitTitle.contains("kids") || wetsuitTitle.contains("junior") || wetsuitTitle.contains("toddler") || wetsuitTitle.contains("toddlers") || wetsuitTitle.contains("baby") || wetsuitTitle.contains("youth") || wetsuitTitle.contains("girls") || wetsuitTitle.contains("boys")) {
+        } else if (wetsuitTitle.contains("kids") || wetsuitTitle.contains("junior") || wetsuitTitle.contains("toddler") || wetsuitTitle.contains("toddlers") || wetsuitTitle.contains("baby") || wetsuitTitle.contains("youth") || wetsuitTitle.contains("girls") || wetsuitTitle.contains("boys")|| wetsuitTitle.contains("boy")|| wetsuitTitle.contains("girl")|| wetsuitTitle.contains("childrens")) {
             gender = "Kids";
         } else if((wetsuitTitle.contains("/") || wetsuitTitle.contains("mm")) && (wetsuitTitle.contains("wetsuit") || wetsuitTitle.contains("suit") || wetsuitTitle.contains("zip"))){
             gender = "Mens";
