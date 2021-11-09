@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {allWetsuitsURL, scrapeWetsuitsURL} from "./URLS";
-import {Segment} from "semantic-ui-react";
 
 export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData) =>  {
     const array = yourData.toString().split("/")
@@ -8,8 +7,9 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
     const gender = array[0]
     const thickness = array[1]
     const zipper = array[2]
+    const page = array[3]
 
-    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper ,
+    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page,
             {method: 'GET'
                 })
 

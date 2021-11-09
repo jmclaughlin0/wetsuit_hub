@@ -21,10 +21,12 @@ export default function WetsuitsPage({sex, chubb}){
 
     const[zipper, setZipper] = useState("");
 
+    const [pageNumber, setPageNumber] = useState("1")
+
 
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}`))
-    },[sex, chubb, zipper, dispatch])
+        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}`))
+    },[sex, chubb, zipper,pageNumber, dispatch])
 
 
 
@@ -33,10 +35,12 @@ export default function WetsuitsPage({sex, chubb}){
     }
 
     function outputList() {
-        if(wetsuits!=null){
+        if(wetsuits.length > 0){
             return wetsuits.map(wetsuit =>
                             <WetsuitCard key = {wetsuit.id} wetsuit={wetsuit}/>
             )
+        }else {
+            return <Header textAlign={"center"} color={"blue"} icon> <Icon inverted color = "black" name={"frown outline"} size= "massive"/> No Wetsuits On This Page... </Header>
         }
 
     }
@@ -59,6 +63,11 @@ export default function WetsuitsPage({sex, chubb}){
         setZipper(zipper===""? "true": "")
     }
 
+
+    function changePage(event, data) {
+        const page = data.activePage
+        setPageNumber(page)
+    }
 
     return(
         <p>
@@ -95,7 +104,7 @@ export default function WetsuitsPage({sex, chubb}){
                         </Segment>
                     </GridRow>
                     <Segment vertical>
-                        <Pagination defaultActivePage={5} totalPages={10} />
+                        <Pagination defaultActivePage={5} totalPages={10} onPageChange= { (event, data) => changePage(event,data)} />
                     </Segment>
                 </Grid>
             </p>

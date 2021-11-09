@@ -1,9 +1,6 @@
 package com.nyxgroup.wetsuit_hubweb;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WetsuitService {
@@ -13,7 +10,7 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits(String g, String t, String z) {
+    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
 
         if(Objects.equals(z, "true")){
@@ -38,7 +35,20 @@ public class WetsuitService {
 
         allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
 
-        return allWetsuits;
+        int pageNumber = Integer.parseInt(p);
+
+        int startPage = pageNumber*20 - 20;
+        int endPage = pageNumber* 20;
+
+        if(startPage > allWetsuits.size()){
+            return Collections.emptyList();
+        }
+
+        if(endPage > allWetsuits.size()){
+            endPage = allWetsuits.size();
+        }
+
+        return allWetsuits.subList(startPage, endPage);
     }
 
 
