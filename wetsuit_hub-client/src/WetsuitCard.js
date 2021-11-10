@@ -5,7 +5,7 @@ export default function WetsuitCard({wetsuit}) {
 
     function sizeFunc(){
         if(wetsuit.size===null){
-            return "Sizes Unavailable";
+            return "Sizes Unknown";
         } else{
             return wetsuit.size;
         }

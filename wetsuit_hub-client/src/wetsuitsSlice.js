@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {allWetsuitsURL, scrapeWetsuitsURL} from "./URLS";
+import {allWetsuitsURL, numberPagesURL, scrapeWetsuitsURL} from "./URLS";
 
 export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData) =>  {
     const array = yourData.toString().split("/")
@@ -14,6 +14,22 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
                 })
 
     return await response.json();
+    }
+)
+
+export const fetchNumberPages = createAsyncThunk( 'pages/fetch', async(yourData) =>  {
+        const array = yourData.toString().split("/")
+
+        const gender = array[0]
+        const thickness = array[1]
+        const zipper = array[2]
+        const page = array[3]
+
+        const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page,
+            {method: 'GET'
+            })
+
+        return await response.json();
     }
 )
 
@@ -36,7 +52,9 @@ export const wetsuitsSlice = createSlice({
         filter: '',
         filteredWetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", price: "N/A"}],
         thickness: '',
-        gender: ''
+        gender: '',
+        numberPages: 1,
+        currentPage: 1
     },
     reducers: {
         getFilteredWetsuits: (state) => {
@@ -60,11 +78,15 @@ export const wetsuitsSlice = createSlice({
             state.thickness = action.payload
             },
 
+
     },
     extraReducers:{
         [fetchWetsuits.fulfilled]: (state, action) => {
             state.wetsuitsList = action.payload;
             state.filteredWetsuitsList = action.payload;
+        },
+        [fetchNumberPages.fulfilled]: (state, action) => {
+            state.numberPages = action.payload;
         }
         }
 
@@ -88,4 +110,8 @@ export const selectGender = state => {
 
 export const selectThickness = state => {
     return state.wetsuits.thickness;
+}
+
+export const selectPages = state => {
+    return state.wetsuits.numberPages;
 }

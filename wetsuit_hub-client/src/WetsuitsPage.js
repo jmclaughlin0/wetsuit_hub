@@ -3,8 +3,9 @@ import WetsuitCard from "./WetsuitCard";
 import {Button, CardGroup, Checkbox, Grid, GridRow, Header, Icon, Segment, Pagination} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    fetchNumberPages,
     fetchWetsuits,
-    scrapeWetsuits,
+    scrapeWetsuits, selectPages,
     selectWetsuits
 } from "./wetsuitsSlice";
 
@@ -15,6 +16,8 @@ export default function WetsuitsPage({sex, chubb}){
 
     const wetsuits = useSelector(selectWetsuits)
 
+    const numberPages = useSelector(selectPages)
+
     const dispatch = useDispatch();
 
     const title = `${sex} ${chubb}`
@@ -23,11 +26,17 @@ export default function WetsuitsPage({sex, chubb}){
 
     const [pageNumber, setPageNumber] = useState("1")
 
+    const [icon, setIcon] = useState("universal access")
+
 
     useEffect(()=>{
         dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}`))
+        dispatch(fetchNumberPages(`${sex}/${chubb}/${zipper}/${pageNumber}`))
     },[sex, chubb, zipper,pageNumber, dispatch])
 
+    useEffect(()=>{
+        setPageNumber("1")
+    },[sex, chubb, zipper])
 
 
     function scrapeNewWetsuits()  {
@@ -45,8 +54,6 @@ export default function WetsuitsPage({sex, chubb}){
 
     }
 
-    const [icon, setIcon] = useState("universal access")
-
     useEffect(() => {
         let gender = sex
 
@@ -60,7 +67,7 @@ export default function WetsuitsPage({sex, chubb}){
     },[sex])
 
     function zipperSetter(){
-        setZipper(zipper===""? "true": "")
+        setZipper(zipper=== "" ? "true": "")
     }
 
 
@@ -104,7 +111,15 @@ export default function WetsuitsPage({sex, chubb}){
                         </Segment>
                     </GridRow>
                     <Segment vertical>
-                        <Pagination defaultActivePage={5} totalPages={10} onPageChange= { (event, data) => changePage(event,data)} />
+                        <Pagination
+                            defaultActivePage={1}
+                            ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                            firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                            lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                            prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                            nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                            totalPages={numberPages}
+                            onPageChange= { (event, data) => changePage(event,data)} />
                     </Segment>
                 </Grid>
             </p>

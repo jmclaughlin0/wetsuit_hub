@@ -25,6 +25,15 @@ public class WetsuitController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("pages")
+    public int getNumberPages(@RequestParam(required = false) String g,
+                              @RequestParam(required = false) String t,
+                              @RequestParam(required = false) String z)
+    {
+        return wetsuitService.getNumberPages(g, t, z);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("scrape-wetsuits")
     public String scrapeWetsuits() {
         wetsuitService.scrapeWetsuits();
