@@ -1,6 +1,17 @@
 import React, {useEffect, useState} from "react";
 import WetsuitCard from "./WetsuitCard";
-import {Button, CardGroup, Checkbox, Grid, GridRow, Header, Icon, Segment, Pagination} from "semantic-ui-react";
+import {
+    Button,
+    CardGroup,
+    Checkbox,
+    Grid,
+    GridRow,
+    Header,
+    Icon,
+    Segment,
+    Pagination,
+    Dropdown, Divider
+} from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchNumberPages,
@@ -28,11 +39,16 @@ export default function WetsuitsPage({sex, chubb}){
 
     const [icon, setIcon] = useState("universal access")
 
+    const [order, setOrder] = useState({key: 'PA', icon: 'sort numeric down', text: 'Price Low - High', value: 'PA' })
+
 
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}`))
-        dispatch(fetchNumberPages(`${sex}/${chubb}/${zipper}/${pageNumber}`))
-    },[sex, chubb, zipper,pageNumber, dispatch])
+        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}/${order.value}`))
+    },[sex, chubb, zipper,pageNumber, order, dispatch])
+
+    useEffect(()=>{
+        dispatch(fetchNumberPages(`${sex}/${chubb}/${zipper}`))
+    },[sex, chubb, zipper, dispatch])
 
     useEffect(()=>{
         setPageNumber("1")
@@ -74,6 +90,17 @@ export default function WetsuitsPage({sex, chubb}){
     function changePage(event, data) {
         const page = data.activePage
         setPageNumber(page)
+    }
+
+    const orderOptions = [
+        {key: 'PA', icon: 'sort numeric down', text: 'Price Low -> High', value: 'PA' },
+        {key: 'PD', icon: 'sort numeric up', text: 'Price High -> Low', value: 'PD' },
+        {key: 'AB', icon: 'sort alphabet down', text: 'Alphabetically', value: 'AB' },
+        {key: 'RA', icon: 'sort alphabet up', text: 'Reverse - Alphabetically', value: 'RA' }
+    ]
+
+    function changeOrder(d) {
+        setOrder(d)
     }
 
     return(
@@ -124,7 +151,23 @@ export default function WetsuitsPage({sex, chubb}){
                 </Grid>
             </p>
             <p/>
-            <WetsuitSearchBar/>
+            <Segment.Inline >
+            <Grid textAlign={"center"}>
+                <GridRow >
+                    <WetsuitSearchBar/>
+
+                    <Dropdown
+                            button
+                            className='icon'
+                            floating
+                            labeled
+                            defaultValue={orderOptions[0].value}
+                            options = {orderOptions}
+                            onChange={(event,data) => changeOrder(data)}
+                    />
+                </GridRow>
+            </Grid>
+            </Segment.Inline>
             <p/>
 
             <CardGroup itemsPerRow={5} stackable={true} doubling={true}>

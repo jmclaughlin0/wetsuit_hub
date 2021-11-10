@@ -19,9 +19,10 @@ public class WetsuitController {
     public List<Wetsuit> getAllWetsuits(@RequestParam(required = false) String g,
                                         @RequestParam(required = false) String t,
                                         @RequestParam(required = false) String z,
-                                        @RequestParam(required = false) String p)
+                                        @RequestParam(required = false) String p,
+                                        @RequestParam(required = false) String o)
     {
-        return wetsuitService.getAllWetsuits(g, t, z, p);
+        return wetsuitService.getAllWetsuits(g, t, z, p, o);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

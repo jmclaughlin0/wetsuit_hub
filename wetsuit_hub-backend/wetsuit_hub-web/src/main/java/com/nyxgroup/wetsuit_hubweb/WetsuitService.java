@@ -10,7 +10,7 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p) {
+    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
 
         if(Objects.equals(z, "true")){
@@ -33,7 +33,18 @@ public class WetsuitService {
             allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals(g))).collect(Collectors.toList());
         }
 
-        allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
+        if(Objects.equals(o, "PA")){
+            allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
+        }else if(Objects.equals(o, "PD")){
+            allWetsuits.sort(Comparator.comparing(Wetsuit::getPrice));
+            Collections.reverse(allWetsuits);
+        }else if(Objects.equals(o, "AB")){
+            allWetsuits.sort(Comparator.comparing(Wetsuit::getName));
+        }else if(Objects.equals(o, "RA")){
+            allWetsuits.sort(Comparator.comparing(Wetsuit::getName));
+            Collections.reverse(allWetsuits);
+        }
+
 
         int pageNumber = Integer.parseInt(p);
 

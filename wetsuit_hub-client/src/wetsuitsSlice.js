@@ -8,8 +8,9 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
     const thickness = array[1]
     const zipper = array[2]
     const page = array[3]
+    const order = array[4]
 
-    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page,
+    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order ,
             {method: 'GET'
                 })
 
@@ -54,7 +55,7 @@ export const wetsuitsSlice = createSlice({
         thickness: '',
         gender: '',
         numberPages: 1,
-        currentPage: 1
+        order: "PA"
     },
     reducers: {
         getFilteredWetsuits: (state) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {getFilteredWetsuits, changeFilter, selectFilter} from "./wetsuitsSlice";
-import {Input} from "semantic-ui-react";
+import {Input, Search} from "semantic-ui-react";
 
 function MealsPageFilter() {
     const dispatch = useDispatch();
@@ -14,8 +14,7 @@ function MealsPageFilter() {
 
     return (
         <div>
-            Filter: &nbsp;
-            <Input type='text' name='filter' value={filter} onChange={handleChange}/>
+            <Input type='text' placeholder = "Search..." icon='search' value={filter} onChange={handleChange}/>
         </div>
     )
 }
