@@ -18,9 +18,9 @@ public class SortedScraper implements IWetsuitScraper {
     @Override
     public void getWetsuits() {
 
-        final String baseUrl = "https://www.sortedsurfshop.co.uk/wetsuits.html?p=1";
+        final String baseUrl = "https://www.sortedsurfshop.co.uk/wetsuits.html?p=1&zip=743%2C745%2C744";
 
-        for(int i=1; i<10; i++) {
+        for(int i=1; i<20; i++) {
             String newURL = baseUrl.replace("?p=1", "?p="+i);
             try {
                 final Document doc = Jsoup.connect(newURL).get();
@@ -58,7 +58,9 @@ public class SortedScraper implements IWetsuitScraper {
                     wetsuit.setImageAddress(imageAddress);
 //                    wetsuit.setSize(sizes);
 
-                    wetsuitsRepository.save(wetsuit);
+                    if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
+                        wetsuitsRepository.save(wetsuit);
+                    }
                 }
 
             }catch (IOException e) {

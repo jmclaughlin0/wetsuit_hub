@@ -20,7 +20,7 @@ public class TikiScraper implements IWetsuitScraper{
         final String baseUrl = "https://www.tikisurf.co.uk/product-category/hardware/wetsuits/all-wetsuits/page/1/";
 
         try {
-            for (int i = 1; i < 3; i++) {
+            for (int i = 1; i < 10; i++) {
                 String newURL = baseUrl.replace("page/1/", "page/" + i + "/" );
                 final Document doc = Jsoup.connect(newURL).get();
 

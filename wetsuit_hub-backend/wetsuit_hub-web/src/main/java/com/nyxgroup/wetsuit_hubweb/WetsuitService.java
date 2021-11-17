@@ -46,20 +46,22 @@ public class WetsuitService {
         }
 
 
-        int pageNumber = Integer.parseInt(p);
+//        int pageNumber = Integer.parseInt(p);
+//
+//        int startPage = pageNumber*20 - 20;
+//        int endPage = pageNumber* 20;
+//
+//        if(startPage > allWetsuits.size()){
+//            return Collections.emptyList();
+//        }
+//
+//        if(endPage > allWetsuits.size()){
+//            endPage = allWetsuits.size();
+//        }
 
-        int startPage = pageNumber*20 - 20;
-        int endPage = pageNumber* 20;
+//        return allWetsuits.subList(startPage, endPage);
 
-        if(startPage > allWetsuits.size()){
-            return Collections.emptyList();
-        }
-
-        if(endPage > allWetsuits.size()){
-            endPage = allWetsuits.size();
-        }
-
-        return allWetsuits.subList(startPage, endPage);
+        return allWetsuits;
     }
 
 

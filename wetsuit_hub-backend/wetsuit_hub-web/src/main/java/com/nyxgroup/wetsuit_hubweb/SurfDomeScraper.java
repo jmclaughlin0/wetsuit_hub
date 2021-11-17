@@ -21,8 +21,8 @@ public class SurfDomeScraper implements IWetsuitScraper{
         final String baseUrl = "https://www.surfdome.com/Wetsuits/sddsl13817.htm?page=1&sortBy=newest";
 
         try {
-            for (int i = 1; i < 3; i++) {
-                final Document doc = Jsoup.connect(baseUrl + "?page=" + i).get();
+            for (int i = 1; i < 10; i++) {
+                final Document doc = Jsoup.connect(baseUrl.replace("?page=1", "?page=" + i)).get();
 
                 Elements wetsuits = doc.getElementsByClass("ais-Hits-item product");
 
@@ -55,6 +55,7 @@ public class SurfDomeScraper implements IWetsuitScraper{
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
 //                    wetsuit.setSize(sizes);
+
 
                     wetsuitsRepository.save(wetsuit);
                 }

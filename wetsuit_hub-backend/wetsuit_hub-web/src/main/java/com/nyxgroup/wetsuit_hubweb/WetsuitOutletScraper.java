@@ -21,7 +21,7 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
         try {
 
 
-            for(int i = 1; i<4; i++){
+            for(int i = 1; i<20; i++){
                 final Document doc = Jsoup.connect(baseUrl + "&page=" + i).get();
 
                 Elements wetsuits = doc.getElementsByClass("productListEntry col-xs-6 col-lg-3 tac double-view");
@@ -58,7 +58,9 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setWebAddress(webAddress);
 
-                    wetsuitsRepository.save(wetsuit);
+                    if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
+                        wetsuitsRepository.save(wetsuit);
+                    }
                 }
 
             }

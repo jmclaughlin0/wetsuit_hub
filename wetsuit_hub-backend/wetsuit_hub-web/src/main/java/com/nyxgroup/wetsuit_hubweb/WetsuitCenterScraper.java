@@ -15,12 +15,12 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
     }
 
     public void getWetsuits(){
-        final String baseUrl = "https://www.wetsuitcentre.co.uk/wetsuits.html?p=1&product_list_limit=36&product_list_order=price_asc&zip=744%2C745%2C743";
+        final String baseUrl = "https://www.wetsuitcentre.co.uk/wetsuits.html?p=1&zip=744%2C745%2C743";
 
 
         try {
 
-            for(int i = 1; i<12; i++) {
+            for(int i = 1; i<30; i++) {
                 String modifiedURL = baseUrl.replace(".html?p=1", ".html?p=" + i);
                 final Document doc = Jsoup.connect(modifiedURL).get();
 

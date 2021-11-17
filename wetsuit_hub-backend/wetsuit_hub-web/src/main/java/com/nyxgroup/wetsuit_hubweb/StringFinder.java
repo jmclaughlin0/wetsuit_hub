@@ -47,7 +47,7 @@ public class StringFinder {
         wetsuitTitle = wetsuitTitle.toLowerCase(Locale.ROOT);
         if (wetsuitTitle.contains(" back zip ")) {
             zipper = "Back Zip";
-        } else if (wetsuitTitle.contains(" front zip ") || wetsuitTitle.contains(" chest zip ")) {
+        } else if (wetsuitTitle.contains(" front zip ") || wetsuitTitle.contains(" chest zip ") || wetsuitTitle.contains("hooded")|| wetsuitTitle.contains("freezip")) {
             zipper = "Chest Zip";
         } else if (wetsuitTitle.contains(" zipperless ") || wetsuitTitle.contains(" zip less ") || wetsuitTitle.contains(" zipper less ") || wetsuitTitle.contains(" zip free ")) {
             zipper = "Zipperless";
