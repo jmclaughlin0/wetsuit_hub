@@ -1,10 +1,10 @@
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import WetsuitsPage from "./WetsuitsPage";
 import Home from "./Home";
 import {useDispatch, useSelector} from "react-redux";
-import {changeGender, changeThickness, fetchWetsuits, selectGender, selectThickness} from "./wetsuitsSlice";
+import {changeGender, changeThickness, selectGender, selectThickness} from "./wetsuitsSlice";
 
 
 export default function App() {
@@ -40,7 +40,7 @@ export default function App() {
                           </div>
                       </button>
                   </Link>
-                  <Link to={`/wetsuits/`}>
+                  <Link to={`/wetsuits`}>
                       <button onClick={updateCurrentPage + resetToAllWetsuits} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                           <div class="visible content">Wetsuits</div>
                           <div class="hidden content">
@@ -53,8 +53,8 @@ export default function App() {
           <div class="ui divider" ></div>
 
           <Switch>
-              <Route path={`/wetsuits/${gender}/${thickness}`}>
-                  <WetsuitsPage sex={gender} chubb={thickness} />
+              <Route path={`/wetsuits${gender!==""? "/" + gender:""}${thickness!==""? "/" + thickness:""}`}>
+                  <WetsuitsPage/>
               </Route>
               <Route path={`/`} >
                   <Home />

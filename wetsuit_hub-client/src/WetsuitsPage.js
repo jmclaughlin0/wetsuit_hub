@@ -24,7 +24,15 @@ import {
 import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
 
-export default function WetsuitsPage({sex, chubb}){
+export default function WetsuitsPage(){
+
+    const path1 = window.location.pathname.split("/")[2]
+
+    const path2 = window.location.pathname.split("/")[3]
+
+    const gender = path1===undefined? "":path1
+
+    const thickness = path2===undefined? "":path2.replace("%20", " ")
 
     const wetsuits = useSelector(selectWetsuits)
 
@@ -34,7 +42,7 @@ export default function WetsuitsPage({sex, chubb}){
 
     const dispatch = useDispatch();
 
-    const title = `${sex} ${chubb}`
+    const title = `${gender} ${thickness}`
 
     const[zipper, setZipper] = useState("");
 
@@ -46,16 +54,16 @@ export default function WetsuitsPage({sex, chubb}){
 
 
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}/${order.value}/${search}`))
-    },[sex, chubb, zipper,pageNumber, order, search, dispatch])
+        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}`))
+    },[gender, thickness, zipper,pageNumber, order, search, dispatch])
 
     useEffect(()=>{
-        dispatch(fetchNumberPages(`${sex}/${chubb}/${zipper}/${search}`))
-    },[sex, chubb, zipper, search, dispatch])
+        dispatch(fetchNumberPages(`${gender}/${thickness}/${zipper}/${search}`))
+    },[gender, thickness, zipper, search, dispatch])
 
     useEffect(()=>{
         setPageNumber("1")
-    },[sex, chubb, zipper])
+    },[gender, thickness, zipper, window.location.pathname])
 
 
     function scrapeNewWetsuits()  {
@@ -74,8 +82,6 @@ export default function WetsuitsPage({sex, chubb}){
     }
 
     useEffect(() => {
-        let gender = sex
-
         if(gender === "Mens"){
             setIcon("male")
         }else if (gender === "Womens"){
@@ -83,7 +89,7 @@ export default function WetsuitsPage({sex, chubb}){
         }else if (gender === "Kids"){
             setIcon("child")
         }
-    },[sex])
+    },[gender])
 
     function zipperSetter(){
         setZipper(zipper=== "" ? "true": "")
