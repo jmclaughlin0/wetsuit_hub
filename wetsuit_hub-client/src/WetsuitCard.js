@@ -1,7 +1,7 @@
 import {Divider, Card, Icon} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
-export default function WetsuitCard({wetsuit}) {
+export default function WetsuitCard({wetsuit, icon}) {
 
     function sizeFunc(){
         if(wetsuit.size===null){
@@ -17,18 +17,22 @@ export default function WetsuitCard({wetsuit}) {
         <Card fluid raised key = {wetsuit.id} href={wetsuit.webAddress} target = '_blank'>
             <img src={wetsuit.imageAddress} width="250" height="450" alt = {wetsuit.name} />
             <Card.Content>
+                <Card.Description textAlign={"center"}>{wetsuit.brand}</Card.Description>
+
+                <Divider/>
+
                 <Card.Header textAlign={"center"}>{wetsuit.name}</Card.Header>
 
                 <Divider/>
 
                 <Card.Header textAlign={"center"}>
-                    {"£" + wetsuit.price}
+                    {wetsuit.price=="0"? "Price Unavailable":`£${wetsuit.price}`}
                 </Card.Header>
             </Card.Content>
 
             <Card.Content extra>
                 <p>
-                    <Icon name='male' />
+                    <Icon name = {icon} />
                     {"Sizes: " + sizeFunc()}
                 </p>
             </Card.Content>

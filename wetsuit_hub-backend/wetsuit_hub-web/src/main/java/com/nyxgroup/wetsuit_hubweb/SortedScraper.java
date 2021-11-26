@@ -56,6 +56,7 @@ public class SortedScraper implements IWetsuitScraper {
                     }
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
+                    wetsuit.setBrand(stringFinder.brandFinder(productName));
 //                    wetsuit.setSize(sizes);
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {

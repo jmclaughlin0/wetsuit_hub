@@ -56,6 +56,7 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
                     wetsuit.setPrice(Double.parseDouble(price));
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setWebAddress(webAddress);
+                    wetsuit.setBrand(stringFinder.brandFinder(productName));
 
                     wetsuitsRepository.save(wetsuit);
                 }

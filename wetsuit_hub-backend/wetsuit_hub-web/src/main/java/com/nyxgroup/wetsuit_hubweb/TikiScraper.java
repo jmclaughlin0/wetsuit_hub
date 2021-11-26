@@ -54,6 +54,7 @@ public class TikiScraper implements IWetsuitScraper{
                     wetsuit.setPrice(Double.parseDouble(price));
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
+                    wetsuit.setBrand(stringFinder.brandFinder(productName));
 //                    wetsuit.setSize(sizes);
 
                     if(outOfStock.isEmpty()){

@@ -65,7 +65,7 @@ export default function WetsuitsPage({sex, chubb}){
     function outputList() {
         if(wetsuits.length > 0){
             return wetsuits.map(wetsuit =>
-                            <WetsuitCard key = {wetsuit.id} wetsuit={wetsuit}/>
+                            <WetsuitCard key = {wetsuit.id} wetsuit={wetsuit} icon={icon}/>
             )
         }else {
             return <Header textAlign={"center"} color={"blue"} icon> <Icon inverted color = "black" name={"frown outline"} size= "massive"/> No Wetsuits On This Page... </Header>

@@ -57,4 +57,16 @@ public class StringFinder {
 
         return zipper;
     }
+
+    public String brandFinder(String wetsuitTitle){
+        String brand = wetsuitTitle.split(" ")[0];
+
+        if(brand.equalsIgnoreCase("rip")||brand.equalsIgnoreCase("c")||brand.equalsIgnoreCase("zone")){
+            brand = wetsuitTitle.split(" ")[0] + " " + wetsuitTitle.split(" ")[1];
+        }
+        if(brand.equalsIgnoreCase("ocean")){
+            brand = wetsuitTitle.split(" ")[0] + " " + wetsuitTitle.split(" ")[1] + " " + wetsuitTitle.split(" ")[2];
+        }
+        return brand;
+    }
 }

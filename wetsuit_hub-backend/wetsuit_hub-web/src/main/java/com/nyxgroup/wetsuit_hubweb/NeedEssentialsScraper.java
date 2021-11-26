@@ -49,6 +49,7 @@ public class NeedEssentialsScraper implements IWetsuitScraper {
                 wetsuit.setZipper(stringFinder.zipperFinder(productName));
                 wetsuit.setWebAddress(webAddress);
                 wetsuit.setImageAddress(imageAddress);
+                wetsuit.setBrand("need essentials");
 //              wetsuit.setSize(sizes);
 
 
