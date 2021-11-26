@@ -20,18 +20,20 @@ public class WetsuitController {
                                         @RequestParam(required = false) String t,
                                         @RequestParam(required = false) String z,
                                         @RequestParam(required = false) String p,
-                                        @RequestParam(required = false) String o)
+                                        @RequestParam(required = false) String o,
+                                        @RequestParam(required = false) String s)
     {
-        return wetsuitService.getAllWetsuits(g, t, z, p, o);
+        return wetsuitService.getAllWetsuits(g, t, z, p, o, s);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("pages")
     public int getNumberPages(@RequestParam(required = false) String g,
                               @RequestParam(required = false) String t,
-                              @RequestParam(required = false) String z)
+                              @RequestParam(required = false) String z,
+                              @RequestParam(required = false) String s)
     {
-        return wetsuitService.getNumberPages(g, t, z);
+        return wetsuitService.getNumberPages(g, t, z, s);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

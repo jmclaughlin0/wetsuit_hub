@@ -10,8 +10,12 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o) {
+    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o, String s) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
+
+        if(!s.isEmpty()){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getName().toLowerCase().contains(s.toLowerCase()))).collect(Collectors.toList());
+        }
 
         if(Objects.equals(z, "true")){
             List <Wetsuit> ziplessWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getZipper().equals("Zipperless"))).collect(Collectors.toList());
@@ -46,22 +50,21 @@ public class WetsuitService {
         }
 
 
-//        int pageNumber = Integer.parseInt(p);
-//
-//        int startPage = pageNumber*20 - 20;
-//        int endPage = pageNumber* 20;
-//
-//        if(startPage > allWetsuits.size()){
-//            return Collections.emptyList();
-//        }
-//
-//        if(endPage > allWetsuits.size()){
-//            endPage = allWetsuits.size();
-//        }
 
-//        return allWetsuits.subList(startPage, endPage);
+        int pageNumber = Integer.parseInt(p);
 
-        return allWetsuits;
+        int startPage = pageNumber*20 - 20;
+        int endPage = pageNumber* 20;
+
+        if(startPage > allWetsuits.size()){
+            return Collections.emptyList();
+        }
+
+        if(endPage > allWetsuits.size()){
+            endPage = allWetsuits.size();
+        }
+
+        return allWetsuits.subList(startPage, endPage);
     }
 
 
@@ -86,8 +89,12 @@ public class WetsuitService {
 
     }
 
-    public int getNumberPages(String g, String t, String z) {
+    public int getNumberPages(String g, String t, String z, String s) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
+
+        if(!s.isEmpty()){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getName().toLowerCase().contains(s.toLowerCase()))).collect(Collectors.toList());
+        }
 
         if(Objects.equals(z, "true")){
             List <Wetsuit> ziplessWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getZipper().equals("Zipperless"))).collect(Collectors.toList());
@@ -109,7 +116,8 @@ public class WetsuitService {
             allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals(g))).collect(Collectors.toList());
         }
 
-        int size = 0;
+
+        int size;
 
         if(allWetsuits.size()%20 == 0){
             size = allWetsuits.size()/20;

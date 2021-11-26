@@ -10,16 +10,17 @@ import {
     Icon,
     Segment,
     Pagination,
-    Dropdown, Divider
+    Dropdown
 } from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchNumberPages,
     fetchWetsuits,
-    scrapeWetsuits, selectPages,
-    selectWetsuits
+    scrapeWetsuits,
+    selectPages,
+    selectWetsuits,
+    selectSearch
 } from "./wetsuitsSlice";
-
 import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
 
@@ -28,6 +29,8 @@ export default function WetsuitsPage({sex, chubb}){
     const wetsuits = useSelector(selectWetsuits)
 
     const numberPages = useSelector(selectPages)
+
+    const search = useSelector(selectSearch)
 
     const dispatch = useDispatch();
 
@@ -43,12 +46,12 @@ export default function WetsuitsPage({sex, chubb}){
 
 
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}/${order.value}`))
-    },[sex, chubb, zipper,pageNumber, order, dispatch])
+        dispatch(fetchWetsuits(`${sex}/${chubb}/${zipper}/${pageNumber}/${order.value}/${search}`))
+    },[sex, chubb, zipper,pageNumber, order, search, dispatch])
 
     useEffect(()=>{
-        dispatch(fetchNumberPages(`${sex}/${chubb}/${zipper}`))
-    },[sex, chubb, zipper, dispatch])
+        dispatch(fetchNumberPages(`${sex}/${chubb}/${zipper}/${search}`))
+    },[sex, chubb, zipper, search, dispatch])
 
     useEffect(()=>{
         setPageNumber("1")

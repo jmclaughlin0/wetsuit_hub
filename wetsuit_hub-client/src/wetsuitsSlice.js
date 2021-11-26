@@ -9,8 +9,9 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
     const zipper = array[2]
     const page = array[3]
     const order = array[4]
+    const search = array[5]
 
-    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order ,
+    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order + "&s=" + search,
             {method: 'GET'
                 })
 
@@ -24,9 +25,9 @@ export const fetchNumberPages = createAsyncThunk( 'pages/fetch', async(yourData)
         const gender = array[0]
         const thickness = array[1]
         const zipper = array[2]
-        const page = array[3]
+        const search = array[3]
 
-        const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page,
+        const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&s=" + search,
             {method: 'GET'
             })
 
@@ -49,42 +50,27 @@ export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
     initialState: {
-        wetsuitsList: [],
-        filter: '',
-        filteredWetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", price: "N/A"}],
+        wetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", price: "N/A"}],
         thickness: '',
+        search: '',
         gender: '',
         numberPages: 1,
         order: "PA"
     },
     reducers: {
-        getFilteredWetsuits: (state) => {
-            if (state.filter === "") {
-                return({...state,
-                    filteredWetsuitsList: state.wetsuitsList})
-            } else {
-                return ({
-                    ...state,
-                    filteredWetsuitsList: state.wetsuitsList.filter(wetsuit => wetsuit.name.toLowerCase().includes(state.filter.toLowerCase()))
-                })
-            }
-            },
-        changeFilter: (state, action) => {
-                state.filter = action.payload
+        changeSearch: (state, action) => {
+                state.search = action.payload
             },
         changeGender: (state, action) => {
             state.gender = action.payload
             },
         changeThickness: (state, action) => {
             state.thickness = action.payload
-            },
-
-
+            }
     },
     extraReducers:{
         [fetchWetsuits.fulfilled]: (state, action) => {
             state.wetsuitsList = action.payload;
-            state.filteredWetsuitsList = action.payload;
         },
         [fetchNumberPages.fulfilled]: (state, action) => {
             state.numberPages = action.payload;
@@ -93,16 +79,16 @@ export const wetsuitsSlice = createSlice({
 
 })
 
-export const {getFilteredWetsuits, changeFilter, changeGender, changeThickness} = wetsuitsSlice.actions
+export const {getFilteredWetsuits, changeSearch, changeGender, changeThickness} = wetsuitsSlice.actions
 
 export default wetsuitsSlice.reducer
 
 export const selectWetsuits = state => {
-    return state.wetsuits.filteredWetsuitsList;
+    return state.wetsuits.wetsuitsList;
 }
 
-export const selectFilter = state => {
-    return state.wetsuits.filter;
+export const selectSearch = state => {
+    return state.wetsuits.search;
 }
 
 export const selectGender = state => {

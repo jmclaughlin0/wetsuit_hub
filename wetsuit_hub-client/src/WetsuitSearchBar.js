@@ -1,22 +1,19 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {getFilteredWetsuits, changeFilter, selectFilter} from "./wetsuitsSlice";
-import {Input, Search} from "semantic-ui-react";
+import {useDispatch, useSelector} from 'react-redux';
+import {Input} from "semantic-ui-react";
+import {changeSearch, selectSearch} from "./wetsuitsSlice";
 
-function MealsPageFilter() {
+export default function WetsuitSearchBar() {
     const dispatch = useDispatch();
-    const filter = useSelector(selectFilter)
+    const question = useSelector(selectSearch)
 
     const handleChange = (event) => {
-        dispatch(changeFilter(event.target.value));
-        dispatch(getFilteredWetsuits());
+        dispatch(changeSearch(event.target.value));
     }
 
     return (
         <div>
-            <Input type='text' placeholder = "Search..." icon='search' value={filter} onChange={handleChange}/>
+            <Input type='text' placeholder = "Search..." icon='search' value = {question} onChange={handleChange}/>
         </div>
     )
 }
-
-export default MealsPageFilter;
