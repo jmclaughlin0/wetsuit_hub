@@ -24,14 +24,9 @@
 }
 
 .WetsuitPage-header {
-  min-height: 200vh;
-  display: flow;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
-  font-weight: bold;
+  background-image: url(https://scontent.fbhx1-1.fna.fbcdn.net/v/t39.30808-6/246445352_10158851517618780_8206903226291687770_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=8b_DkF9wD84AX_BlB8Z&_nc_ht=scontent.fbhx1-1.fna&oh=de0ced839016370eb4b166ddfe195e38&oe=61A820C1);
+  background-repeat: no-repeat;
+  background-size: 500px;
 }
 
 .App-link {
@@ -45,4 +40,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.WetsuitTile {
+  border-style: hidden;
+  border-width: 250px 2px 2px 2px;
+
+  height: 350px;
+  width: auto;
+}
+
+.WetsuitPageSpace{
+  border-style: solid;
+  border-color: white;
+  padding: 10px;
+}
+
+.WetsuitList{
+  background-color: white ;
 }

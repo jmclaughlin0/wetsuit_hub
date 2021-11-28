@@ -52,6 +52,7 @@ export default function WetsuitsPage(){
 
     const [order, setOrder] = useState({key: 'PA', icon: 'sort numeric down', text: 'Price Low - High', value: 'PA' })
 
+    const [colour, setColour] = useState("teal")
 
     useEffect(()=>{
         dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}`))
@@ -84,10 +85,13 @@ export default function WetsuitsPage(){
     useEffect(() => {
         if(gender === "Mens"){
             setIcon("male")
+            setColour("black")
         }else if (gender === "Womens"){
             setIcon("female")
+            setColour("red")
         }else if (gender === "Kids"){
             setIcon("child")
+            setColour("yellow")
         }
     },[gender])
 
@@ -114,12 +118,13 @@ export default function WetsuitsPage(){
 
     return(
         <p>
-            <p className= 'Wetsuit-header' style={{
-                margin: "auto",
-                opacity: 0.9,
-                backgroundImage: `url(https://scontent-lhr8-1.xx.fbcdn.net/v/t1.6435-9/186411367_10158563070803780_6241247215245455377_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=730e14&_nc_ohc=dMhnx1KvcX4AX9ESYYw&_nc_ht=scontent-lhr8-1.xx&oh=09e07cc0d202ee2964cadf80fbb41ad4&oe=61ADA286)`,
-                backgroundSize: '1400px 500px',
-
+            <p
+               style={{
+                   backgroundImage: `url("https://scontent.fbhx1-1.fna.fbcdn.net/v/t1.6435-9/149402941_10225909502744150_6957864331900574952_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=977rgDkYDi0AX-40Ckb&tn=VX02oLL6cu26lec7&_nc_ht=scontent.fbhx1-1.fna&oh=f5e58e9645ed7e0d00331344329ca06f&oe=61C7A649")`,
+                   opacity: "90%",
+                   backgroundRepeat: "no-repeat",
+                   backgroundSize: "100% auto",
+                   backgroundPosition: "bottom",
             }}>
                 <Button onClick={scrapeNewWetsuits}
                         className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
@@ -129,8 +134,8 @@ export default function WetsuitsPage(){
                     </div>
                 </Button>
 
-                <Header as='h2' icon textAlign='center'>
-                    <Icon name= {icon} circular />
+                <Header as='h1' icon color={"black"} textAlign='center'>
+                    <Icon circular inverted color={"blue"} name= {icon}/>
                     {title} Wetsuits
                 </Header>
                 <p/>
@@ -160,6 +165,7 @@ export default function WetsuitsPage(){
                 </Grid>
             </p>
             <p/>
+            <p className="WetsuitList">
             <Segment.Inline >
             <Grid textAlign={"center"}>
                 <GridRow >
@@ -168,6 +174,7 @@ export default function WetsuitsPage(){
                     <Dropdown
                             button
                             className='icon'
+                            icon="arrow down"
                             floating
                             labeled
                             defaultValue={orderOptions[0].value}
@@ -179,9 +186,13 @@ export default function WetsuitsPage(){
             </Segment.Inline>
             <p/>
 
-            <CardGroup itemsPerRow={5} stackable={true} doubling={true}>
+            <CardGroup className= "WetsuitPageSpace" itemsPerRow={5} stackable={true} doubling={true}>
                     {outputList()}
             </CardGroup>
+            </p>
+            <p align={"right"}>
+                Background Images By Tegan Ward
+            </p>
         </p>
     )
 }

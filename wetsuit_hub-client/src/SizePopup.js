@@ -19,15 +19,15 @@ export default function SizePopup({gender}) {
     useEffect(() => {
         if(gender === "Mens"){
             setIcon("male")
-            setColour("blue")
+            setColour("black")
             setAlign("bottom left")
         }else if (gender === "Womens"){
             setIcon("female")
-            setColour("pink")
+            setColour("red")
             setAlign("bottom center")
         }else if (gender === "Kids"){
             setIcon("child")
-            setColour("yellow")
+            setColour("blue")
             setAlign("bottom right")
         }
     },[gender])

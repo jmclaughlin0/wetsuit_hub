@@ -33,7 +33,7 @@ export default function App() {
           <div style={{marginTop: "0.5em", marginLeft: "0.5em", marginBottom: "-0.5em"}} >
               <nav>
                   <Link to="/">
-                      <button onClick={updateCurrentPage} class={window.location.pathname === "/" ? "ui animated active button" : "ui animated  button"} >
+                      <button onClick={updateCurrentPage} color={"black"} class={window.location.pathname === "/" ? "ui animated active button" : "ui animated  button"} >
                           <div class="visible content">Home</div>
                           <div class="hidden content">
                               <i class="home icon"></i>
@@ -41,7 +41,7 @@ export default function App() {
                       </button>
                   </Link>
                   <Link to={`/wetsuits`}>
-                      <button onClick={updateCurrentPage + resetToAllWetsuits} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
+                      <button onClick={updateCurrentPage + resetToAllWetsuits} color={"blue"} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                           <div class="visible content">Wetsuits</div>
                           <div class="hidden content">
                               <i class = 'tint icon'></i>
