@@ -1,5 +1,7 @@
 package com.nyxgroup.wetsuit_hubweb;
 
+import org.springframework.scheduling.annotation.Scheduled;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -68,6 +70,7 @@ public class WetsuitService {
     }
 
 
+    @Scheduled(fixedRate = 3600000, initialDelay = 60000)
     public void scrapeWetsuits() {
         wetsuitsRepository.deleteAllInBatch();
         wetsuitsRepository.flush();

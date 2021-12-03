@@ -58,7 +58,9 @@ public class SurfDomeScraper implements IWetsuitScraper{
 //                    wetsuit.setSize(sizes);
 
 
-                    wetsuitsRepository.save(wetsuit);
+                    if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
+                        wetsuitsRepository.save(wetsuit);
+                    }
                 }
 
             }

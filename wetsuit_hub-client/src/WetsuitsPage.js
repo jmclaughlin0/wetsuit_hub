@@ -124,16 +124,15 @@ export default function WetsuitsPage(){
                    opacity: "90%",
                    backgroundRepeat: "no-repeat",
                    backgroundSize: "100% auto",
-                   backgroundPosition: "bottom",
+                   backgroundPosition: "50% 85%"
             }}>
-                <Button onClick={scrapeNewWetsuits}
-                        className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
-                    <div className="visible content">Click Here to Refresh Suits</div>
-                    <div className="hidden content">
-                        <i className="refresh icon"/>
-                    </div>
-                </Button>
-
+                {/*<Button onClick={scrapeNewWetsuits}*/}
+                {/*        className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>*/}
+                {/*    <div className="visible content">Click Here to Refresh Suits</div>*/}
+                {/*    <div className="hidden content">*/}
+                {/*        <i className="refresh icon"/>*/}
+                {/*    </div>*/}
+                {/*</Button>*/}
                 <Header as='h1' icon color={"black"} textAlign='center'>
                     <Icon circular inverted color={"blue"} name= {icon}/>
                     {title} Wetsuits
@@ -189,6 +188,7 @@ export default function WetsuitsPage(){
             <CardGroup className= "WetsuitPageSpace" itemsPerRow={5} stackable={true} doubling={true}>
                     {outputList()}
             </CardGroup>
+
             </p>
             <p align={"right"}>
                 Background Images By Tegan Ward

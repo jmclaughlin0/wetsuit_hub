@@ -58,7 +58,9 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
 
-                    wetsuitsRepository.save(wetsuit);
+                    if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
+                        wetsuitsRepository.save(wetsuit);
+                    }
                 }
             }
 
