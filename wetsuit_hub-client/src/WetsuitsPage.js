@@ -10,7 +10,7 @@ import {
     Icon,
     Segment,
     Pagination,
-    Dropdown
+    Dropdown, Divider
 } from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -38,7 +38,7 @@ export default function WetsuitsPage(){
 
     const numberPages = useSelector(selectPages)
 
-    const search = useSelector(selectSearch)
+    const [search, setSearch] = useState("");
 
     const dispatch = useDispatch();
 
@@ -66,9 +66,19 @@ export default function WetsuitsPage(){
         setPageNumber("1")
     },[gender, thickness, zipper, window.location.pathname])
 
+    //
+    // function scrapeNewWetsuits()  {
+    //     dispatch(scrapeWetsuits())
+    // }
 
-    function scrapeNewWetsuits()  {
-        dispatch(scrapeWetsuits())
+    function searchSetter(query){
+        if(query!=="hood"){
+            setSearch(query)
+        }
+    }
+
+    function hoodSearch(){
+        search==="hood"?setSearch(""):setSearch("hood");
     }
 
     function outputList() {
@@ -148,6 +158,8 @@ export default function WetsuitsPage(){
                     <GridRow>
                         <Segment vertical tertiary inverted color={'light blue'} circular  >
                             <Checkbox toggle label= "Chest Zip or Zipperless Only" onChange={zipperSetter}/>
+                            <Divider />
+                            <Checkbox toggle label= "Hooded Suits Only" onChange={hoodSearch}/>
                         </Segment>
                     </GridRow>
                     <Segment vertical>
@@ -168,7 +180,7 @@ export default function WetsuitsPage(){
             <Segment.Inline >
             <Grid textAlign={"center"}>
                 <GridRow >
-                    <WetsuitSearchBar/>
+                    <WetsuitSearchBar onChange = {searchSetter}/>
 
                     <Dropdown
                             button

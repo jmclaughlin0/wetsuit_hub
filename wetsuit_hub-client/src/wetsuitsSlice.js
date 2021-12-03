@@ -52,15 +52,11 @@ export const wetsuitsSlice = createSlice({
     initialState: {
         wetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", price: "N/A"}],
         thickness: '',
-        search: '',
         gender: '',
         numberPages: 1,
         order: "PA"
     },
     reducers: {
-        changeSearch: (state, action) => {
-                state.search = action.payload
-            },
         changeGender: (state, action) => {
             state.gender = action.payload
             },
@@ -79,16 +75,12 @@ export const wetsuitsSlice = createSlice({
 
 })
 
-export const {getFilteredWetsuits, changeSearch, changeGender, changeThickness} = wetsuitsSlice.actions
+export const {getFilteredWetsuits, changeGender, changeThickness} = wetsuitsSlice.actions
 
 export default wetsuitsSlice.reducer
 
 export const selectWetsuits = state => {
     return state.wetsuits.wetsuitsList;
-}
-
-export const selectSearch = state => {
-    return state.wetsuits.search;
 }
 
 export const selectGender = state => {

@@ -70,7 +70,7 @@ public class WetsuitService {
     }
 
 
-    @Scheduled(fixedRate = 3600000, initialDelay = 60000)
+    @Scheduled(fixedRate = 3600000)
     public void scrapeWetsuits() {
         wetsuitsRepository.deleteAllInBatch();
         wetsuitsRepository.flush();
@@ -88,7 +88,7 @@ public class WetsuitService {
         needEssentialsScraper.getWetsuits();
         sortedScraper.getWetsuits();
         tikiScraper.getWetsuits();
-//        blueTomatoScraper.getWetsuits();
+        blueTomatoScraper.getWetsuits();
 
     }
 

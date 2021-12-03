@@ -6,13 +6,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProxyScraper {
     public static void main(String[] args) {
 
         int j = 0;
-        final String baseUrl = "https://www.blue-tomato.com/en-GB/products/categories/Surf+Shop-0000002P--Wetsuits+Surfwear-00008VG3--Full+Wetsuits-00000031/?sort=-max_price";
-
+        final String baseUrl = "https://www.blue-tomato.com/en-GB/products/brand/Rip+Curl-609/c_wetsuits_dicke_rumpf/2.6-3.5/categories/Surf+Shop-0000002P--Wetsuits+Surfwear-00008VG3--Full+Wetsuits-00000031/gender/men/";
             try {
                 final Document doc = Jsoup.connect(baseUrl).get();
 
@@ -41,8 +41,12 @@ public class ProxyScraper {
 
 
                     if (tempAddress.isEmpty()||tempAddress.contains("data:image/png;base64")) {
-                        String [] newAddress = element.children().get(0).toString().split("data-src=");
-                        imageAddress = "https:" + newAddress[1].split("class=\"js-lazy\"")[0].replaceAll("\"", "");
+                        Elements newAddress = element.getElementsByClass("productimage");
+                        imageAddress =  "https:" + newAddress.toString().split("img src=")[1].split("\"")[1];
+                        if(imageAddress.contains("data:image/png;base64")){
+                            String [] anotherAddress = element.children().get(0).toString().split("data-src=");
+                            imageAddress = "https:" + anotherAddress[1].split("class=\"js-lazy\"")[0].replaceAll("\"", "");
+                        }
                     }else{
                         imageAddress = "https:" + tempAddress;
                     }
@@ -64,7 +68,7 @@ public class ProxyScraper {
 //                    System.out.println("Sizes: " + sizes);
 
 
-                    if (price != "") {
+                    if (!Objects.equals(price, "")) {
                         System.out.println("Price: " + price);
                     }
 
