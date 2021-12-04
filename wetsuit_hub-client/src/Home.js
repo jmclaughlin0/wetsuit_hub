@@ -45,6 +45,12 @@ export default function Home() {
                     <Header style={{fontSize: "100px"}} inverted color='white'  >
                         theWetsuitHub.co.uk
                     </Header>
+                    <Header as='h2' inverted color='white'>
+                        The Wetsuit Hub finds wetsuits from across the web and lists them all in one site.
+                        <p/>
+                        <p/>
+                        Click on a wetsuit go to its original site.
+                    </Header>
 
                     <Link to="/wetsuits">
                         <Button inverted color={"orange"} onClick={updateCurrentPage}>
@@ -54,7 +60,7 @@ export default function Home() {
                     </Link>
                 </div>
             </Header>
-            <p> Websites That We list: </p>
+            <p> Websites That We Source From: </p>
             <Grid columns = {3} divided textAlign={"center"}>
                 {outputList()}
             </Grid>

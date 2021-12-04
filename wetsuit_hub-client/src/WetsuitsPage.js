@@ -40,6 +40,8 @@ export default function WetsuitsPage(){
 
     const [search, setSearch] = useState("");
 
+    const [hood, setHood] = useState("");
+
     const dispatch = useDispatch();
 
     const title = `${gender} ${thickness}`
@@ -55,12 +57,12 @@ export default function WetsuitsPage(){
     const [colour, setColour] = useState("teal")
 
     useEffect(()=>{
-        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}`))
-    },[gender, thickness, zipper,pageNumber, order, search, dispatch])
+        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}/${hood}`))
+    },[gender, thickness, zipper,pageNumber, order, search, hood, dispatch])
 
     useEffect(()=>{
-        dispatch(fetchNumberPages(`${gender}/${thickness}/${zipper}/${search}`))
-    },[gender, thickness, zipper, search, dispatch])
+        dispatch(fetchNumberPages(`${gender}/${thickness}/${zipper}/${search}/${hood}`))
+    },[gender, thickness, zipper, search, hood, dispatch])
 
     useEffect(()=>{
         setPageNumber("1")
@@ -72,13 +74,11 @@ export default function WetsuitsPage(){
     // }
 
     function searchSetter(query){
-        if(query!=="hood"){
-            setSearch(query)
-        }
+        setSearch(query)
     }
 
-    function hoodSearch(){
-        search==="hood"?setSearch(""):setSearch("hood");
+    function hoodSetter(){
+        setHood(hood=== "" ? "true": "")
     }
 
     function outputList() {
@@ -159,7 +159,7 @@ export default function WetsuitsPage(){
                         <Segment vertical tertiary inverted color={'light blue'} circular  >
                             <Checkbox toggle label= "Chest Zip or Zipperless Only" onChange={zipperSetter}/>
                             <Divider />
-                            <Checkbox toggle label= "Hooded Suits Only" onChange={hoodSearch}/>
+                            <Checkbox toggle label= "Hooded Suits Only" onChange={hoodSetter}/>
                         </Segment>
                     </GridRow>
                     <Segment vertical>

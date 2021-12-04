@@ -10,8 +10,9 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
     const page = array[3]
     const order = array[4]
     const search = array[5]
+    const hood = array[6]
 
-    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order + "&s=" + search,
+    const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order + "&s=" + search + "&h=" + hood,
             {method: 'GET'
                 })
 
@@ -26,8 +27,9 @@ export const fetchNumberPages = createAsyncThunk( 'pages/fetch', async(yourData)
         const thickness = array[1]
         const zipper = array[2]
         const search = array[3]
+        const hood = array[4]
 
-        const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&s=" + search,
+        const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&s=" + search + "&h=" + hood,
             {method: 'GET'
             })
 

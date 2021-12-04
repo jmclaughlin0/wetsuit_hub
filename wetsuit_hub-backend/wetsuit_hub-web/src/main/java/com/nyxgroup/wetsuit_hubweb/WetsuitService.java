@@ -12,7 +12,7 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o, String s) {
+    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o, String s, String h) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
 
         if(!s.isEmpty()){
@@ -51,7 +51,9 @@ public class WetsuitService {
             Collections.reverse(allWetsuits);
         }
 
-
+        if(!Objects.equals(h, "")){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getName().toLowerCase().contains("hood"))).collect(Collectors.toList());
+        }
 
         int pageNumber = Integer.parseInt(p);
 
@@ -92,7 +94,7 @@ public class WetsuitService {
 
     }
 
-    public int getNumberPages(String g, String t, String z, String s) {
+    public int getNumberPages(String g, String t, String z, String s, String h) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
 
         if(!s.isEmpty()){
@@ -119,6 +121,9 @@ public class WetsuitService {
             allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getGender().equals(g))).collect(Collectors.toList());
         }
 
+        if(!Objects.equals(h, "")){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getName().toLowerCase().contains("hood"))).collect(Collectors.toList());
+        }
 
         int size;
 
