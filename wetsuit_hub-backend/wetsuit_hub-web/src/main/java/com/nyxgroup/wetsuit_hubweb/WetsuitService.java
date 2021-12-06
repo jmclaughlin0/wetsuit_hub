@@ -84,12 +84,12 @@ public class WetsuitService {
         TikiScraper tikiScraper = new TikiScraper(wetsuitsRepository);
         BlueTomatoScraper blueTomatoScraper = new BlueTomatoScraper(wetsuitsRepository);
 
-        wetsuitCenterScraper.getWetsuits();
-        wetsuitOutletScraper.getWetsuits();
-        surfDomeScraper.getWetsuits();
-        needEssentialsScraper.getWetsuits();
-        sortedScraper.getWetsuits();
-        tikiScraper.getWetsuits();
+//        wetsuitCenterScraper.getWetsuits();
+//        wetsuitOutletScraper.getWetsuits();
+//        surfDomeScraper.getWetsuits();
+//        needEssentialsScraper.getWetsuits();
+//        sortedScraper.getWetsuits();
+//        tikiScraper.getWetsuits();
         blueTomatoScraper.getWetsuits();
 
     }

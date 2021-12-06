@@ -25,6 +25,8 @@ public class Wetsuit {
     private String zipper;
     @Column
     private String brand;
+    @Column
+    private String originWebpage;
 
     @Column
     @Id
@@ -32,6 +34,14 @@ public class Wetsuit {
     private UUID id;
 
     public Wetsuit() {
+    }
+
+    public String getOriginWebpage() {
+        return originWebpage;
+    }
+
+    public void setOriginWebpage(String originWebpage) {
+        this.originWebpage = originWebpage;
     }
 
     public String getZipper() {
@@ -118,9 +128,8 @@ public class Wetsuit {
     public String toString() {
         return "Name: " + name + "\n" +
                 "Price: " + price + "\n" +
-                "Web Address: " + webAddress + "\n" +
-                "Thickness: " + thickness +
-                "Size: " + size;
+                "Origin Webpage: " + originWebpage + "\n" +
+                "Thickness: " + thickness;
     }
 }
 
