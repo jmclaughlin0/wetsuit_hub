@@ -6,8 +6,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class BlueTomatoScraper implements IWetsuitScraper{
 
@@ -126,20 +127,7 @@ public class BlueTomatoScraper implements IWetsuitScraper{
                             wetsuit.setPrice(Double.parseDouble(price));
                         }
 
-                        final Wetsuit currentWetsuit = wetsuit;
-
-                        if (wetsuitsRepository.findAll().toString().contains(currentWetsuit.toString())) {
-                            List <Wetsuit> oldWetsuits = wetsuitsRepository.findAll().stream().filter(w -> (w.toString().contains(currentWetsuit.toString()))).collect(Collectors.toList());
-
-                            Wetsuit oldWetsuit = oldWetsuits.get(0);
-                            String oldSizes = oldWetsuit.getSize();
-
-                            oldWetsuit.setSize(oldSizes.concat(", ").concat(size.replace("/", "").toUpperCase()));
-                            wetsuit = oldWetsuit;
-                            } else {
-                            wetsuit.setSize(size.replace("/", "").toUpperCase());
-                            }
-                        wetsuitsRepository.save(wetsuit);
+                        wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
                         }
 
                 } catch (IOException e) {

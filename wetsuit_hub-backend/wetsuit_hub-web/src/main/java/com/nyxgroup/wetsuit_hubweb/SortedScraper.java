@@ -42,7 +42,7 @@ public class SortedScraper implements IWetsuitScraper {
 
                     String imageAddress = element.getElementsByClass("product-image-photo").attr("data-amsrc");
 
-//                    Elements sizes  = element.getElementsByAttribute("swatch-attribute-options");
+//                    Elements sizes  = element.getElementsByAttribute("swatch-attribute size");
 
                     StringFinder stringFinder = new StringFinder();
 
@@ -57,7 +57,7 @@ public class SortedScraper implements IWetsuitScraper {
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
-//                    wetsuit.setSize(sizes);
+//                    wetsuit.setSize(sizes.toString());
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);

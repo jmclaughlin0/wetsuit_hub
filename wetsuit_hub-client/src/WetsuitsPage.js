@@ -18,11 +18,11 @@ import {
     fetchWetsuits,
     scrapeWetsuits,
     selectPages,
-    selectWetsuits,
-    selectSearch
+    selectWetsuits
 } from "./wetsuitsSlice";
 import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
+import {Link} from "react-router-dom";
 
 export default function WetsuitsPage(){
 
@@ -202,9 +202,17 @@ export default function WetsuitsPage(){
             </CardGroup>
 
             </p>
-            <p align={"right"}>
-                Background Images By Tegan Ward
-            </p>
+            <Header as={"h4"}  align={"center"}> Background Images By{" "}
+                <a
+                    className="App-link"
+                    href="https://www.instagram.com/teganwphotography/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Tegan Ward
+                </a>
+            </Header>
+            <br/>
         </p>
     )
 }

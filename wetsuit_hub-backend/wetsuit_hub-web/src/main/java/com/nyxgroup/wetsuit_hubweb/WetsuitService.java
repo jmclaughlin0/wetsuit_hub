@@ -88,9 +88,9 @@ public class WetsuitService {
 //        wetsuitOutletScraper.getWetsuits();
 //        surfDomeScraper.getWetsuits();
 //        needEssentialsScraper.getWetsuits();
-//        sortedScraper.getWetsuits();
+        sortedScraper.getWetsuits();
 //        tikiScraper.getWetsuits();
-        blueTomatoScraper.getWetsuits();
+//        blueTomatoScraper.getWetsuits();
 
     }
 

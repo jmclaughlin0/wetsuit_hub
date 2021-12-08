@@ -1,7 +1,10 @@
 import {Divider, Card, Icon, Image} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import {useEffect, useState} from "react";
 
 export default function WetsuitCard({wetsuit, icon}) {
+
+    const [iconName, setIconName] = useState("universal access")
 
     function sizeFunc(){
         if(wetsuit.size===null){
@@ -11,6 +14,18 @@ export default function WetsuitCard({wetsuit, icon}) {
         }
 
     }
+
+    const gender = wetsuit.gender;
+
+    useEffect(() => {
+        if (gender === "Mens") {
+            setIconName("male")
+        } else if (gender === "Womens") {
+            setIconName("female")
+        } else if (gender === "Kids") {
+            setIconName("child")
+        }
+    })
 
     return (
 
@@ -32,7 +47,7 @@ export default function WetsuitCard({wetsuit, icon}) {
 
             <Card.Content extra>
                 <p>
-                    <Icon name = {icon} />
+                    <Icon name = {iconName} />
                     {"Sizes: " + sizeFunc()}
                 </p>
             </Card.Content>

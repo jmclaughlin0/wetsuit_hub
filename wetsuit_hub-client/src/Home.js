@@ -36,7 +36,7 @@ export default function Home() {
         <div className="Home-header" style={{
             margin: "auto",
             opacity: 0.9,
-            backgroundImage: `url(https://scontent-lhr8-1.xx.fbcdn.net/v/t1.6435-9/245640659_10227725807590636_605473291792221862_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=pLVr60Wuxs4AX9DWZc2&_nc_ht=scontent-lhr8-1.xx&oh=aa87c5c4dab51bbad2dfbcd9fdb68f40&oe=61ABCAA0)`,
+            backgroundImage: `url(https://scontent.fbrs4-2.fna.fbcdn.net/v/t39.30808-6/245527768_10227725807350630_7720546953824215513_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=hvi4u9dqzPYAX9JY0E8&_nc_ht=scontent.fbrs4-2.fna&oh=c6a93df78bbbc0865e151606e1e8498d&oe=61B4A68F)`,
             backgroundSize: '100% auto',
             backgroundRepeat: "no-repeat"
         }}>
@@ -65,9 +65,17 @@ export default function Home() {
                 {outputList()}
             </Grid>
         </div>
-    <p>
-        Background Images By Tegan Ward
-    </p>
+            <Header as={"h4"}  align={"center"}> Background Images By{" "}
+                <a
+                    className="App-link"
+                    href="https://www.instagram.com/teganwphotography/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Tegan Ward
+                </a>
+            </Header>
+            <br/>
         </div>
     );
 }

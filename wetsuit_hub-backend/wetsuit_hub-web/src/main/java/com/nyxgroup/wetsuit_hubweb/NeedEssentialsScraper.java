@@ -50,7 +50,7 @@ public class NeedEssentialsScraper implements IWetsuitScraper {
                 wetsuit.setWebAddress(webAddress);
                 wetsuit.setImageAddress(imageAddress);
                 wetsuit.setBrand("need essentials");
-//              wetsuit.setSize(sizes);
+//                wetsuit.setSize(sizes);
 
 
                 if (!price.isEmpty()) {

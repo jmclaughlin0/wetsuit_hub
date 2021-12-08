@@ -1,7 +1,9 @@
 package com.nyxgroup.wetsuit_hubweb;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "suits")
@@ -130,6 +132,25 @@ public class Wetsuit {
                 "Price: " + price + "\n" +
                 "Origin Webpage: " + originWebpage + "\n" +
                 "Thickness: " + thickness;
+    }
+
+    public void wetsuitLookupAndSaveNewSize(Wetsuit wetsuit, WetsuitsRepository wetsuitsRepository, String size){
+        final Wetsuit currentWetsuit = wetsuit;
+
+        if (wetsuitsRepository.findAll().toString().contains(currentWetsuit.toString())) {
+            List<Wetsuit> oldWetsuits = wetsuitsRepository.findAll().stream().filter(w -> (w.toString().contains(currentWetsuit.toString()))).collect(Collectors.toList());
+
+            Wetsuit oldWetsuit = oldWetsuits.get(0);
+            String oldSizes = oldWetsuit.getSize();
+
+            oldWetsuit.setSize(oldSizes.concat(", ").concat(size.replace("/", "").toUpperCase()));
+            wetsuit = oldWetsuit;
+        } else {
+            wetsuit.setSize(size.replace("/", "").toUpperCase());
+        }
+
+        wetsuitsRepository.save(wetsuit);
+
     }
 }
 
