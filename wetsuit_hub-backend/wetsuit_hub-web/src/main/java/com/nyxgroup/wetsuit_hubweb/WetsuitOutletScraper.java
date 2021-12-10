@@ -58,6 +58,7 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
+                    wetsuit.setOriginWebpage("Wetsuit Outlet");
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);

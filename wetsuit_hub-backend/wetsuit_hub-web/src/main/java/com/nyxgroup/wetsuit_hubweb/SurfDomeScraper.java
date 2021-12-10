@@ -55,6 +55,7 @@ public class SurfDomeScraper implements IWetsuitScraper{
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
+                    wetsuit.setOriginWebpage("Surfdome");
 //                    wetsuit.setSize(sizes);
 
 

@@ -7,7 +7,7 @@ export default function WetsuitCard({wetsuit, icon}) {
     const [iconName, setIconName] = useState("universal access")
 
     function sizeFunc(){
-        if(wetsuit.size===null){
+        if(wetsuit.size===null || wetsuit.size === ""){
             return "Sizes Unknown";
         } else{
             return wetsuit.size;

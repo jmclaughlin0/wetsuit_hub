@@ -84,13 +84,17 @@ public class WetsuitService {
         TikiScraper tikiScraper = new TikiScraper(wetsuitsRepository);
         BlueTomatoScraper blueTomatoScraper = new BlueTomatoScraper(wetsuitsRepository);
 
-//        wetsuitCenterScraper.getWetsuits();
-//        wetsuitOutletScraper.getWetsuits();
-//        surfDomeScraper.getWetsuits();
-//        needEssentialsScraper.getWetsuits();
         sortedScraper.getWetsuits();
-//        tikiScraper.getWetsuits();
-//        blueTomatoScraper.getWetsuits();
+        tikiScraper.getWetsuits();
+        blueTomatoScraper.getWetsuits();
+        wetsuitOutletScraper.getWetsuits();
+
+//        wetsuitCenterScraper.getWetsuits();
+//        surfDomeScraper.getWetsuits();
+
+//        needEssentialsScraper.getWetsuits(); <-- Am I going to do sizes for this one...??
+
+        System.out.println("Finished Scraping Wetsuits...");
 
     }
 
