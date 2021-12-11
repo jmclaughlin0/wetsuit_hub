@@ -116,6 +116,9 @@ public class BlueTomatoScraper implements IWetsuitScraper{
                         wetsuit.setBrand(stringFinder.brandFinder(productName));
                         wetsuit.setOriginWebpage("blue-tomato");
 
+                        if(size.contains("UK")){
+                            wetsuit.setGender("Womens");
+                        }
 
                         if (!Objects.equals(price, "")) {
                             if (price.contains("instead")) {
@@ -130,7 +133,7 @@ public class BlueTomatoScraper implements IWetsuitScraper{
                         wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
                         }
 
-                } catch (IOException e) {
+                }catch (IOException e) {
                     e.printStackTrace();
                 }
             }

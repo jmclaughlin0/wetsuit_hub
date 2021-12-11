@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {allWetsuitsURL, numberPagesURL, scrapeWetsuitsURL} from "./URLS";
+import {allWetsuitsURL, numberPagesURL, scrapeWetsuitsURL, stateOfUpdateURL} from "./URLS";
 
 export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData) =>  {
     const array = yourData.toString().split("/")
@@ -21,7 +21,7 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
     }
 )
 
-export const fetchNumberPages = createAsyncThunk( 'pages/fetch', async(yourData) =>  {
+export const fetchNumberPages = createAsyncThunk('pages/fetch', async(yourData) =>  {
         const array = yourData.toString().split("/")
 
         const gender = array[0]
@@ -39,7 +39,7 @@ export const fetchNumberPages = createAsyncThunk( 'pages/fetch', async(yourData)
     }
 )
 
-export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
+export const scrapeWetsuits = createAsyncThunk('wetsuits/scrape', async() =>  {
         const response = await fetch(scrapeWetsuitsURL,
             {method: 'POST'})
 
@@ -51,14 +51,26 @@ export const scrapeWetsuits = createAsyncThunk( 'wetsuits/scrape', async() =>  {
     }
 )
 
+
+export const stateOfUpdate = createAsyncThunk('update/state', async() =>  {
+        const response = await fetch(stateOfUpdateURL,
+            {method: 'GET'})
+
+    return await response.text();
+    }
+)
+
+export const wetsuitsLoading = [{name:"Wetsuits are being loaded - Please wait...", price: "N/A"}];
+
 export const wetsuitsSlice = createSlice({
     name: 'wetsuits',
     initialState: {
-        wetsuitsList: [{name:"Wetsuits are still being loaded - Please wait...", price: "N/A"}],
+        wetsuitsList: wetsuitsLoading,
         thickness: '',
         gender: '',
         numberPages: 1,
-        order: "PA"
+        updateInProgress: "completed",
+        order: "PA",
     },
     reducers: {
         changeGender: (state, action) => {
@@ -74,6 +86,9 @@ export const wetsuitsSlice = createSlice({
         },
         [fetchNumberPages.fulfilled]: (state, action) => {
             state.numberPages = action.payload;
+        },
+        [stateOfUpdate.fulfilled]: (state, action) => {
+            state.updateInProgress = action.payload;
         }
         }
 
@@ -97,4 +112,8 @@ export const selectThickness = state => {
 
 export const selectPages = state => {
     return state.wetsuits.numberPages;
+}
+
+export const selectUpdateInProgress = state => {
+    return state.wetsuits.updateInProgress;
 }

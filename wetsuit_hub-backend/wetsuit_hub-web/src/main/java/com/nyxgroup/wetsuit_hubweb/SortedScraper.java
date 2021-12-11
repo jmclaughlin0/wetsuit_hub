@@ -60,6 +60,14 @@ public class SortedScraper implements IWetsuitScraper {
                     wetsuit.setSize(sizes);
                     wetsuit.setOriginWebpage("Sorted Surf Shop");
 
+                    if(wetsuit.getSize().contains("UK")){
+                        wetsuit.setGender("Womens");
+                    }
+
+                    if(wetsuit.getSize().isBlank()){
+                        wetsuit.setSize("N/A");
+                    }
+
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);
                     }

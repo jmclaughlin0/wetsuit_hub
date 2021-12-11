@@ -44,8 +44,13 @@ public class WetsuitController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("scrape-wetsuits")
     public String scrapeWetsuits() {
-        wetsuitService.scrapeWetsuits();
-        return "Wetsuits Scraped";
+        return wetsuitService.scrapeWetsuits();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("stateUpdate")
+    public String getStateOfUpdate() {
+        return wetsuitService.getStateOfUpdate();
     }
 
 }

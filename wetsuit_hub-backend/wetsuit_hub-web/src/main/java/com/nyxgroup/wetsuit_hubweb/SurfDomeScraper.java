@@ -86,6 +86,13 @@ public class SurfDomeScraper implements IWetsuitScraper{
                     wetsuit.setOriginWebpage("Surfdome");
                     wetsuit.setSize(finalSize.substring(1, finalSize.length()-1));
 
+                    if(wetsuit.getSize().contains("UK")){
+                        wetsuit.setGender("Womens");
+                    }
+
+                    if(wetsuit.getSize().isBlank()){
+                        wetsuit.setSize("N/A");
+                    }
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);

@@ -133,6 +133,14 @@ public class TikiScraper implements IWetsuitScraper{
                         wetsuit.setSize(size.replace("/", "").toUpperCase());
                         wetsuit.setOriginWebpage("Tiki Surf");
 
+                        if(wetsuit.getSize().contains("UK")){
+                            wetsuit.setGender("Womens");
+                        }
+
+                        if(wetsuit.getSize().isBlank()){
+                            wetsuit.setSize("N/A");
+                        }
+
                         if (outOfStock.isEmpty()) {
                            wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
                         }

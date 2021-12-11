@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class WetsuitOutletScraper implements IWetsuitScraper {
 
@@ -51,7 +52,7 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     wetsuit.setSize(sizes.text());
 
                     wetsuit.setName(productName);
-                    if(price != ""){
+                    if(!Objects.equals(price, "")){
                         wetsuit.setPrice(Double.parseDouble(price));
                     }else wetsuit.setPrice(-1);
 
@@ -59,6 +60,12 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
                     wetsuit.setOriginWebpage("Wetsuit Outlet");
+
+
+
+                    if(wetsuit.getSize().contains("UK")){
+                        wetsuit.setGender("Womens");
+                    }
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);

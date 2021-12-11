@@ -59,6 +59,14 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
                     wetsuit.setOriginWebpage("Wetsuit Center");
                     wetsuit.setSize(sizes);
 
+                    if(wetsuit.getSize().contains("UK")){
+                        wetsuit.setGender("Womens");
+                    }
+
+                    if(wetsuit.getSize().isBlank()){
+                        wetsuit.setSize("N/A");
+                    }
+
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);
                     }

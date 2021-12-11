@@ -4,10 +4,17 @@ import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import WetsuitsPage from "./WetsuitsPage";
 import Home from "./Home";
 import {useDispatch, useSelector} from "react-redux";
-import {changeGender, changeThickness, selectGender, selectThickness} from "./wetsuitsSlice";
+import {
+    changeGender,
+    changeThickness,
+    selectGender,
+    selectThickness
+} from "./wetsuitsSlice";
 
 
 export default function App() {
+
+    const dispatch = useDispatch();
 
     const [currentPage, setCurrentPage] = useState("")
 
@@ -18,9 +25,6 @@ export default function App() {
     const gender = useSelector(selectGender);
 
     const thickness = useSelector(selectThickness);
-
-    const dispatch = useDispatch();
-
 
     function resetToAllWetsuits() {
         dispatch(changeGender(""))

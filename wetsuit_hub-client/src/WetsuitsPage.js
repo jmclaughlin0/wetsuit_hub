@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import WetsuitCard from "./WetsuitCard";
 import {
-    Button,
     CardGroup,
     Checkbox,
     Grid,
@@ -10,19 +9,17 @@ import {
     Icon,
     Segment,
     Pagination,
-    Dropdown, Divider, Input
+    Dropdown, Divider, Input, Dimmer, Loader, Image
 } from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     fetchNumberPages,
     fetchWetsuits,
-    scrapeWetsuits,
-    selectPages,
-    selectWetsuits
+    selectPages, selectUpdateInProgress,
+    selectWetsuits, stateOfUpdate
 } from "./wetsuitsSlice";
 import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
-import {Link} from "react-router-dom";
 
 export default function WetsuitsPage(){
 
@@ -58,6 +55,8 @@ export default function WetsuitsPage(){
 
     const [sizeSearch, setSizeSearch] = useState("");
 
+    const currentlyUpdating = useSelector(selectUpdateInProgress)
+
     useEffect(()=>{
         dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}/${hood}/${sizeSearch}`))
     },[gender, thickness, zipper,pageNumber, order, search, hood, sizeSearch, dispatch])
@@ -69,6 +68,11 @@ export default function WetsuitsPage(){
     useEffect(()=>{
         setPageNumber("1")
     },[gender, thickness, zipper, search, hood, sizeSearch, order, window.location.pathname])
+
+    useEffect(() => {
+        dispatch(stateOfUpdate())
+    }, [gender, thickness, zipper, search, pageNumber, hood, sizeSearch, order, dispatch, window.location.pathname])
+
 
     function searchSetter(query){
         setSearch(query)
@@ -127,8 +131,23 @@ export default function WetsuitsPage(){
         setSizeSearch(size)
     }
 
+    function updateInProgress(){
+        return(
+            <p align="center">
+                <Segment placeholder>
+                    <Dimmer active inverted>
+                        <Loader  size='massive' as={"h1"}>Wetsuits are updating, this will only take a minute... </Loader>
+                    </Dimmer>
+                </Segment>
+            </p>
+        )
+    }
+
     return(
         <p>
+            <p>
+                {currentlyUpdating === "completed" ? null:updateInProgress()}
+            </p>
             <p
                style={{
                    backgroundImage: `url("https://scontent.fbhx1-1.fna.fbcdn.net/v/t1.6435-9/149402941_10225909502744150_6957864331900574952_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=977rgDkYDi0AX-40Ckb&tn=VX02oLL6cu26lec7&_nc_ht=scontent.fbhx1-1.fna&oh=f5e58e9645ed7e0d00331344329ca06f&oe=61C7A649")`,
@@ -160,7 +179,6 @@ export default function WetsuitsPage(){
                     <Segment vertical>
                         <Pagination
                             defaultActivePage={1}
-                            ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                             firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                             lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                             prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -172,7 +190,7 @@ export default function WetsuitsPage(){
             </p>
             <p/>
             <p className="WetsuitList">
-            <Segment.Inline >
+            <Segment.Inline>
             <Grid textAlign={"center"}>
                 <GridRow >
                     <WetsuitSearchBar onChange = {searchSetter}/>
@@ -193,9 +211,8 @@ export default function WetsuitsPage(){
             </Grid>
             </Segment.Inline>
             <p/>
-
             <CardGroup className= "WetsuitPageSpace" itemsPerRow={5} stackable={true} doubling={true}>
-                    {outputList()}
+                {outputList()}
             </CardGroup>
 
             </p>
