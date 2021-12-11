@@ -9,7 +9,7 @@ export default function WetsuitSearchBar({onChange}) {
 
     return (
         <div>
-            <Input type='text' placeholder = "Search..." icon='search' onChange={handleChange}/>
+            <Input type='text' placeholder = "Search for a wetsuit..." icon='search' onChange={handleChange}/>
         </div>
     )
 }

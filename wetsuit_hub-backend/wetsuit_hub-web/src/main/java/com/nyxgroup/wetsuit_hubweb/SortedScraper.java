@@ -6,8 +6,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SortedScraper implements IWetsuitScraper {
 
@@ -44,35 +42,7 @@ public class SortedScraper implements IWetsuitScraper {
 
                     String imageAddress = element.getElementsByClass("product-image-photo").attr("data-amsrc");
 
-                    int sizesCharStartNumber  = element.toString().indexOf("jsonSwatchConfig") + 16;
-                    int sizesCharEndNumber  = element.toString().indexOf("additional_data");
-
-                    String finalSize = "";
-                    if(sizesCharEndNumber != -1 && sizesCharStartNumber != 15){
-
-                        String sizeMess = element.toString().substring(sizesCharStartNumber, sizesCharEndNumber).replace("\"type\":\"0\",\"value\":", "").replace("label", "").replaceAll("[\"{:}]", "");
-                        ArrayList<String> sizeArray = new ArrayList<>(List.of(sizeMess.split(",")));
-                        ArrayList<String> finalSizeArray = new ArrayList<>();
-
-                        for(String o: sizeArray){
-                            if(o.contains("UK")){
-                                int start = o.indexOf("UK");
-                                String newString = o.substring(start);
-                                if(newString.length()<6){
-                                    finalSizeArray.add(newString);
-                                }
-                            }else {
-                                String newString =  o.replaceAll("[0-9]", "");
-                                if(newString.length()<4){
-                                    finalSizeArray.add(newString);
-                                }
-                            }
-                        }
-                        int sizeLength = finalSizeArray.toString().length();
-
-                        finalSize = finalSizeArray.toString().substring(1, sizeLength-1);
-                    }
-
+                    String sizes = wetsuit.jsonSwatchSizeFinder(element);
 
                     StringFinder stringFinder = new StringFinder();
 
@@ -87,10 +57,8 @@ public class SortedScraper implements IWetsuitScraper {
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
-                    wetsuit.setSize(finalSize);
+                    wetsuit.setSize(sizes);
                     wetsuit.setOriginWebpage("Sorted Surf Shop");
-
-                    System.out.println(productName);
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);

@@ -6,6 +6,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class SurfDomeScraper implements IWetsuitScraper{
@@ -42,8 +44,34 @@ public class SurfDomeScraper implements IWetsuitScraper{
 
                     String name = productName.toLowerCase(Locale.ROOT);
 
-//                    String sizes  = element.getElementsByClass("product__availability-sizes product-card__availability-sizes").get(0).cssSelector();
+                    int sizesEnd = element.toString().indexOf("data-id=\"");
+                    String sizeId = element.toString().substring(sizesEnd -8 , sizesEnd-2);
 
+                    String genSizeURL = "https://www.surfdome.com/api/product/366857/availability";
+
+                    final Document sizeDoc = Jsoup.connect(genSizeURL.replace("366857", sizeId)).ignoreContentType(true).get();
+
+                    String sizesWholeText = sizeDoc.wholeText();
+
+                    String sizes = sizesWholeText.replaceAll("\"name\"", "").replaceAll("\"available\"", "").replaceAll("\"stockid\"", "").replaceAll("[\\[\\]{\":}]", "");
+
+                    ArrayList<String> sizeArray = new ArrayList<>(List.of(sizes.split(",")));
+                    ArrayList<String> finalSizeArray = new ArrayList<>();
+
+                    for(String o: sizeArray) {
+                        if (o.contains("UK")) {
+                            finalSizeArray.add(o);
+                        }else if (o.contains("Age")) {
+                            finalSizeArray.add(o);
+                        }else if (!sizes.contains("UK")&&o.length()<5) {
+                            String modifiedString = o.replaceAll("[0-9]", "");
+                            if (modifiedString.length() > 0) {
+                                finalSizeArray.add(modifiedString);
+                            }
+                        }
+                    }
+
+                    String finalSize = finalSizeArray.toString();
 
                     StringFinder stringFinder = new StringFinder();
 
@@ -56,7 +84,7 @@ public class SurfDomeScraper implements IWetsuitScraper{
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
                     wetsuit.setOriginWebpage("Surfdome");
-//                    wetsuit.setSize(sizes);
+                    wetsuit.setSize(finalSize.substring(1, finalSize.length()-1));
 
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {

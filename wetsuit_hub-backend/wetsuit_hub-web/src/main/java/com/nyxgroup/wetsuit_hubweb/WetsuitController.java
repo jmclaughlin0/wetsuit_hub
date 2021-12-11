@@ -22,10 +22,11 @@ public class WetsuitController {
                                         @RequestParam(required = false) String p,
                                         @RequestParam(required = false) String o,
                                         @RequestParam(required = false) String s,
-                                        @RequestParam(required = false) String h
+                                        @RequestParam(required = false) String h,
+                                        @RequestParam(required = false) String d
                                         )
     {
-        return wetsuitService.getAllWetsuits(g, t, z, p, o, s, h);
+        return wetsuitService.getAllWetsuits(g, t, z, p, o, s, h, d);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -34,9 +35,10 @@ public class WetsuitController {
                               @RequestParam(required = false) String t,
                               @RequestParam(required = false) String z,
                               @RequestParam(required = false) String s,
-                              @RequestParam(required = false) String h)
+                              @RequestParam(required = false) String h,
+                              @RequestParam(required = false) String d)
     {
-        return wetsuitService.getNumberPages(g, t, z, s, h);
+        return wetsuitService.getNumberPages(g, t, z, s, h, d);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

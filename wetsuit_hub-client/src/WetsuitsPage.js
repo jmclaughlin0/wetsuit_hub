@@ -10,7 +10,7 @@ import {
     Icon,
     Segment,
     Pagination,
-    Dropdown, Divider
+    Dropdown, Divider, Input
 } from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -56,22 +56,19 @@ export default function WetsuitsPage(){
 
     const [colour, setColour] = useState("teal")
 
-    useEffect(()=>{
-        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}/${hood}`))
-    },[gender, thickness, zipper,pageNumber, order, search, hood, dispatch])
+    const [sizeSearch, setSizeSearch] = useState("");
 
     useEffect(()=>{
-        dispatch(fetchNumberPages(`${gender}/${thickness}/${zipper}/${search}/${hood}`))
-    },[gender, thickness, zipper, search, hood, dispatch])
+        dispatch(fetchWetsuits(`${gender}/${thickness}/${zipper}/${pageNumber}/${order.value}/${search}/${hood}/${sizeSearch}`))
+    },[gender, thickness, zipper,pageNumber, order, search, hood, sizeSearch, dispatch])
+
+    useEffect(()=>{
+        dispatch(fetchNumberPages(`${gender}/${thickness}/${zipper}/${search}/${hood}/${sizeSearch}`))
+    },[gender, thickness, zipper, search, hood, sizeSearch, dispatch])
 
     useEffect(()=>{
         setPageNumber("1")
-    },[gender, thickness, zipper, window.location.pathname])
-
-    //
-    // function scrapeNewWetsuits()  {
-    //     dispatch(scrapeWetsuits())
-    // }
+    },[gender, thickness, zipper, search, hood, sizeSearch, order, window.location.pathname])
 
     function searchSetter(query){
         setSearch(query)
@@ -126,6 +123,10 @@ export default function WetsuitsPage(){
         setOrder(d)
     }
 
+    function handleSizeChange(size) {
+        setSizeSearch(size)
+    }
+
     return(
         <p>
             <p
@@ -136,13 +137,7 @@ export default function WetsuitsPage(){
                    backgroundSize: "100% auto",
                    backgroundPosition: "50% 85%"
             }}>
-                {/*<Button onClick={scrapeNewWetsuits}*/}
-                {/*        className={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>*/}
-                {/*    <div className="visible content">Click Here to Refresh Suits</div>*/}
-                {/*    <div className="hidden content">*/}
-                {/*        <i className="refresh icon"/>*/}
-                {/*    </div>*/}
-                {/*</Button>*/}
+
                 <Header as='h1' icon color={"black"} textAlign='center'>
                     <Icon circular inverted color={"blue"} name= {icon}/>
                     {title} Wetsuits
@@ -181,7 +176,9 @@ export default function WetsuitsPage(){
             <Grid textAlign={"center"}>
                 <GridRow >
                     <WetsuitSearchBar onChange = {searchSetter}/>
-
+                    <div>
+                        <Input type='text' placeholder = "Search for a size e.g 8" icon='search' onChange={(event)=>handleSizeChange(event.target.value)}/>
+                    </div>
                     <Dropdown
                             button
                             className='icon'

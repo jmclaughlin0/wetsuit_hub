@@ -36,12 +36,9 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
                         price = price.split(" ")[1];
                     }
 
-                    Scanner s = new Scanner(price);
+                    String sizes =  wetsuit.jsonSwatchSizeFinder(element);
 
-                    if (!s.hasNextDouble()) {
-                        System.out.println(productName + " is the faulty one");
-                        continue;
-                    }
+                    Scanner s = new Scanner(price);
 
                     String imageAddress = element.getElementsByClass("product-image-photo").toString().split(" ")[3].split("=")[1].replace('"', ' ');
                     String webAddress = element.getElementsByClass("product-item-link").attr("href");
@@ -53,11 +50,14 @@ public class WetsuitCenterScraper implements IWetsuitScraper {
                     wetsuit.setZipper(stringFinder.zipperFinder(productName));
 
                     wetsuit.setName(productName);
-                    wetsuit.setPrice(Double.parseDouble(price));
+                    if (s.hasNextDouble()) {
+                        wetsuit.setPrice(Double.parseDouble(price));
+                    }
                     wetsuit.setImageAddress(imageAddress);
                     wetsuit.setWebAddress(webAddress);
                     wetsuit.setBrand(stringFinder.brandFinder(productName));
                     wetsuit.setOriginWebpage("Wetsuit Center");
+                    wetsuit.setSize(sizes);
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
                         wetsuitsRepository.save(wetsuit);

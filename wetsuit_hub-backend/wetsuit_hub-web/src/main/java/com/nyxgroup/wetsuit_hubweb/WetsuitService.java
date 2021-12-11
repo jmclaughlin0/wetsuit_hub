@@ -12,11 +12,15 @@ public class WetsuitService {
         this.wetsuitsRepository = wetsuitsRepository;
     }
 
-    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o, String s, String h) {
+    public List<Wetsuit> getAllWetsuits(String g, String t, String z, String p, String o, String s, String h, String d) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
 
         if(!s.isEmpty()){
             allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getName().toLowerCase().contains(s.toLowerCase()))).collect(Collectors.toList());
+        }
+
+        if(!d.equals("")){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getSize().toLowerCase().contains(d.toLowerCase()))).collect(Collectors.toList());
         }
 
         if(Objects.equals(z, "true")){
@@ -72,7 +76,7 @@ public class WetsuitService {
     }
 
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 72000000)
     public void scrapeWetsuits() {
         wetsuitsRepository.deleteAllInBatch();
         wetsuitsRepository.flush();
@@ -88,9 +92,8 @@ public class WetsuitService {
         tikiScraper.getWetsuits();
         blueTomatoScraper.getWetsuits();
         wetsuitOutletScraper.getWetsuits();
-
-//        wetsuitCenterScraper.getWetsuits();
-//        surfDomeScraper.getWetsuits();
+        wetsuitCenterScraper.getWetsuits();
+        surfDomeScraper.getWetsuits();
 
 //        needEssentialsScraper.getWetsuits(); <-- Am I going to do sizes for this one...??
 
@@ -98,11 +101,15 @@ public class WetsuitService {
 
     }
 
-    public int getNumberPages(String g, String t, String z, String s, String h) {
+    public int getNumberPages(String g, String t, String z, String s, String h, String d) {
         List<Wetsuit> allWetsuits = wetsuitsRepository.findAll();
 
         if(!s.isEmpty()){
             allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getName().toLowerCase().contains(s.toLowerCase()))).collect(Collectors.toList());
+        }
+
+        if(!d.equals("")){
+            allWetsuits = allWetsuits.stream().filter(wetsuit -> (wetsuit.getSize().toLowerCase().contains(d.toLowerCase()))).collect(Collectors.toList());
         }
 
         if(Objects.equals(z, "true")){
