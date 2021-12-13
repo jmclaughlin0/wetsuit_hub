@@ -36,7 +36,7 @@ export default function Home() {
         <div className="Home-header" style={{
             margin: "auto",
             opacity: 0.9,
-            backgroundImage: `url(https://scontent.fbrs4-2.fna.fbcdn.net/v/t39.30808-6/245527768_10227725807350630_7720546953824215513_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=hvi4u9dqzPYAX9JY0E8&_nc_ht=scontent.fbrs4-2.fna&oh=c6a93df78bbbc0865e151606e1e8498d&oe=61B4A68F)`,
+            backgroundImage: `url(https://scontent.fbhx1-1.fna.fbcdn.net/v/t39.30808-6/245527768_10227725807350630_7720546953824215513_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=xSPJUlnGlOwAX8KRQWL&_nc_ht=scontent.fbhx1-1.fna&oh=a7abbbe598fba800e64abb6e9e743c24&oe=61BC8F8F)`,
             backgroundSize: '100% auto',
             backgroundRepeat: "no-repeat"
         }}>
