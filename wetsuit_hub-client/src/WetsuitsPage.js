@@ -134,11 +134,12 @@ export default function WetsuitsPage(){
     function updateInProgress(){
         return(
             <p align="center">
-                <Segment placeholder>
+                <Segment placeholder padded>
                     <Dimmer active inverted>
                         <Loader  size='massive' as={"h1"}>Wetsuits are updating, this will only take a minute... </Loader>
                     </Dimmer>
                 </Segment>
+                <Header as={"h4"}>You can still browse wetsuits, but not all wetsuits will be available until the update is finished</Header>
             </p>
         )
     }
