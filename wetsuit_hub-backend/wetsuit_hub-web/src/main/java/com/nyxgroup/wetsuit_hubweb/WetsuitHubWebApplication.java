@@ -35,7 +35,7 @@ public class WetsuitHubWebApplication {
 			return new WebMvcConfigurerAdapter() {
 				@Override
 				public void addCorsMappings(CorsRegistry registry) {
-					registry.addMapping("/**").allowedOrigins("*");
+					registry.addMapping("/**").allowedOrigins("https://main.d1mahcj7jn0ua5.amplifyapp.com");
 				}
 			};
 		}
