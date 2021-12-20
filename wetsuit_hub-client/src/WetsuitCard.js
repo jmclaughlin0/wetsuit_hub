@@ -25,7 +25,7 @@ export default function WetsuitCard({wetsuit, icon}) {
         } else if (gender === "Kids") {
             setIconName("child")
         }
-    })
+    },[gender])
 
     return (
 
@@ -41,7 +41,7 @@ export default function WetsuitCard({wetsuit, icon}) {
                 <Divider/>
 
                 <Card.Header textAlign={"center"}>
-                    {wetsuit.price=="0"? "Price Unavailable":`£${wetsuit.price}`}
+                    {wetsuit.price===0? "Price Unavailable":`£${wetsuit.price}`}
                 </Card.Header>
             </Card.Content>
 

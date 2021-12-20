@@ -1,7 +1,9 @@
-export const allWetsuitsURL = "http://localhost:8080/wetsuits"
+const baseURL = `http://ec2-3-8-1-7.eu-west-2.compute.amazonaws.com:8080`
 
-export const numberPagesURL = "http://localhost:8080/pages"
+export const allWetsuitsURL = `${baseURL}/wetsuits`
 
-export const scrapeWetsuitsURL = "http://localhost:8080/scrape-wetsuits"
+export const numberPagesURL = `${baseURL}/pages`
 
-export const stateOfUpdateURL = "http://localhost:8080/stateUpdate"
+export const scrapeWetsuitsURL = `${baseURL}/scrape-wetsuits`
+
+export const stateOfUpdateURL = `${baseURL}/stateUpdate`

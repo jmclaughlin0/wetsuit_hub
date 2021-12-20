@@ -9,7 +9,7 @@ import {
     Icon,
     Segment,
     Pagination,
-    Dropdown, Divider, Input, Dimmer, Loader, Image
+    Dropdown, Divider, Input, Dimmer, Loader
 } from "semantic-ui-react";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -51,8 +51,6 @@ export default function WetsuitsPage(){
 
     const [order, setOrder] = useState({key: 'PA', icon: 'sort numeric down', text: 'Price Low - High', value: 'PA' })
 
-    const [colour, setColour] = useState("teal")
-
     const [sizeSearch, setSizeSearch] = useState("");
 
     const currentlyUpdating = useSelector(selectUpdateInProgress)
@@ -67,11 +65,11 @@ export default function WetsuitsPage(){
 
     useEffect(()=>{
         setPageNumber("1")
-    },[gender, thickness, zipper, search, hood, sizeSearch, order, window.location.pathname])
+    },[gender, thickness, zipper, search, hood, sizeSearch, order])
 
     useEffect(() => {
         dispatch(stateOfUpdate())
-    }, [gender, thickness, zipper, search, pageNumber, hood, sizeSearch, order, dispatch, window.location.pathname])
+    }, [gender, thickness, zipper, search, pageNumber, hood, sizeSearch, order, dispatch])
 
 
     function searchSetter(query){
@@ -96,13 +94,10 @@ export default function WetsuitsPage(){
     useEffect(() => {
         if(gender === "Mens"){
             setIcon("male")
-            setColour("black")
         }else if (gender === "Womens"){
             setIcon("female")
-            setColour("red")
         }else if (gender === "Kids"){
             setIcon("child")
-            setColour("yellow")
         }
     },[gender])
 
@@ -149,15 +144,7 @@ export default function WetsuitsPage(){
             <p>
                 {currentlyUpdating === "completed" ? null:updateInProgress()}
             </p>
-            <p
-               style={{
-                   backgroundImage: `url("https://scontent.fbhx1-1.fna.fbcdn.net/v/t1.6435-9/149402941_10225909502744150_6957864331900574952_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=977rgDkYDi0AX-40Ckb&tn=VX02oLL6cu26lec7&_nc_ht=scontent.fbhx1-1.fna&oh=f5e58e9645ed7e0d00331344329ca06f&oe=61C7A649")`,
-                   opacity: "90%",
-                   backgroundRepeat: "no-repeat",
-                   backgroundSize: "100% auto",
-                   backgroundPosition: "50% 85%"
-            }}>
-
+            <p className= "WetsuitPage-header">
                 <Header as='h1' icon color={"black"} textAlign='center'>
                     <Icon circular inverted color={"blue"} name= {icon}/>
                     {title} Wetsuits

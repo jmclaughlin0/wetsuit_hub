@@ -1,8 +1,7 @@
 import './App.css';
-import {Button, CardGroup, Grid, Header, Icon, Segment} from "semantic-ui-react";
+import {Button, Grid, Header, Icon} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
-import WetsuitCard from "./WetsuitCard";
 
 export default function Home() {
 
@@ -14,13 +13,13 @@ export default function Home() {
     }
 
     const webpages = [
+        {name:"Surf Dome", image:""},
+        {name:"Wetsuit Center", image:""},
+        {name:"Wetsuit Outlet", image:""},
         {name:"Blue Tomato", image:""},
         {name:"need essentials", image:""},
         {name:"Sorted Surf Shop", image:""},
-        {name:"Surf Dome", image:""},
         {name:"Tiki", image:""},
-        {name:"Wetsuit Center", image:""},
-        {name:"Wetsuit Outlet", image:""}
     ]
 
     function outputList() {
@@ -36,7 +35,7 @@ export default function Home() {
         <div className="Home-header" style={{
             margin: "auto",
             opacity: 0.9,
-            backgroundImage: `url(https://scontent.fbhx1-1.fna.fbcdn.net/v/t39.30808-6/245527768_10227725807350630_7720546953824215513_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=xSPJUlnGlOwAX8KRQWL&_nc_ht=scontent.fbhx1-1.fna&oh=a7abbbe598fba800e64abb6e9e743c24&oe=61BC8F8F)`,
+            backgroundImage: 'image(../public/wetsuit_hub-wetsuitPageImage.jpeg)',
             backgroundSize: '100% auto',
             backgroundRepeat: "no-repeat"
         }}>
@@ -64,6 +63,8 @@ export default function Home() {
             <Grid columns = {3} divided textAlign={"center"}>
                 {outputList()}
             </Grid>
+            <p/>
+            <Header>And More Coming Soon!!!</Header>
         </div>
             <Header as={"h4"}  align={"center"}> Background Images By{" "}
                 <a
