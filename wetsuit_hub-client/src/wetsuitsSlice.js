@@ -14,7 +14,8 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
     const size = array[7]
 
     const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order + "&s=" + search + "&h=" + hood + "&d=" + size,
-            {method: 'GET'
+            {method: 'GET',
+                mode: 'cors'
                 })
 
     return await response.json();
@@ -32,7 +33,8 @@ export const fetchNumberPages = createAsyncThunk('pages/fetch', async(yourData) 
         const size = array[5]
 
         const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&s=" + search + "&h=" + hood+ "&d=" + size,
-            {method: 'GET'
+            {method: 'GET',
+                mode: 'cors'
             })
 
         return await response.json();
@@ -41,7 +43,8 @@ export const fetchNumberPages = createAsyncThunk('pages/fetch', async(yourData) 
 
 export const scrapeWetsuits = createAsyncThunk('wetsuits/scrape', async() =>  {
         const response = await fetch(scrapeWetsuitsURL,
-            {method: 'POST'})
+            {method: 'POST',
+                mode: 'cors'})
 
         const data = await response.json();
 
@@ -54,7 +57,8 @@ export const scrapeWetsuits = createAsyncThunk('wetsuits/scrape', async() =>  {
 
 export const stateOfUpdate = createAsyncThunk('update/state', async() =>  {
         const response = await fetch(stateOfUpdateURL,
-            {method: 'GET'})
+            {method: 'GET',
+                mode: 'cors'})
 
     return await response.text();
     }
