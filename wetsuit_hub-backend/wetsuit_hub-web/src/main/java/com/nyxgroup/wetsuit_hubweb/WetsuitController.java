@@ -21,7 +21,7 @@ public class WetsuitController {
         return "The app is working...";
     }
 
-    @CrossOrigin(origins = "https://main.d1mahcj7jn0ua5.amplifyapp.com")
+    @CrossOrigin(origins = "*")
     @GetMapping("wetsuits")
     public List<Wetsuit> getAllWetsuits(@RequestParam(required = false) String g,
                                         @RequestParam(required = false) String t,
@@ -36,7 +36,7 @@ public class WetsuitController {
         return wetsuitService.getAllWetsuits(g, t, z, p, o, s, h, d);
     }
 
-    @CrossOrigin(origins = "https://main.d1mahcj7jn0ua5.amplifyapp.com")
+    @CrossOrigin(origins = "*")
     @GetMapping("pages")
     public int getNumberPages(@RequestParam(required = false) String g,
                               @RequestParam(required = false) String t,
@@ -48,13 +48,13 @@ public class WetsuitController {
         return wetsuitService.getNumberPages(g, t, z, s, h, d);
     }
 
-    @CrossOrigin(origins = "https://main.d1mahcj7jn0ua5.amplifyapp.com")
+    @CrossOrigin(origins = "*")
     @PostMapping("scrape-wetsuits")
     public String scrapeWetsuits() {
         return wetsuitService.scrapeWetsuits();
     }
 
-    @CrossOrigin(origins = "https://main.d1mahcj7jn0ua5.amplifyapp.com")
+    @CrossOrigin(origins = "*")
     @GetMapping("stateUpdate")
     public String getStateOfUpdate() {
         return wetsuitService.getStateOfUpdate();
