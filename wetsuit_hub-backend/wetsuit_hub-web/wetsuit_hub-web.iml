@@ -16,6 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" value="46d22016-1a12-40ef-8452-3c2db2c704ec" />
+          <factory-entry name="wetsuit_hub-web" value="79075e20-bae3-40ac-af45-09ab22295a61" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

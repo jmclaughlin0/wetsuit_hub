@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:8080/"
+const baseURL = "https://cors-everywhere.herokuapp.com/http://localhost:8080/"
 
 export const allWetsuitsURL = baseURL + "wetsuits";
 
