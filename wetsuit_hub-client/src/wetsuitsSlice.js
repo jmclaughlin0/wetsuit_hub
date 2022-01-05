@@ -17,7 +17,7 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
             {method: 'GET',
                 mode: 'cors',
                 cache: 'no-cache',
-                credentials: 'include',
+                credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -41,7 +41,7 @@ export const fetchNumberPages = createAsyncThunk('pages/fetch', async(yourData) 
             {method: 'GET',
                 mode: 'cors',
                 cache: 'no-cache',
-                credentials: 'include',
+                credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -70,7 +70,7 @@ export const stateOfUpdate = createAsyncThunk('update/state', async() =>  {
             {method: 'GET',
                 mode: 'cors',
                 cache: 'no-cache',
-                credentials: 'include',
+                credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json'
                 }})

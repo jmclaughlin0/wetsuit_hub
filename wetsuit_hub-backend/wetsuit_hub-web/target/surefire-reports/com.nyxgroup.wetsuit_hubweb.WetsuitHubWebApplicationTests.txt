@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.nyxgroup.wetsuit_hubweb.WetsuitHubWebApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.046 s - in com.nyxgroup.wetsuit_hubweb.WetsuitHubWebApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.557 s - in com.nyxgroup.wetsuit_hubweb.WetsuitHubWebApplicationTests

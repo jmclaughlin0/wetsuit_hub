@@ -15,13 +15,13 @@ public class WetsuitController {
     }
 
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("welcome")
     public String healthChecker(){
         return "The app is working...";
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("wetsuits")
     public List<Wetsuit> getAllWetsuits(@RequestParam(required = false) String g,
                                         @RequestParam(required = false) String t,
@@ -36,7 +36,7 @@ public class WetsuitController {
         return wetsuitService.getAllWetsuits(g, t, z, p, o, s, h, d);
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("pages")
     public int getNumberPages(@RequestParam(required = false) String g,
                               @RequestParam(required = false) String t,
@@ -48,13 +48,13 @@ public class WetsuitController {
         return wetsuitService.getNumberPages(g, t, z, s, h, d);
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("scrape-wetsuits")
     public String scrapeWetsuits() {
         return wetsuitService.scrapeWetsuits();
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("stateUpdate")
     public String getStateOfUpdate() {
         return wetsuitService.getStateOfUpdate();
