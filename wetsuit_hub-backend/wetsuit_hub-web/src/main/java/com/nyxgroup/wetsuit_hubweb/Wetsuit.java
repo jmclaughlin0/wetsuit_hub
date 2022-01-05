@@ -9,7 +9,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "suits")
+@Table(name = "wetsuits")
 public class Wetsuit {
 
     @Column
