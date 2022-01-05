@@ -14,7 +14,7 @@
 }
 
 .Home-header {
-  background-image: url("src/Images/wetsuit_hub-homeImage.png");
+  background-image: url("Images/wetsuit_hub-homeImage.png");
   opacity: 90%;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -30,7 +30,7 @@
 }
 
 .WetsuitPage-header {
-  background-image: url("src/Images/wetsuit_hub-wetsuitPageImage.png");
+  background-image: url("Images/wetsuit_hub-wetsuitPageImage.png");
   opacity: 90%;
   background-repeat: no-repeat;
   background-size: 100% auto;
