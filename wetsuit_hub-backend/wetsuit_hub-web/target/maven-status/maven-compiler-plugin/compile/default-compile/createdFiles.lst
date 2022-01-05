@@ -6,6 +6,7 @@ com/nyxgroup/wetsuit_hubweb/WetsuitCenterScraper.class
 com/nyxgroup/wetsuit_hubweb/SortedScraper.class
 com/nyxgroup/wetsuit_hubweb/NeedEssentialsScraper.class
 com/nyxgroup/wetsuit_hubweb/WetsuitController.class
+com/nyxgroup/wetsuit_hubweb/WetsuitHubWebApplication$SecurityConfig.class
 com/nyxgroup/wetsuit_hubweb/TikiScraper.class
 com/nyxgroup/wetsuit_hubweb/Wetsuit.class
 com/nyxgroup/wetsuit_hubweb/WetsuitHubWebApplication$ServiceConfiguration.class
