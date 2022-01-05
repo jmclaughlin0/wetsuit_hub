@@ -30,7 +30,7 @@
 }
 
 .WetsuitPage-header {
-  background-image: url("Images/wetsuit_hub-wetsuitPageImage.png");
+  background-image: url("Images/wetsuit_hub-wetsuitPageImage.png?text=Top Image"), url("https://scontent.fbhx1-1.fna.fbcdn.net/v/t1.6435-9/149402941_10225909502744150_6957864331900574952_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=HWlPYG-JjgMAX_mbuxW&_nc_ht=scontent.fbhx1-1.fna&oh=00_AT-RIfyEYqRH1rPAwZuqalIQehMKRzZ8RjwfHPx_Q36cBA&oe=61FB10C9?text=Failed To Load");
   opacity: 90%;
   background-repeat: no-repeat;
   background-size: 100% auto;
