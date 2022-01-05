@@ -15,7 +15,12 @@ export const fetchWetsuits = createAsyncThunk( 'wetsuits/fetch', async(yourData)
 
     const response = await fetch(allWetsuitsURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&p=" + page + "&o=" + order + "&s=" + search + "&h=" + hood + "&d=" + size,
             {method: 'GET',
-                mode: 'cors'
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
                 })
 
     return await response.json();
@@ -34,7 +39,12 @@ export const fetchNumberPages = createAsyncThunk('pages/fetch', async(yourData) 
 
         const response = await fetch(numberPagesURL + "?g=" + gender + "&t=" + thickness + "&z=" + zipper + "&s=" + search + "&h=" + hood+ "&d=" + size,
             {method: 'GET',
-                mode: 'cors'
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
 
         return await response.json();
