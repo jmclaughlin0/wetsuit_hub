@@ -35,7 +35,7 @@ export default function Home() {
         <div className="Home-header" style={{
             margin: "auto",
             opacity: 0.9,
-            backgroundImage: 'image(../public/wetsuit_hub-homeImage.png)',
+            backgroundImage: 'image(../public/wetsuit_hub-wetsuitPageImage.png)',
             backgroundSize: '100% auto',
             backgroundRepeat: "no-repeat"
         }}>
