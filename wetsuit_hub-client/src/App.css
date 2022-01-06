@@ -30,11 +30,11 @@
 }
 
 .WetsuitPage-header {
-  background-image: url("Images/wetsuit_hub-wetsuitPage.jpg");
+  background-image: url("Images/wetsuitPage.png");
   opacity: 90%;
   background-repeat: no-repeat;
   background-size: 100% auto;
-  background-position: 50% 85%;
+  background-position: 50% 55%;
 }
 
 

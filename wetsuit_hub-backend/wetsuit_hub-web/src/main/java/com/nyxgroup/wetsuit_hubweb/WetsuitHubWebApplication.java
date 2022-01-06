@@ -36,7 +36,7 @@ public class WetsuitHubWebApplication {
 				@Override
 				public void addCorsMappings(CorsRegistry registry) {
 					registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-					registry.addMapping("/**").allowedOrigins("https://main.d1mahcj7jn0ua5.amplifyapp.com/wetsuits");
+					registry.addMapping("/**").allowedOrigins("https://main.d1mahcj7jn0ua5.amplifyapp.com");
 				}
 			};
 		}
