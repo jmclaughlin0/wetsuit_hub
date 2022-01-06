@@ -144,7 +144,7 @@ export default function WetsuitsPage(){
             <p>
                 {currentlyUpdating === "completed" ? null:updateInProgress()}
             </p>
-            <p className = "WetsuitPage-header">
+            <p className = "Home-header">
                 <Header as='h1' icon color={"black"} textAlign='center'>
                     <Icon circular inverted color={"blue"} name= {icon}/>
                     {title} Wetsuits
