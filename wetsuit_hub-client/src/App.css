@@ -30,6 +30,7 @@
 }
 
 .WetsuitPage-header {
+  background-color: #0f0f10;
   background-image: url("Images/wetsuit_hub-homeImage.png");
   opacity: 90%;
   background-repeat: no-repeat;
