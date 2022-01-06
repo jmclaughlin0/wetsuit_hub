@@ -183,7 +183,7 @@ export default function WetsuitsPage(){
                 <GridRow >
                     <WetsuitSearchBar onChange = {searchSetter}/>
                     <div>
-                        <Input type='text' placeholder = "Search for a size e.g 8" icon='search' onChange={(event)=>handleSizeChange(event.target.value)}/>
+                        <Input type='text' placeholder = "Search for a size e.g 8" icon ='search' onChange={(event)=>handleSizeChange(event.target.value)}/>
                     </div>
                     <Dropdown
                             button

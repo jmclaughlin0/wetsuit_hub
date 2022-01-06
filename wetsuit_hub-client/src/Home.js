@@ -32,13 +32,7 @@ export default function Home() {
 
     return (
         <div align='center'>
-        <div className="Home-header" style={{
-            margin: "auto",
-            opacity: 0.9,
-            backgroundImage: 'image(../public/wetsuit_hub-wetsuitPageImage.png)',
-            backgroundSize: '100% auto',
-            backgroundRepeat: "no-repeat"
-        }}>
+        <div className="Home-header">
             <Header className= 'App-header' >
                 <div>
                     <Header style={{fontSize: "100px"}} inverted color='white'  >
