@@ -1,5 +1,9 @@
-package com.nyxgroup.wetsuit_hubweb;
+package com.nyxgroup.wetsuit_hubweb.scrapers;
 
+import com.nyxgroup.wetsuit_hubweb.IWetsuitScraper;
+import com.nyxgroup.wetsuit_hubweb.StringFinder;
+import com.nyxgroup.wetsuit_hubweb.Wetsuit;
+import com.nyxgroup.wetsuit_hubweb.WetsuitsRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -55,7 +59,9 @@ public class NeedEssentialsScraper implements IWetsuitScraper {
 
                 if (!price.isEmpty()) {
                     wetsuit.setPrice(Double.parseDouble(price));
-                    wetsuitsRepository.save(wetsuit);
+                    if(wetsuit.stringTooLongChecker(wetsuit)) {
+                        wetsuitsRepository.save(wetsuit);
+                    }
                 }
 
             }
@@ -63,6 +69,7 @@ public class NeedEssentialsScraper implements IWetsuitScraper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Need Essentials Done");
     }
 }
 

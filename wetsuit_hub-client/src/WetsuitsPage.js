@@ -20,6 +20,7 @@ import {
 } from "./wetsuitsSlice";
 import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
+import DevAndPhotogTile from "./DevAndPhotogTile";
 
 export default function WetsuitsPage(){
 
@@ -126,24 +127,21 @@ export default function WetsuitsPage(){
         setSizeSearch(size)
     }
 
-    function updateInProgress(){
-        return(
-            <p align="center">
-                <Segment placeholder padded>
-                    <Dimmer active inverted>
-                        <Loader  size='massive' as={"h1"}>Wetsuits are updating, this will only take a minute... </Loader>
-                    </Dimmer>
-                </Segment>
-                <Header as={"h4"}>You can still browse wetsuits, but not all wetsuits will be available until the update is finished</Header>
-            </p>
-        )
-    }
+    // function updateInProgress(){
+    //     return(
+    //         <p align="center">
+    //             <Segment placeholder padded>
+    //                 <Dimmer active inverted>
+    //                     <Loader  size='massive' as={"h1"}>Wetsuits are updating, this will only take a minute... </Loader>
+    //                 </Dimmer>
+    //             </Segment>
+    //             <Header as={"h4"}>You can still browse wetsuits, but not all wetsuits will be available until the update is finished</Header>
+    //         </p>
+    //     )
+    // }
 
     return(
         <p>
-            <p>
-                {currentlyUpdating === "completed" ? null:updateInProgress()}
-            </p>
             <p className = 'WetsuitPage-header' >
                 <Header as='h1' icon inverted color={"white"} textAlign='center'>
                     <Icon circular inverted color={"blue"} name= {icon}/>
@@ -204,16 +202,7 @@ export default function WetsuitsPage(){
             </CardGroup>
 
             </p>
-            <Header as={"h4"}  align={"center"}> Background Images By{" "}
-                <a
-                    className="App-link"
-                    href="https://www.instagram.com/teganwphotography/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Tegan Ward
-                </a>
-            </Header>
+            <DevAndPhotogTile/>
             <br/>
         </p>
     )

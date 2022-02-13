@@ -153,7 +153,6 @@ public class Wetsuit {
         }
 
         wetsuitsRepository.save(wetsuit);
-
     }
 
     public String jsonSwatchSizeFinder(Element element){
@@ -198,6 +197,10 @@ public class Wetsuit {
             finalSize = finalSizeArray.toString().substring(1, sizeLength-1);
         }
         return finalSize;
+    }
+
+    public boolean stringTooLongChecker(Wetsuit w){
+        return w.getImageAddress().length() <= 700;
     }
 }
 

@@ -36,10 +36,12 @@
   background-position: 50% 55%;
 }
 
-
+.Me-link {
+  color: chartreuse;
+}
 
 .App-link {
-  color: #61dafb;
+  color: darkblue;
 }
 
 @keyframes App-logo-spin {

@@ -1,10 +1,15 @@
-package com.nyxgroup.wetsuit_hubweb;
+package com.nyxgroup.wetsuit_hubweb.scrapers;
 
+import com.nyxgroup.wetsuit_hubweb.IWetsuitScraper;
+import com.nyxgroup.wetsuit_hubweb.StringFinder;
+import com.nyxgroup.wetsuit_hubweb.Wetsuit;
+import com.nyxgroup.wetsuit_hubweb.WetsuitsRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -68,14 +73,16 @@ public class WetsuitOutletScraper implements IWetsuitScraper {
                     }
 
                     if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
-                        wetsuitsRepository.save(wetsuit);
+                        if(wetsuit.stringTooLongChecker(wetsuit)) {
+                            wetsuitsRepository.save(wetsuit);
+                        }
                     }
                 }
 
             }
+        }catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (Exception exception){
-            exception.printStackTrace();
-        }
+        System.out.println("Wetsuit Outlet Done");
     }
 }

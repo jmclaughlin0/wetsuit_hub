@@ -1,5 +1,6 @@
 package com.nyxgroup.wetsuit_hubweb;
 
+import com.nyxgroup.wetsuit_hubweb.scrapers.*;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.*;
@@ -63,9 +64,9 @@ public class WetsuitService {
         TikiScraper tikiScraper = new TikiScraper(wetsuitsRepository);
         BlueTomatoScraper blueTomatoScraper = new BlueTomatoScraper(wetsuitsRepository);
 
-        sortedScraper.getWetsuits();
-        tikiScraper.getWetsuits();
         blueTomatoScraper.getWetsuits();
+        tikiScraper.getWetsuits();
+        sortedScraper.getWetsuits();
         wetsuitOutletScraper.getWetsuits();
         wetsuitCenterScraper.getWetsuits();
         surfDomeScraper.getWetsuits();

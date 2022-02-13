@@ -1,5 +1,9 @@
-package com.nyxgroup.wetsuit_hubweb;
+package com.nyxgroup.wetsuit_hubweb.scrapers;
 
+import com.nyxgroup.wetsuit_hubweb.IWetsuitScraper;
+import com.nyxgroup.wetsuit_hubweb.StringFinder;
+import com.nyxgroup.wetsuit_hubweb.Wetsuit;
+import com.nyxgroup.wetsuit_hubweb.WetsuitsRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TikiScraper implements IWetsuitScraper{
+public class TikiScraper implements IWetsuitScraper {
     
     private final WetsuitsRepository wetsuitsRepository;
 
@@ -142,7 +146,9 @@ public class TikiScraper implements IWetsuitScraper{
                         }
 
                         if (outOfStock.isEmpty()) {
-                           wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
+                            if(wetsuit.stringTooLongChecker(wetsuit)) {
+                                wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
+                            }
                         }
                     }
 
@@ -151,5 +157,6 @@ public class TikiScraper implements IWetsuitScraper{
                 e.printStackTrace();
             }
         }
+        System.out.println("Tiki Done");
     }
 }

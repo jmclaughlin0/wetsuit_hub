@@ -1,5 +1,9 @@
-package com.nyxgroup.wetsuit_hubweb;
+package com.nyxgroup.wetsuit_hubweb.scrapers;
 
+import com.nyxgroup.wetsuit_hubweb.IWetsuitScraper;
+import com.nyxgroup.wetsuit_hubweb.StringFinder;
+import com.nyxgroup.wetsuit_hubweb.Wetsuit;
+import com.nyxgroup.wetsuit_hubweb.WetsuitsRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -68,13 +72,16 @@ public class SortedScraper implements IWetsuitScraper {
                         wetsuit.setSize("N/A");
                     }
 
-                    if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
-                        wetsuitsRepository.save(wetsuit);
+                    if (wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
+                        if(!wetsuit.stringTooLongChecker(wetsuit)) {
+                            wetsuitsRepository.save(wetsuit);
+                        }
                     }
                 }
 
             }catch (IOException e) {
                 e.printStackTrace();
         }}
+        System.out.println("Sorted Done");
     }
 }

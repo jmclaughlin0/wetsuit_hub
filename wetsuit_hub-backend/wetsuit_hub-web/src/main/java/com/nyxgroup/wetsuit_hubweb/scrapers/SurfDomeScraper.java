@@ -1,5 +1,9 @@
-package com.nyxgroup.wetsuit_hubweb;
+package com.nyxgroup.wetsuit_hubweb.scrapers;
 
+import com.nyxgroup.wetsuit_hubweb.IWetsuitScraper;
+import com.nyxgroup.wetsuit_hubweb.StringFinder;
+import com.nyxgroup.wetsuit_hubweb.Wetsuit;
+import com.nyxgroup.wetsuit_hubweb.WetsuitsRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SurfDomeScraper implements IWetsuitScraper{
+public class SurfDomeScraper implements IWetsuitScraper {
 
     private final WetsuitsRepository wetsuitsRepository;
 
@@ -94,8 +98,10 @@ public class SurfDomeScraper implements IWetsuitScraper{
                         wetsuit.setSize("N/A");
                     }
 
-                    if (!wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
-                        wetsuitsRepository.save(wetsuit);
+                    if (wetsuitsRepository.findAll().toString().contains(wetsuit.toString())) {
+                        if(!wetsuit.stringTooLongChecker(wetsuit)) {
+                            wetsuitsRepository.save(wetsuit);
+                        }
                     }
                 }
 
@@ -103,5 +109,6 @@ public class SurfDomeScraper implements IWetsuitScraper{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("SurfDome Done");
     }
 }

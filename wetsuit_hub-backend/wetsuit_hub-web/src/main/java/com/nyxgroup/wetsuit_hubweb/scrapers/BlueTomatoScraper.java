@@ -1,5 +1,9 @@
-package com.nyxgroup.wetsuit_hubweb;
+package com.nyxgroup.wetsuit_hubweb.scrapers;
 
+import com.nyxgroup.wetsuit_hubweb.IWetsuitScraper;
+import com.nyxgroup.wetsuit_hubweb.StringFinder;
+import com.nyxgroup.wetsuit_hubweb.Wetsuit;
+import com.nyxgroup.wetsuit_hubweb.WetsuitsRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class BlueTomatoScraper implements IWetsuitScraper{
+public class BlueTomatoScraper implements IWetsuitScraper {
 
     private final WetsuitsRepository wetsuitsRepository;
 
@@ -88,7 +92,7 @@ public class BlueTomatoScraper implements IWetsuitScraper{
 
                         String webAddress = "https://www.blue-tomato.com" + element.getElementsByClass("name track-click track-load-producttile").attr("href");
 
-                        String imageAddress = "";
+                        String imageAddress;
 
                         String tempAddress = element.getElementsByClass("productimage").get(0).children().get(1).attr("src");
 
@@ -130,7 +134,9 @@ public class BlueTomatoScraper implements IWetsuitScraper{
                             wetsuit.setPrice(Double.parseDouble(price));
                         }
 
-                        wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
+                        if(wetsuit.stringTooLongChecker(wetsuit)){
+                            wetsuit.wetsuitLookupAndSaveNewSize(wetsuit, wetsuitsRepository, size);
+                        }
                         }
 
                 }catch (IOException e) {
@@ -138,5 +144,6 @@ public class BlueTomatoScraper implements IWetsuitScraper{
                 }
             }
         }
+        System.out.println("Blue Tomato Done");
     }
 }
