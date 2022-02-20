@@ -7,4 +7,4 @@ Frontend is a basic 2 page React App that sends requests to the API to display w
 
 Credit to Tegan Ward for the Background Images. 
 
-You can see a release of the code at thewetsuithub.co.uk which is hosted on AWS using an Amplify App frontend and the backend running on an EC2 instance using an RDS database. 
+You can see a release of the code at http://thewetsuithub.co.uk/ which is hosted on AWS using an Amplify App frontend and the backend running on an EC2 instance using an RDS database. 
