@@ -2,6 +2,7 @@ import './App.css';
 import {Button, Grid, Header, Icon} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
+import DevAndPhotogTile from "./DevAndPhotogTile";
 
 export default function Home() {
 
@@ -60,16 +61,7 @@ export default function Home() {
             <p/>
             <Header>And More Coming Soon!!!</Header>
         </div>
-            <Header as={"h4"}  align={"center"}> Background Images By{" "}
-                <a
-                    className="App-link"
-                    href="https://www.instagram.com/teganwphotography/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Tegan Ward
-                </a>
-            </Header>
+            <DevAndPhotogTile/>
             <br/>
         </div>
     );
