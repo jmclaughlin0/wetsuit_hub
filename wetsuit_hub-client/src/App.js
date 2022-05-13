@@ -10,6 +10,7 @@ import {
     selectGender,
     selectThickness
 } from "./wetsuitsSlice";
+import {Header, Segment} from "semantic-ui-react";
 
 
 export default function App() {
@@ -33,14 +34,14 @@ export default function App() {
 
     return (
 
-      <Router>
-          <div style={{marginTop: "0.5em", marginLeft: "0.5em", marginBottom: "-0.5em"}} >
+      <Router className={'App'}>
+          <div  style={{marginTop: "0.5em", marginLeft: "0.5em", marginBottom: "-0.5em"}} >
               <nav>
                   <Link to="/">
                       <button onClick={updateCurrentPage} color={"black"} class={window.location.pathname === "/" ? "ui animated active button" : "ui animated  button"} >
                           <div class="visible content">Home</div>
                           <div class="hidden content">
-                              <i class="home icon"></i>
+                              <i class="home icon"/>
                           </div>
                       </button>
                   </Link>
@@ -48,10 +49,15 @@ export default function App() {
                       <button onClick={updateCurrentPage + resetToAllWetsuits} color={"blue"} class={window.location.pathname === "/wetsuits" ? "ui animated  active button" : "ui animated  button"}>
                           <div class="visible content">Wetsuits</div>
                           <div class="hidden content">
-                              <i class = 'tint icon'></i>
+                              <i class = 'tint icon'/>
                           </div>
                       </button>
                   </Link>
+                  <Segment attached={'top'} textAlign={'center'} inverted color={'black'} basic padded = 'very' massive>
+                      <Header content = "theWetsuitHub.co.uk" size= "huge" color='black' />
+                      <Header size = 'tiny' content = "The price comparison website for wetsuits"/>
+                  </Segment>
+
               </nav>
           </div>
           <div class="ui divider" ></div>
@@ -64,6 +70,8 @@ export default function App() {
                   <Home />
               </Route>
           </Switch>
+
+
       </Router>
   )
 }

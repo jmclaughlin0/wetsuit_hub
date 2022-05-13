@@ -1,5 +1,5 @@
 import './App.css';
-import {Button, Grid, Header, Icon} from "semantic-ui-react";
+import {Button, Grid, Header, Icon, Segment} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import DevAndPhotogTile from "./DevAndPhotogTile";
@@ -33,36 +33,32 @@ export default function Home() {
 
     return (
         <div align='center'>
-        <div className="Home-header">
-            <Header className= 'App-header' >
-                <div>
-                    <Header style={{fontSize: "100px"}} inverted color='white'  >
-                        theWetsuitHub.co.uk
-                    </Header>
-                    <Header as='h2' inverted color='white'>
-                        The Wetsuit Hub finds wetsuits from across the web and lists them all in one site.
-                        <p/>
-                        <p/>
-                        Click on a wetsuit go to its original site.
-                    </Header>
-
-                    <Link to="/wetsuits">
-                        <Button inverted color={"orange"} onClick={updateCurrentPage}>
-                            Find the Best Prices on Wetsuits from Around the Web
-                           <Icon name={"right arrow"}/>
-                        </Button>
-                    </Link>
-                </div>
-            </Header>
-            <p> Websites That We Source From: </p>
-            <Grid columns = {3} divided textAlign={"center"}>
-                {outputList()}
-            </Grid>
-            <p/>
-            <Header>And More Coming Soon!!!</Header>
-        </div>
-            <DevAndPhotogTile/>
+            <div className="Home-header">
+                <Link to="/wetsuits">
+                <Button  color={"orange"} onClick={updateCurrentPage}>
+                    Find the Best Prices on Wetsuits from Around the Web
+                    <Icon name={"right arrow"}/>
+                </Button>
+            </Link>
+                <Header>
+                    <p> Websites That We Source From: </p>
+                        <Grid columns = {3} divided textAlign={"center"}>
+                            {outputList()}
+                        </Grid>
+                    <p/>
+                <Header size = "huge" >And More Coming Soon!!!</Header>
             <br/>
+                </Header>
+                <div>
+                <Header as='h2' color='black'>
+                    The Wetsuit Hub finds wetsuits from across the web and lists them all in one site.
+                    <p/>
+                    <p/>
+                    Click on a wetsuit go to its original site.
+                </Header>
+            </div>
+            </div>
+            <DevAndPhotogTile/>
         </div>
     );
 }
