@@ -17,7 +17,8 @@
 .Home-header {
   background-image: url(wetsuit_hub-homeImage.png);
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-position: 60% 80%;
+  background-size: auto 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
