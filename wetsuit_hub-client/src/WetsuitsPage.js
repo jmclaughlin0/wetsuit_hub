@@ -164,7 +164,7 @@ export default function WetsuitsPage(){
                     </GridRow>
                     <Segment vertical>
                         <Pagination
-                            defaultActivePage={1}
+                            activePage={pageNumber}
                             firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                             lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                             prevItem={{ content: <Icon name='angle left' />, icon: true }}
@@ -200,6 +200,17 @@ export default function WetsuitsPage(){
             <CardGroup className= "WetsuitPageSpace" itemsPerRow={5} stackable={true} doubling={true}>
                 {outputList()}
             </CardGroup>
+
+                <Segment textAlign={'center'} vertical>
+                    <Pagination
+                        activePage={pageNumber}
+                        firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                        lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                        prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                        nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                        totalPages={numberPages}
+                        onPageChange= { (event, data) => changePage(event,data)} />
+                </Segment>
 
             </p>
             <DevAndPhotogTile/>
