@@ -6,6 +6,7 @@
 /Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/scrapers/TikiScraper.java
 /Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/ProxyScraper.java
 /Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/WetsuitsRepository.java
+/Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/SecurityConfig.java
 /Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/archivedScrapers/DeeplyScraper.java
 /Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/WetsuitController.java
 /Users/JoeMcLaughlin/Dev/wetsuit_hub/wetsuit_hub-backend/wetsuit_hub-web/src/main/java/com/nyxgroup/wetsuit_hubweb/StringFinder.java

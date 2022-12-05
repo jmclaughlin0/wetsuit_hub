@@ -1,5 +1,5 @@
 import './App.css';
-import {Button, Grid, Header, Icon, Image, Segment} from "semantic-ui-react";
+import {Button, Grid, Header, Icon, Image, Message, Segment} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
 import DevAndPhotogTile from "./DevAndPhotogTile";
@@ -34,6 +34,13 @@ export default function Home() {
     return (
         <div align='center'>
             <div className="Home-header">
+                <Message>
+                    <Message.Header>Changes in Service</Message.Header>
+                    <p>
+                        Due to the cost of running this website, the site is being relaunched over the next week.
+                        We apologise for any inconvenience.
+                    </p>
+                </Message>
                 <Link to="/wetsuits">
                 <Button  color={"orange"} onClick={updateCurrentPage}>
                     Find the Best Prices on Wetsuits from Around the Web
