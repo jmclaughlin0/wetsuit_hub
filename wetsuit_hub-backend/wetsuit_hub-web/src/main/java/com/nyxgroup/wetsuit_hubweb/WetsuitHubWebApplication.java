@@ -1,5 +1,6 @@
 package com.nyxgroup.wetsuit_hubweb;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -34,9 +35,9 @@ public class WetsuitHubWebApplication {
 		public WebMvcConfigurer corsConfigurer() {
 			return new WebMvcConfigurerAdapter() {
 				@Override
-				public void addCorsMappings(CorsRegistry registry) {
+				public void addCorsMappings(@NotNull CorsRegistry registry) {
 					registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-					registry.addMapping("/**").allowedOrigins("https://main.dx53rkj17w7f5.amplifyapp.com/");
+					registry.addMapping("/**").allowedOrigins("https://main.dx53rkj17w7f5.amplifyapp.com");
 				}
 			};
 		}

@@ -4,7 +4,6 @@ com/nyxgroup/wetsuit_hubweb/scrapers/WetsuitCenterScraper.class
 com/nyxgroup/wetsuit_hubweb/WetsuitHubWebApplication.class
 com/nyxgroup/wetsuit_hubweb/WetsuitsRepository.class
 com/nyxgroup/wetsuit_hubweb/scrapers/WetsuitOutletScraper.class
-com/nyxgroup/wetsuit_hubweb/SecurityConfig.class
 com/nyxgroup/wetsuit_hubweb/scrapers/SurfDomeScraper.class
 com/nyxgroup/wetsuit_hubweb/WetsuitController.class
 com/nyxgroup/wetsuit_hubweb/scrapers/TikiScraper.class
