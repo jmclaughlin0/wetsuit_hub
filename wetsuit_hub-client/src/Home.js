@@ -34,13 +34,6 @@ export default function Home() {
     return (
         <div align='center'>
             <div className="Home-header">
-                <Message>
-                    <Message.Header>Changes in Service</Message.Header>
-                    <p>
-                        Due to the cost of running this website, the site is being relaunched over the next week.
-                        We apologise for any inconvenience.
-                    </p>
-                </Message>
                 <Link to="/wetsuits">
                 <Button  color={"orange"} onClick={updateCurrentPage}>
                     Find the Best Prices on Wetsuits from Around the Web
