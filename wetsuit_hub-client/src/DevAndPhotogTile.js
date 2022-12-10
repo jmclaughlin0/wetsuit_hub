@@ -18,13 +18,14 @@ export default function DevAndPhotogTile() {
                 </Header>
                 <Header as={"h4"}  align={"center"}> Background Images By{" "}
                 <a
-                    className="App-link"
+
                     href="https://www.instagram.com/teganwphotography/"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     Tegan Ward
-                </a>
+                </a
+                    >
             </Header>
 
             </Segment>

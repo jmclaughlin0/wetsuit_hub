@@ -35,7 +35,7 @@ export default function Home() {
         <div align='center'>
             <div className="Home-header">
                 <Link to="/wetsuits">
-                <Button  color={"orange"} onClick={updateCurrentPage}>
+                <Button  color={"orange"} size='massive' onClick={updateCurrentPage}>
                     Find the Best Prices on Wetsuits from Around the Web
                     <Icon name={"right arrow"}/>
                 </Button>
