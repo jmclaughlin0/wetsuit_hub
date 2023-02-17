@@ -57,7 +57,11 @@ export default function App() {
                       <Header content = "theWetsuitHub.co.uk" size= "huge" color='black' />
                       <Header size = 'tiny' content = "The price comparison website for wetsuits"/>
                   </Segment>
-
+                  <Segment>
+                      <Header color={"red"}>
+                          N.B - This is just a mock app. Due to the financial constraints of hosting on AWS, this is a static webpage with none of the original 2 hourly webscraping from source websites, adaptive sorting or other wetsuits apart from Men's 6mm Suits. Apologies to anyone who has being using the site. Full code of the working site can be seen at: <Link>https://github.com/jmclaughlin0/wetsuit_hub</Link>
+                      </Header>
+                  </Segment>
               </nav>
           </div>
           <div class="ui divider" ></div>

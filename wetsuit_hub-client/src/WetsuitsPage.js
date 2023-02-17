@@ -22,6 +22,9 @@ import WetsuitSearchBar from "./WetsuitSearchBar";
 import SizePopup from "./SizePopup";
 import DevAndPhotogTile from "./DevAndPhotogTile";
 
+import {fakeWetsuitsData} from "./FakeData";
+import {Link} from "react-router-dom";
+
 export default function WetsuitsPage(){
 
     const path1 = window.location.pathname.split("/")[2]
@@ -32,7 +35,9 @@ export default function WetsuitsPage(){
 
     const thickness = path2===undefined? "":path2.replace("%20", " ")
 
-    const wetsuits = useSelector(selectWetsuits)
+    // const wetsuits = useSelector(selectWetsuits)
+
+    const wetsuits = fakeWetsuitsData;
 
     const numberPages = useSelector(selectPages)
 
@@ -127,18 +132,6 @@ export default function WetsuitsPage(){
         setSizeSearch(size)
     }
 
-    // function updateInProgress(){
-    //     return(
-    //         <p align="center">
-    //             <Segment placeholder padded>
-    //                 <Dimmer active inverted>
-    //                     <Loader  size='massive' as={"h1"}>Wetsuits are updating, this will only take a minute... </Loader>
-    //                 </Dimmer>
-    //             </Segment>
-    //             <Header as={"h4"}>You can still browse wetsuits, but not all wetsuits will be available until the update is finished</Header>
-    //         </p>
-    //     )
-    // }
 
     return(
         <p>
