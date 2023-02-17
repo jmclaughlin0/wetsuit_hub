@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/wetsuit_hub/static/css/main.a9c1fdf9.chunk.css",
-    "main.js": "/wetsuit_hub/static/js/main.9f50c57a.chunk.js",
-    "main.js.map": "/wetsuit_hub/static/js/main.9f50c57a.chunk.js.map",
-    "runtime-main.js": "/wetsuit_hub/static/js/runtime-main.7af4c597.js",
-    "runtime-main.js.map": "/wetsuit_hub/static/js/runtime-main.7af4c597.js.map",
-    "static/css/2.dee4c518.chunk.css": "/wetsuit_hub/static/css/2.dee4c518.chunk.css",
-    "static/js/2.e34257ed.chunk.js": "/wetsuit_hub/static/js/2.e34257ed.chunk.js",
-    "static/js/2.e34257ed.chunk.js.map": "/wetsuit_hub/static/js/2.e34257ed.chunk.js.map",
-    "static/js/3.c3d8a346.chunk.js": "/wetsuit_hub/static/js/3.c3d8a346.chunk.js",
-    "static/js/3.c3d8a346.chunk.js.map": "/wetsuit_hub/static/js/3.c3d8a346.chunk.js.map",
-    "index.html": "/wetsuit_hub/index.html",
-    "static/css/2.dee4c518.chunk.css.map": "/wetsuit_hub/static/css/2.dee4c518.chunk.css.map",
-    "static/css/main.a9c1fdf9.chunk.css.map": "/wetsuit_hub/static/css/main.a9c1fdf9.chunk.css.map",
-    "static/js/2.e34257ed.chunk.js.LICENSE.txt": "/wetsuit_hub/static/js/2.e34257ed.chunk.js.LICENSE.txt",
-    "static/media/semantic.min.css": "/wetsuit_hub/static/media/outline-icons.ddae9b1b.woff",
-    "static/media/App.css": "/wetsuit_hub/static/media/wetsuit_hub-wetsuitPageImage.fd52cb23.png"
+    "main.css": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/css/main.f964fa87.chunk.css",
+    "main.js": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/main.9f50c57a.chunk.js",
+    "main.js.map": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/main.9f50c57a.chunk.js.map",
+    "runtime-main.js": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/runtime-main.d4a54fb1.js",
+    "runtime-main.js.map": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/runtime-main.d4a54fb1.js.map",
+    "static/css/2.79457813.chunk.css": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/css/2.79457813.chunk.css",
+    "static/js/2.e34257ed.chunk.js": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/2.e34257ed.chunk.js",
+    "static/js/2.e34257ed.chunk.js.map": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/2.e34257ed.chunk.js.map",
+    "static/js/3.c3d8a346.chunk.js": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/3.c3d8a346.chunk.js",
+    "static/js/3.c3d8a346.chunk.js.map": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/3.c3d8a346.chunk.js.map",
+    "index.html": "/wetsuit_hub/tree/main/wetsuit_hub-client/index.html",
+    "static/css/2.79457813.chunk.css.map": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/css/2.79457813.chunk.css.map",
+    "static/css/main.f964fa87.chunk.css.map": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/css/main.f964fa87.chunk.css.map",
+    "static/js/2.e34257ed.chunk.js.LICENSE.txt": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/js/2.e34257ed.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/media/outline-icons.ddae9b1b.woff",
+    "static/media/App.css": "/wetsuit_hub/tree/main/wetsuit_hub-client/static/media/wetsuit_hub-wetsuitPageImage.fd52cb23.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.7af4c597.js",
-    "static/css/2.dee4c518.chunk.css",
+    "static/js/runtime-main.d4a54fb1.js",
+    "static/css/2.79457813.chunk.css",
     "static/js/2.e34257ed.chunk.js",
-    "static/css/main.a9c1fdf9.chunk.css",
+    "static/css/main.f964fa87.chunk.css",
     "static/js/main.9f50c57a.chunk.js"
   ]
 }
