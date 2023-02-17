@@ -1,7 +1,7 @@
 {
   "name": "wetsuit_hub",
   "version": "0.1.0",
-  "homepage": "https://jmclaughlin0.github.io/wetsuit_hub",
+  "homepage": "https://jmclaughlin0.github.io/wetsuit_hub/tree/main/wetsuit_hub-client",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
